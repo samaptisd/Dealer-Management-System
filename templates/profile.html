@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+ /* Media query to hide the sidebar on screens smaller than 768px (tablets and below) */
+        @media (max-width: 767px) {
+          #navbar {
+            display: none; /* Hide the sidebar for small screens (phones) */
+          }
+          body {
+                margin: 5px !important;
+                padding: 5px !important;
+            }
+
+        }
+
+        /* Media query to hide the sidebar on screens smaller than 1024px (tablets and below) */
+        @media (max-width: 1024px) {
+          #navbar {
+            display: none; /* Hide the sidebar for small screens (phones) */
+          }
+            body {
+                margin: 5px !important;
+                padding: 5px !important;
+              }
+        }
+
+        /* Media query to hide the sidebar on screens smaller than 1024px (tablets and below) */
+        @media (max-width: 1024px) {
+          #navbar {
+            display: none; /* Hide the sidebar for small screens (phones) */
+          }
+            body {
+                margin: 5px !important;
+                padding: 5px !important;
+              }
+        }
+
+        /* Media query to hide the sidebar on iPad devices */
+        @media only screen
+          and (min-device-width: 768px)
+          and (max-device-width: 1024px)
+          and (-webkit-min-device-pixel-ratio: 1.5) {
+          #navbar {
+            display: none; /* Hide the sidebar on iPads */
+          }
+            body {
+                margin: 5px !important;
+                padding: 5px !important;
+            }
+        }
+    </style>
+</head>
+ <div class="logo"><left><i class="material-icons">
+    <img src="{{ url_for('static', filename='logo.png') }}" style="width:150px;height: auto; alt=""/></i></left>
+</div>
+
+<style>
+
+ /* Media query to hide the sidebar on screens smaller than 768px (tablets and below) */
+@media (max-width: 767px) {
+  #navbar {
+    display: none; /* Hide the sidebar for small screens (phones) */
+  }
+}
+
+/* Media query to hide the sidebar on iPad devices */
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1180px)
+  and (-webkit-min-device-pixel-ratio: 1.5) {
+  #navbar {
+    display: none; /* Hide the sidebar on iPads */
+  }
+}
+ </style>
+
+</head>
+
+
+<body id="body-pd">
+        <div class="l-navbar" id="navbar">
+            <nav class="nav">
+                <div>
+                    <div class="nav__brand">
+                        <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
+                        <a href="#" class="nav__logo">Aludecor</a>
+                    </div>
+                    <div class="nav__list">
+                        <a href="{{ url_for('home') }}" class="nav__link active">
+                            <ion-icon name="home-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Home</span>
+                        </a>
+                        <a href="{{ url_for('flip') }}" class="nav__link">
+                            <ion-icon name="reader-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Catalogue</span>
+                        </a>
+
+						<a href="{{ url_for('form') }}" class="nav__link">
+                            <ion-icon name="desktop-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Order Booking</span>
+                        </a>
+
+                        <a href="{{ url_for('requisition') }}" class="nav__link">
+                          <ion-icon name="desktop-outline" class="nav__icon"></ion-icon>
+                          <span class="nav__name">Requisition Form</span>
+                      </a>
+
+						<a href="{{ url_for('profile') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Purchase Overview</span>
+                        </a>
+                        <a href="{{ url_for('booked_order') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Confirmation Pending</span>
+                        </a>
+
+                        <a href="{{ url_for('order_status') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Conf. Pending Orders</span>
+                        </a>
+
+                        <a href="{{ url_for('order_transuction') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Completed Transaction History</span>
+                        </a>
+<!--                        <div  class="nav__link collapse">-->
+<!--                            <ion-icon name="shapes-outline" class="nav__icon"></ion-icon>-->
+<!--                            <span class="nav__name">Purchase Tracker</span>-->
+
+<!--                            <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>-->
+
+<!--                            <ul class="collapse__menu">-->
+<!--                                <a href="{{ url_for('booked_order') }}" class="collapse__sublink">Pending for Confirmation</a>-->
+<!--                                <a href="{{ url_for('order_status') }}" class="collapse__sublink">Confirmed Pending Orders</a>-->
+<!--                                <a href="{{ url_for('order_transuction') }}" class="collapse__sublink">Completed Transaction History</a>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+
+                        <a href="{{url_for('balance_overview')}}" class="nav__link">
+                            <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Balance Overview</span>
+                        </a>
+                        <a href="{{url_for('care_support')}}" class="nav__link">
+                            <ion-icon name="umbrella-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Care Support</span>
+                        </a>
+
+                        <a href="{{ url_for('account_details') }}" class="nav__link">
+                            <ion-icon name="person-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">ProfileHub</span>
+                        </a>
+
+
+                <a href="{{ url_for('logout') }}" class="nav__link">
+                    <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+                    <span class="nav__name">Log Out</span>
+                </a>
+            </nav>
+        </div>
+
+<br>
+<br>
+
+<script>
+	/*===== EXPANDER MENU  =====*/
+const showMenu = (toggleId, navbarId, bodyId)=>{
+  const toggle = document.getElementById(toggleId),
+  navbar = document.getElementById(navbarId),
+  bodypadding = document.getElementById(bodyId)
+
+  if(toggle && navbar){
+    toggle.addEventListener('click', ()=>{
+      navbar.classList.toggle('expander')
+
+      bodypadding.classList.toggle('body-pd')
+    })
+  }
+}
+showMenu('nav-toggle','navbar','body-pd')
+
+/*===== LINK ACTIVE  =====*/
+const linkColor = document.querySelectorAll('.nav__link')
+function colorLink(){
+  linkColor.forEach(l=> l.classList.remove('active'))
+  this.classList.add('active')
+}
+linkColor.forEach(l=> l.addEventListener('click', colorLink))
+
+
+/*===== COLLAPSE MENU  =====*/
+const linkCollapse = document.getElementsByClassName('collapse__link')
+var i
+
+for(i=0;i<linkCollapse.length;i++){
+  linkCollapse[i].addEventListener('click', function(){
+    const collapseMenu = this.nextElementSibling
+    collapseMenu.classList.toggle('showCollapse')
+
+    const rotate = collapseMenu.previousElementSibling
+    rotate.classList.toggle('rotate')
+  })
+}
+
+</script>
+<script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+<br>
+<center><div>
+<!--    <p>Your account details are below:</p>-->
+    <br>
+<center>
+
+    <h2>Your Purchase Summary details are below:</h2>
+<br>
+<div style="justify-content: center !important;">
+    <table style="font-size:15px; font-color:#0b056e;">
+        <caption style="font-weight:bold; color:#021d45; font-size:15px; padding:5px;">Purchase History in Current FY</caption>
+        <thead>
+        <tr>
+            <th>Product Code</th>
+            <th>Total Qty(Sheet)</th>
+            <th>Total Qty (SQM)</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in fy_data %}
+        <tr>
+            <td>{{row.Item_Name}}</td>
+            <td style="text-align:right;">{{row.Total_Qty}}</td>
+            <td style="text-align:right;">{{row.Total_Sqm}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <th>Grand Total</th>
+            <th style="text-align:right;">{{sum_data}}</th>
+            <th style="text-align:right;">{{sum_sqm_data}}</th>
+        </tr>
+        </tbody>
+
+
+    </table>
+
+
+</div></center>
+<br>
+<!--<div id="msg">{{ msg }}</div>-->
+
+<style>
+
+
+
+
+
+        .logo {
+  text-align: right;
+
+  }
+  	/*===== GOOGLE FONTS =====*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+/*===== VARIABLES CSS =====*/
+:root {
+  --nav-width: 92px;
+
+  /*===== Colores =====*/
+  --first-color: #0c5df4;
+  --bg-color: #12192c;
+  --sub-color: #b6cefc;
+  --white-color: #fff;
+
+  /*===== Fuente y tipografia =====*/
+  --body-font: "Poppins", sans-serif;
+  --normal-font-size: 1rem;
+  --small-font-size: 0.875rem;
+
+  /*===== z index =====*/
+  --z-fixed: 100;
+}
+
+/*===== BASE =====*/
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+body {
+  position: relative;
+  background-image: url('{{ url_for('static', filename='bdesign.jpg') }}');
+  /* Other CSS properties go here */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-size: cover;
+  margin: 40px; /* Adjust the margin value as needed */
+  padding: 2rem 0 0 6.75rem;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  transition: 0.5s;
+  overflow-y: scroll;
+}
+h1 {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+/*===== l NAV =====*/
+.l-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--nav-width);
+  height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--white-color);
+  padding: 1.5rem 1.5rem 2rem;
+  transition: 0.5s;
+  z-index: var(--z-fixed);
+}
+
+/*===== NAV =====*/
+.nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.nav__brand {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.nav__toggle {
+  font-size: 1.25rem;
+  padding: 0.75rem;
+  cursor: pointer;
+}
+.nav__logo {
+  color: var(--white-color);
+  font-weight: 600;
+}
+
+.nav__link {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  column-gap: 0.75rem;
+  padding: 0.75rem;
+  color: var(--white-color);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.nav__link:hover {
+  background-color: var(--first-color);
+}
+.nav__icon {
+  font-size: 1.25rem;
+}
+.nav__name {
+  font-size: var(--small-font-size);
+}
+
+/*Expander menu*/
+.expander {
+  width: calc(var(--nav-width) + 9.25rem);
+}
+
+/*Add padding body*/
+.body-pd {
+  padding: 2rem 0 0 16rem;
+}
+
+/*Active links menu*/
+.active {
+  background-color: var(--first-color);
+}
+
+/*===== COLLAPSE =====*/
+.collapse {
+  grid-template-columns: 20px max-content 1fr;
+}
+.collapse__link {
+  justify-self: flex-end;
+  transition: 0.5s;
+}
+.collapse__menu {
+  display: none;
+  padding: 0.75rem 2.25rem;
+}
+.collapse__sublink {
+  color: var(--sub-color);
+  font-size: var(--small-font-size);
+}
+.collapse__sublink:hover {
+  color: var(--white-color);
+}
+
+/*Show collapse*/
+.showCollapse {
+  display: block;
+}
+
+/*Rotate icon*/
+.rotate {
+  transform: rotate(180deg);
+}
+
+
+
+/*<!--body{-->*/
+/*<!--    background-color: #d9e7fc !important;-->*/
+/*<!--}-->*/
+/*<!--    .tbl1 {-->*/
+/*<!--&lt;!&ndash;color: white;&ndash;&gt;-->*/
+/*<!--font-size: 200px;-->*/
+/*<!--}-->*/
+
+
+.tbl1{
+    display: table;
+    border-collapse: separate;
+    border: 1px solid;
+    border-spacing: 0;
+    box-sizing: border-box;
+    text-indent: initial;
+    padding: 10px;
+    align-content: center !important;
+
+}
+
+
+p {
+  color: blue;
+  font-family: verdana;
+  font-size: 200%;
+}
+
+h1 {
+  color: blue;
+  font-family: verdana;
+  font-size: 180%;
+}
+
+tr, td, th {
+    padding: 10px;
+    border: 1px solid black;
+}
+
+
+
+
+#main-navbar {
+  font: 1.15em;
+}
+
+#main-navbar ul {
+  margin: 5;
+  padding: 10;
+  text-align: center;
+}
+
+<!--#main-navbar li {-->
+<!--  display: inline-block;-->
+<!--  padding: 10px 20px;-->
+<!--  font-size: 16px;-->
+<!--  text-decoration: underline;-->
+<!--  text-decoration-color: white;-->
+<!--}-->
+
+#main-navbar li a {
+  text-decoration: none;
+  color: #EDA51A;
+}
+
+<!--#main-navbar li a:hover {-->
+<!--  padding-bottom: 3px;-->
+<!--  color: #ffffff;-->
+<!--  font-size: 15px;-->
+<!--}-->
+
+
+#main-navbar li {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 17px;
+  position: relative; /* Needed for the absolute positioning of the animated underline */
+}
+
+#main-navbar li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px; /* Adjust this value to position the underline properly */
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  transform: scaleX(0); /* Start with no width */
+  transform-origin: bottom left;
+  transition: transform 0.3s ease; /* Animation duration and easing */
+}
+
+#main-navbar li:hover::after {
+  transform: scaleX(1); /* Expand the underline to full width on hover */
+}
+
+  * {
+  margin: 0;
+  padding: 0;
+}
+
+html
+ {
+  width: 100%;
+  height: 100%;
+/*  overflow: hidden;*/
+}
+
+
+
+
+
+
+
+
+
+</style>
+</html>
+

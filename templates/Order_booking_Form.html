@@ -1,0 +1,2616 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+        <style>
+        /* Media query to hide the sidebar on screens smaller than 768px (tablets and below) */
+    @media (max-width: 767px) {
+      #navbar {
+        display: none; /* Hide the sidebar for small screens (phones) */
+      }
+      body {
+        margin: 5px !important;
+        padding: 5px !important;
+      }
+    }
+    /* Media query to hide the sidebar on screens smaller than 1024px (tablets and below) */
+    @media (max-width: 1024px) {
+      #navbar {
+        display: none; /* Hide the sidebar for small screens (phones) */
+      }
+        body {
+            margin: 5px !important;
+            padding: 5px !important;
+          }
+    }
+
+    /* Media query to hide the sidebar on iPad devices */
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1.5) {
+      #navbar {
+        display: none; /* Hide the sidebar on iPads */
+      }
+      body {
+        margin: 5px !important;
+        padding: 5px !important;
+      }
+    }
+
+
+    @media only screen and (max-width: 767px) and (orientation: portrait) {
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.8);
+        filter: blur(5px);
+        z-index: 9999;
+      }
+
+/*      #orientation-message {*/
+/*        display: block;*/
+/*        position: fixed;*/
+/*        top: 50%;*/
+/*        left: 50%;*/
+/*        transform: translate(-50%, -50%);*/
+/*        background-color: white;*/
+/*        padding: 20px;*/
+/*        font-family: Arial, sans-serif;*/
+/*        font-size: 15px;*/
+/*        text-align: center;*/
+/*        z-index: 10000;*/
+/*      }*/
+        #orientation-message {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background-color: rgba(0, 0, 0, 0.8);
+          z-index: 9999;
+        }
+
+        #orientation-message > div {
+          background-color: white;
+          padding: 20px;
+          font-family: Arial, sans-serif;
+          font-size: 15px;
+          text-align: center;
+        }
+
+    }
+
+    @media only screen and (orientation: landscape), (min-width: 768px) and (max-width: 1024px) {
+      body::before,
+      #orientation-message {
+        display: none;
+      }
+
+    }
+
+
+    </style>
+
+    <div id="orientation-message">
+        <div>
+            <p>Please rotate your device to landscape mode.</p>
+        </div>
+    </div>
+</head>
+
+
+<body id="body-pd">
+        <div class="l-navbar" id="navbar">
+            <nav class="nav">
+                <div>
+                    <div class="nav__brand">
+                        <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
+                        <a href="#" class="nav__logo">Aludecor</a>
+                    </div>
+                    <div class="nav__list">
+                        <a href="{{ url_for('home') }}" class="nav__link active">
+                            <ion-icon name="home-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Home</span>
+                        </a>
+                        <a href="{{ url_for('flip') }}" class="nav__link">
+                            <ion-icon name="reader-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Catalogue</span>
+                        </a>
+
+						<a href="{{ url_for('form') }}" class="nav__link">
+                            <ion-icon name="desktop-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Order Booking</span>
+                        </a>
+
+                        <a href="{{ url_for('requisition') }}" class="nav__link">
+                          <ion-icon name="desktop-outline" class="nav__icon"></ion-icon>
+                          <span class="nav__name">Requisition Form</span>
+                      </a>
+
+						<a href="{{ url_for('profile') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Purchase Overview</span>
+                        </a>
+
+                        <a href="{{ url_for('booked_order') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Confirmation Pending</span>
+                        </a>
+
+                        <a href="{{ url_for('order_status') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Conf. Pending Orders</span>
+                        </a>
+
+                        <a href="{{ url_for('order_transuction') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Completed Transaction History</span>
+                        </a>
+
+<!--                        <div  class="nav__link collapse">-->
+<!--                            <ion-icon name="shapes-outline" class="nav__icon"></ion-icon>-->
+<!--                            <span class="nav__name">Purchase Tracker</span>-->
+
+<!--                            <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>-->
+
+<!--                            <ul class="collapse__menu">-->
+<!--                                <a href="{{ url_for('booked_order') }}" class="collapse__sublink">Pending for Confirmation</a>-->
+<!--                                <a href="{{ url_for('order_status') }}" class="collapse__sublink">Confirmed Pending Orders</a>-->
+<!--                                <a href="{{ url_for('order_transuction') }}" class="collapse__sublink">Completed Transaction History</a>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+
+                        <a href="{{url_for('balance_overview')}}" class="nav__link">
+                            <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Balance Overview</span>
+                        </a>
+                        <a href="{{url_for('care_support')}}" class="nav__link">
+                            <ion-icon name="umbrella-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Care Support</span>
+                        </a>
+
+                        <a href="{{ url_for('account_details') }}" class="nav__link">
+                            <ion-icon name="person-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">ProfileHub</span>
+                        </a>
+
+
+                <a href="{{ url_for('logout') }}" class="nav__link">
+                    <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+                    <span class="nav__name">Log Out</span>
+                </a>
+            </nav>
+        </div>
+
+
+
+
+
+<left><div class="logo"><i class="material-icons">
+    <img src="{{ url_for('static', filename='logo.png') }}" style="width:150px;height: 50px; alt=""/></i>
+</div></left>
+
+{% block content %}
+<br>
+<br>
+<center><h1><u>Order Booking Form</u></h1></center>
+<br>
+<center><h2>Logged In as: {{fullname}}</h2></center>
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+
+
+      <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+       <!-- font awesome  -->
+
+
+
+
+
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+      <title>Order Booking Form</title>
+  </head>
+<body>
+<center><h3 style="text-decoration:underline; color:green;">{{message|safe}}</h3></center>
+<form method="post" action="{{url_for('form')}}">
+<div class="table-container">
+    <table id="myTable">
+        <caption style="color:Green;font-size:30px;font-weight:bold;text-decoration:underline;">Please fill the Order Details below</caption>
+
+        <thead>
+        <tr>
+            <td>
+              <label for="diff_address">Shipping Address Different from Billing Address?</label><br>
+                <select id="diff_address" name="diff_address" required>
+<!--                  <option value="" disabled selected>Select Here</option>-->
+                  <option value="No">No</option>
+                  <option value="Yes">Yes</option>
+              </select>
+            </td>
+            <td>
+                <label for="address">Shipping Address (If Required)</label><br>
+                <input type="text" id="address" name="address" placeholder="Address" required disabled>
+            </td>
+            <td>
+                <label for="state">State/Province</label><br>
+                <input type="text" id="state" name="state" placeholder="State/Province" required disabled>
+            </td>
+            <td>
+                <label for="pincode">Pin Code</label><br>
+                <input type="text" id="pincode" name="pincode" placeholder="Pincode" pattern="[1-8]\d{5}" title="Valid pin code only" required disabled>
+            </td>
+            <td>
+                <label for="contact_name">Contact Name</label><br>
+                <input type="text" id="contact_name" name="contact_name" placeholder="Contact Name" required disabled>
+            </td>
+            <td>
+                <label for="contact_number">Contact Number</label><br>
+                <input type="text" id="contact_number" name="contact_number" placeholder="Contact Number" pattern="[6-9]\d{9}" title="Valid Mobile No. only" required disabled>
+            </td>
+            <td>
+                <label for="remarks">Special Remarks</label><br>
+                <input type="text" id="remarks" name="remarks" placeholder="Remarks (If any)">
+            </td>
+      </thead>
+      <tbody>
+      <tr>
+          <td colspan="8" align="Center" style="border-bottom: 2px solid black; border-top: 2px solid black; color:green;font-size:30px;font-weight:bold;">Add Item Details Below</td>
+      </tr>
+        <tr>
+            <td>
+              <label for="order_type">Order Type</label>
+              <br>
+              <select id="order_type" name="order_type" required onchange="handleOrderTypeChange(this)">
+<!--                  <option value="" disabled selected>Select Here</option>-->
+                  <option value="Standard">Standard</option>
+                  <option value="Customized">Customized</option>
+              </select>
+          </td>
+          <td>
+              <label for="item_code">Item Code</label><br>
+              <select id="item_code" name="item_code" required onchange="updateProductGrades(this)">
+                    <option value="" disabled selected>Select Here</option>
+                    <option value="AL312">AL312</option>
+                    <option value="AL32">AL32</option>
+                    <option value="AL3C">AL3C</option>
+                    <option value="AL33R">AL33R</option>
+                    <option value="AL4C">AL4C</option>
+                    <option value="AL43R">AL43R</option>
+                    <option value="AL63">AL63</option>
+                    <option value="Aluwall">Aluwall</option>
+              </select>
+          </td>
+            <td>
+              <label for="product_grade">Product Grade</label><br>
+                <select id="product_grade" name="product_grade" required onchange="updateColorCode(this)">
+                    <option value="" disabled selected>Select Here</option>
+                </select>
+            </td>
+            <td>
+                <label for="color_code">Color Code</label><br>
+                <select id="color_code" name="color_code" required>
+                    <option value="" disabled selected>Select Here</option>
+                </select>
+            </td>
+            <td>
+                <label for="length">Length (in mm)</label><br>
+                <select id="length" name="length" required>
+                    <option value="" disabled selected>Select Here</option>
+                    <option value="2440">2440</option>
+                    <option value="3050">3050</option>
+                    <option value="3660">3660</option>
+                </select>
+            </td>
+            <td>
+                <label for="width">Width (in mm)</label><br>
+                <select id="width" name="width" required>
+                  <option value="" disabled selected>Select Here</option>
+                  <option value="1220">1220</option>
+                </select>
+            </td>
+            <td>
+                <label for="matching_lot">Matching Lot (If Any)</label><br>
+                <input type="text" name="matching_lot" id="matching_lot">
+            </td>
+            <td>
+                <label for="order_qty">Order Qty (in sheet)</label><br>
+                <input type="number" name="order_qty" id="order_qty" min="1" step="1" required>
+            </td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button id="addRow" type="button" ><i class="fa fa-plus" style="font-size:20px;"></i></button>
+    <button id="submitForm" type="submit">Submit</button>
+
+</div>
+    </form>
+
+
+
+
+<script>
+    console.log(window.location.hostname);
+const sameAddressDropdown = document.getElementById("diff_address");
+const addressInput = document.getElementById("address");
+const stateInput = document.getElementById("state");
+const pincodeInput = document.getElementById("pincode");
+const contact_name_Input = document.getElementById("contact_name");
+const contact_number_Input = document.getElementById("contact_number");
+
+sameAddressDropdown.addEventListener("change", () => {
+  if (sameAddressDropdown.value === "Yes") {
+    addressInput.disabled = false;
+    stateInput.disabled = false;
+    pincodeInput.disabled = false;
+    contact_name_Input.disabled = false;
+    contact_number_Input.disabled = false;
+  } else {
+    addressInput.disabled = true;
+    stateInput.disabled = true;
+    pincodeInput.disabled = true;
+    contact_name_Input.disabled = true;
+    contact_number_Input.disabled = true;
+  }
+});
+
+
+const table = document.getElementById("myTable");
+const addRowButton = document.getElementById("addRow");
+const submitFormButton = document.getElementById("submitForm");
+
+// Add new row to table
+function addRow() {
+    const firstRow = table.rows[2];
+    const newRow = firstRow.cloneNode(true);
+    const minusButton = document.createElement("button");
+    minusButton.type = "button";
+
+    const minusIcon = document.createElement("i");
+    minusIcon.className = "fa fa-times";
+    minusIcon.style = "color:red; font-size:30px; align:left;";
+
+    minusButton.appendChild(minusIcon);
+    minusButton.addEventListener("click", deleteRow);
+    newRow.cells[8].appendChild(minusButton);
+
+    // Reset the 'Order Type' select element to 'Standard'
+    const orderTypeSelect = newRow.querySelector("[name='order_type']");
+    orderTypeSelect.value = "Standard";
+
+    // Clear any filled data in input fields
+    const inputFields = newRow.querySelectorAll("input[type='text'], input[type='number']");
+    inputFields.forEach((input) => {
+        input.value = "";
+    });
+    replaceInputsWithSelects(newRow);
+
+    table.tBodies[0].appendChild(newRow);
+}
+
+
+// Delete current row from table
+function deleteRow() {
+  const currentRow = this.parentNode.parentNode;
+  if (table.rows.length > 1) {
+    currentRow.parentNode.removeChild(currentRow);
+  }
+}
+
+// Add event listener to 'addRowButton'
+addRowButton.addEventListener("click", addRow);
+
+
+function hideSelectElements(row) {
+  const lengthSelect = row.querySelector("#length");
+  const widthSelect = row.querySelector("#width");
+  lengthSelect.style.display = "none";
+  widthSelect.style.display = "none";
+}
+
+function hideInputElements(row) {
+//console.log(row);
+  const lengthInput = row.querySelector("#length");
+  console.log(lengthInput);
+  const widthInput = row.querySelector("#width");
+  lengthInput.style.display = "none";
+  widthInput.style.display = "none";
+}
+
+function replaceSelectsWithInputs(row) {
+  const lengthSelect = row.querySelector("#length");
+  const widthSelect = row.querySelector("#width");
+
+  const lengthInput = document.createElement("input");
+  lengthInput.type = "number";
+  lengthInput.id = "length";
+  lengthInput.name = "length";
+  lengthInput.required = true;
+  lengthInput.placeholder = "Min:500 & Max:7000";
+  lengthInput.pattern = "\\d{1,4}";
+  lengthInput.min = 500;
+  lengthInput.max = 7000;
+
+  const widthInput = document.createElement("input");
+  widthInput.type = "number";
+  widthInput.id = "width";
+  widthInput.name = "width";
+  widthInput.required = true;
+  widthInput.placeholder = "Min:300 & Max:1550";
+  widthInput.pattern = "\\d{1,4}";
+  widthInput.min = 300;
+  widthInput.max = 1550;
+
+  lengthSelect.parentNode.replaceChild(lengthInput, lengthSelect);
+  widthSelect.parentNode.replaceChild(widthInput, widthSelect);
+}
+
+function replaceInputsWithSelects(row) {
+  const lengthInput = row.querySelector("#length");
+  const widthInput = row.querySelector("#width");
+
+  const lengthSelect = document.createElement("select");
+  lengthSelect.id = "length";
+  lengthSelect.name = "length";
+  lengthSelect.required = true;
+
+  const widthSelect = document.createElement("select");
+  widthSelect.id = "width";
+  widthSelect.name = "width";
+  widthSelect.required = true;
+
+  const lengthOptions = ["", "2440", "3050", "3660"];
+  const widthOptions = ["", "1220"];
+
+  for (let i = 0; i < lengthOptions.length; i++) {
+    const option = document.createElement("option");
+    if (i === 0) {
+        option.value = "";
+        option.text = "Select Here";
+        option.disabled = true;
+        option.selected = true;
+    }
+    else {
+        option.value = lengthOptions[i];
+        option.text = lengthOptions[i];
+    }
+    lengthSelect.add(option);
+  }
+
+  for (let i = 0; i < widthOptions.length; i++) {
+    const option = document.createElement("option");
+    if (i === 0){
+        option.value = "";
+        option.text = "Select Here";
+        option.disabled = true;
+        option.selected = true;
+    } else {
+        option.value = widthOptions[i];
+        option.text = widthOptions[i];
+    }
+    widthSelect.add(option);
+  }
+
+  lengthInput.parentNode.replaceChild(lengthSelect, lengthInput);
+  widthInput.parentNode.replaceChild(widthSelect, widthInput);
+}
+
+
+
+    // Define a function to handle the order type change
+function handleOrderTypeChange(selectElement) {
+    const row = selectElement.parentNode.parentNode; // Get the parent row
+    const orderType = selectElement.value;
+
+    // Find the other elements within the row that you want to modify
+    const lengthSelect = row.querySelector("[name='length']");
+    const widthSelect = row.querySelector("[name='width']");
+    const lengthInput = row.querySelector("[name='length']");
+    const widthInput = row.querySelector("[name='width']");
+
+    if (orderType === "Customized") {
+        hideSelectElements(row);
+        replaceSelectsWithInputs(row);
+    } else if (orderType === "Standard") {
+        hideInputElements(row);
+        replaceInputsWithSelects(row);
+    }
+}
+
+
+// Define the function to update product grades based on the selected item code and row reference
+function updateProductGrades(itemCodeSelect) {
+    const row = itemCodeSelect.parentNode.parentNode;
+    const productGradeSelect = row.querySelector("[name='product_grade']");
+    const colorCodeSelect = row.querySelector("[name='color_code']");
+    const selectedItemId = itemCodeSelect.value;
+
+    const itemCodeToProductGrades = {
+        'AL312': ['Regular'],
+        'AL32': ['Regular', 'FRB1'],
+        'AL33R': ['Regular', 'FRB1'],
+        'AL4C': ['Regular', 'FRB1'],
+        'AL3C': ['Regular', 'FRB1'],
+        'AL43R': ['Regular', 'FRB1'],
+        'AL63': ['Regular', 'FRB1'],
+        'Aluwall': ['Regular']
+    };
+
+    // Clear existing options except the first one
+        while (productGradeSelect.options.length > 1) {
+            productGradeSelect.remove(1);
+        }
+    while (colorCodeSelect.options.length > 1) {
+        colorCodeSelect.remove(1);
+    }
+    colorCodeSelect.selectedIndex = 0;
+
+<!--    // Add the disabled "Select Here" option at the beginning-->
+<!--    const selectHereOption = document.createElement("option");-->
+<!--    selectHereOption.value = "";-->
+<!--    selectHereOption.text = "Select Here";-->
+<!--    selectHereOption.disabled = true;-->
+<!--    productGradeSelect.add(selectHereOption);-->
+
+    // Add new options based on the selected item code
+    if (selectedItemId in itemCodeToProductGrades) {
+        const productGrades = itemCodeToProductGrades[selectedItemId];
+        for (const grade of productGrades) {
+            const option = document.createElement("option");
+            option.value = grade;
+            option.text = grade;
+            productGradeSelect.add(option);
+        }
+    }
+
+    // Set the selected option to "Select Here" by default
+    productGradeSelect.selectedIndex = 0;
+}
+
+
+
+
+// Define the function to update product grades based on the selected item code and row reference
+function updateColorCode(productGradeSelect){
+    const row = productGradeSelect.parentNode.parentNode;
+    const itemCodeSelect = row.querySelector("[name='item_code']");
+    const colorCodeSelect = row.querySelector("[name='color_code']");
+    const selectedItemCode = itemCodeSelect.value;
+    const selectedGrade = productGradeSelect.value;
+
+    const dropdownData = {
+        'AL312': {
+            'Regular': ["AD01","AD02","AD05","AD06","AD07","AD12","AD14","AD21","AD22","AD31","AD32","AD41","AD42","AD43","AD52","AD72","AD8083","AD94","SH201"],
+        },
+        'AL32': {
+            'Regular': ["AD01","AD02","AD03","AD04","AD05","AD06","AD07","AD08","AD09","AD11","AD12","AD14","AD21","AD22","AD31","AD32","AD41","AD43","AD52","AD61","AD72","AD82","AD83","AD94","SH201","SH310","SH730","SP01","SP02","SP04","SP05","SP105"],
+            'FRB1': ["AD01","AD02","AD03","AD04","AD05","AD06","AD07","AD08","AD09","AD11","AD12","AD14","AD21","AD22","AD31","AD32","AD41","AD43","AD52","AD61","AD72","AD82","AD83","AD94","SH201","SH310","SH730","SP01","SP02","SP04","SP05","SP105"]
+        },
+        'AL3C': {
+            'Regular': ["AD01","AD02","AD03","AD05","AD06","AD07","AD08","AD09","AD11","AD12","AD14","AD202","AD206","AD21","AD22","AD301","AD302","AD31","AD32","AD41","AD43","AD7001","AD7002","AD73","AD82","AD83","AD84","AD92","SH201","SH310","SH730"],
+            'FRB1': ["AD01","AD02","AD03","AD05","AD06","AD07","AD08","AD09","AD11","AD12","AD14","AD202","AD206","AD21","AD22","AD301","AD302","AD31","AD32","AD41","AD43","AD7001","AD7002","AD73","AD82","AD83","AD84","AD92","SH201","SH310","SH730"]
+        },
+        'AL33R': {
+            'Regular': ["AD01","AD02","AD03","AD05","AD06","AD07","AD08","AD09","AD11","AD12","AD14","AD201","AD202","AD206","AD207","AD21","AD22","AD301","AD302","AD31","AD32","AD41","AD42","AD43","AD508","AD52","AD7001","AD7002","AD73","AD74","AD81","AD82","AD83","AD84","AD92","CS01","CS02","CS03","CS04","CS05","CS06","CS07","CS08","CS09","CT09","CT10","CT11","CT12","CT15","CT16","MA01","MA02","MA04","MA05","MA07","MA08","MA09","MA10","MA11","MA12","MT5001","MT5002","MT5003","MT5004","MT5005","MT5006","MT5007","MT5008","MT5009","MT5010","MT5011","MT5012","MT5014","PE05N","PE14","PE15","PE16","PE18","PE19","SD6001","SD6002","SD6003","SD6004","SD6005","SD6007","SD6009","SD6010","SD6011","SD6012","SD6013","SD6014","SD6015","SH010","SH050","SH060","SH070","SH090","SH201","SH2010","SH203","SH3010","SH310","SH320","SH5010","SH7030","SH730","SP01E","SP401","ST01","ST15","ST20","ST21","ST22","ST25","ST27","ST28","TR02","TR06","TR12","TR13","TR17","TR19","TR23","TR24","TR25","TR30","TR31","TR42","TR43","TR44","TR46","TR49","TR57","TR58","TR59","TR60","TR61","TR62","TR63","TR64","TR65","TR66","TR67","TR68","TR69","TR70"],
+            'FRB1': ["AD01","AD02","AD03","AD05","AD06","AD07","AD08","AD09","AD11","AD12","AD14","AD201","AD202","AD206","AD207","AD21","AD22","AD301","AD302","AD31","AD32","AD41","AD42","AD43","AD508","AD52","AD7001","AD7002","AD73","AD74","AD81","AD82","AD83","AD84","AD92","CS01","CS02","CS03","CS04","CS05","CS06","CS07","CS08","CS09","CT09","CT10","CT11","CT12","CT15","CT16","MA01","MA02","MA04","MA05","MA07","MA08","MA09","MA10","MA11","MA12","MT5001","MT5002","MT5003","MT5004","MT5005","MT5006","MT5007","MT5008","MT5009","MT5010","MT5011","MT5012","MT5014","PE05N","PE14","PE15","PE16","PE18","PE19","SD6001","SD6002","SD6003","SD6004","SD6005","SD6007","SD6009","SD6010","SD6011","SD6012","SD6013","SD6014","SD6015","SH010","SH050","SH060","SH070","SH090","SH201","SH2010","SH203","SH3010","SH310","SH320","SH5010","SH7030","SH730","SP01E","SP401","ST01","ST15","ST20","ST21","ST22","ST25","ST27","ST28","TR02","TR06","TR12","TR13","TR17","TR19","TR23","TR24","TR25","TR30","TR31","TR42","TR43","TR44","TR46","TR49","TR57","TR58","TR59","TR60","TR61","TR62","TR63","TR64","TR65","TR66","TR67","TR68","TR69","TR70"]
+        },
+        'AL4C': {
+            'Regular': ["AD01","AD02","AD03","AD05","AD06","AD07","AD08","AD09","AD11","AD12","AD14","AD202","AD206","AD21","AD22","AD301","AD302","AD31","AD32","AD41","AD43","AD7001","AD7002","AD73","AD82","AD83","AD84","AD92","SH201","SH310","SH730"],
+            'FRB1': ["AD01","AD02","AD03","AD05","AD06","AD07","AD08","AD09","AD11","AD12","AD14","AD202","AD206","AD21","AD22","AD301","AD302","AD31","AD32","AD41","AD43","AD7001","AD7002","AD73","AD82","AD83","AD84","AD92","SH201","SH310","SH730"]
+        },
+        'AL43R': {
+            'Regular': ["AD01","AD02","AD03","AD05","AD06","AD07","AD08","AD09","AD11","AD12","AD14","AD201","AD202","AD206","AD207","AD21","AD22","AD301","AD302","AD31","AD32","AD41","AD42","AD43","AD508","AD52","AD7001","AD7002","AD73","AD74","AD81","AD82","AD83","AD84","AD92","CS01","CS02","CS03","CS04","CS05","CS06","CS07","CS08","CS09","CT09","CT10","CT11","CT12","CT15","CT16","MA01","MA02","MA04","MA05","MA07","MA08","MA09","MA10","MA11","MA12","MT5001","MT5002","MT5003","MT5004","MT5005","MT5006","MT5007","MT5008","MT5009","MT5010","MT5011","MT5012","MT5014","PE05N","PE14","PE15","PE16","PE18","PE19","SD6001","SD6002","SD6003","SD6004","SD6005","SD6007","SD6009","SD6010","SD6011","SD6012","SD6013","SD6014","SD6015","SH010","SH050","SH060","SH070","SH090","SH201","SH2010","SH203","SH3010","SH310","SH320","SH5010","SH7030","SH730","SP01E","SP401","ST01","ST15","ST20","ST21","ST22","ST25","ST27","ST28","TR02","TR06","TR12","TR13","TR17","TR19","TR23","TR24","TR25","TR30","TR31","TR42","TR43","TR44","TR46","TR49","TR57","TR58","TR59","TR60","TR61","TR62","TR63","TR64","TR65","TR66","TR67","TR68","TR69","TR70"],
+            'FRB1': ["AD01","AD02","AD03","AD05","AD06","AD07","AD08","AD09","AD11","AD12","AD14","AD201","AD202","AD206","AD207","AD21","AD22","AD301","AD302","AD31","AD32","AD41","AD42","AD43","AD508","AD52","AD7001","AD7002","AD73","AD74","AD81","AD82","AD83","AD84","AD92","CS01","CS02","CS03","CS04","CS05","CS06","CS07","CS08","CS09","CT09","CT10","CT11","CT12","CT15","CT16","MA01","MA02","MA04","MA05","MA07","MA08","MA09","MA10","MA11","MA12","MT5001","MT5002","MT5003","MT5004","MT5005","MT5006","MT5007","MT5008","MT5009","MT5010","MT5011","MT5012","MT5014","PE05N","PE14","PE15","PE16","PE18","PE19","SD6001","SD6002","SD6003","SD6004","SD6005","SD6007","SD6009","SD6010","SD6011","SD6012","SD6013","SD6014","SD6015","SH010","SH050","SH060","SH070","SH090","SH201","SH2010","SH203","SH3010","SH310","SH320","SH5010","SH7030","SH730","SP01E","SP401","ST01","ST15","ST20","ST21","ST22","ST25","ST27","ST28","TR02","TR06","TR12","TR13","TR17","TR19","TR23","TR24","TR25","TR30","TR31","TR42","TR43","TR44","TR46","TR49","TR57","TR58","TR59","TR60","TR61","TR62","TR63","TR64","TR65","TR66","TR67","TR68","TR69","TR70"]
+        },
+        'AL63': {
+            'Regular': ["HPL121","HPL30","HPL31","HPL42","HPL43","HPL44","HPL46","HPL59","HPL62","HPL66"],
+            'FRB1': ["HPL121","HPL30","HPL31","HPL42","HPL43","HPL44","HPL46","HPL59","HPL62","HPL66"]
+        },
+        'Aluwall': {
+            'Regular': ["AM04","AM05","AT11","AT12","AT15","AT16","AT18","AT19","AT20","AT21","AT22","AT23","AT25","AT26","AW501","AW502","AW504","AW505","AW507","AW508","AW509","AW510","AW511","AW512","AW513","AW515","AW516","AW518","AI16","AI17","AI18","AI45","AI46","AI48","AI49","AI50","AI53","AI54","AI59","AI63","AI78","AI79","AI85","AI86","AI87"]
+        },
+    };
+
+    // Clear existing options except the first one
+    while (colorCodeSelect.options.length > 1) {
+        colorCodeSelect.remove(1);
+    }
+
+    // Add new options based on the selected item code and product grade
+    if (selectedItemCode in dropdownData){
+        const itemCodeData = dropdownData[selectedItemCode];
+        if (selectedGrade in itemCodeData){
+            for (const colorCode of itemCodeData[selectedGrade]){
+                const option = document.createElement("option");
+                option.value = colorCode;
+                option.text = colorCode;
+                colorCodeSelect.add(option);
+            }
+        }
+    }
+
+    // Set the selected option to "Select Here" by default
+    colorCodeSelect.selectedIndex = 0;
+}
+
+
+
+</script>
+
+
+
+<script>
+	/*===== EXPANDER MENU  =====*/
+const showMenu = (toggleId, navbarId, bodyId)=>{
+  const toggle = document.getElementById(toggleId),
+  navbar = document.getElementById(navbarId),
+  bodypadding = document.getElementById(bodyId)
+
+  if(toggle && navbar){
+    toggle.addEventListener('click', ()=>{
+      navbar.classList.toggle('expander')
+
+      bodypadding.classList.toggle('body-pd')
+    })
+  }
+}
+showMenu('nav-toggle','navbar','body-pd')
+
+/*===== LINK ACTIVE  =====*/
+const linkColor = document.querySelectorAll('.nav__link')
+function colorLink(){
+  linkColor.forEach(l=> l.classList.remove('active'))
+  this.classList.add('active')
+}
+linkColor.forEach(l=> l.addEventListener('click', colorLink))
+
+
+/*===== COLLAPSE MENU  =====*/
+const linkCollapse = document.getElementsByClassName('collapse__link')
+var i
+
+for(i=0;i<linkCollapse.length;i++){
+  linkCollapse[i].addEventListener('click', function(){
+    const collapseMenu = this.nextElementSibling
+    collapseMenu.classList.toggle('showCollapse')
+
+    const rotate = collapseMenu.previousElementSibling
+    rotate.classList.toggle('rotate')
+  })
+}
+
+</script>
+<script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+
+
+</body>
+<style>
+
+
+.table-container {
+  max-width: 1920px; /* Change as needed */
+  margin: 20px auto; /* Centers the container horizontally */
+/*  border: 2px solid black;*/
+  padding: 10px;
+  height: auto
+}
+     .delete-row {
+    color: red;
+    width: 24px; /* Adjust the width as needed */
+    height: 24px; /* Adjust the height as needed */
+    font-size: 80px; /* Adjust the font size as needed */
+  }
+
+ .small-td {
+        width: 20px;
+    }
+	/*===== GOOGLE FONTS =====*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+/*===== VARIABLES CSS =====*/
+:root {
+  --nav-width: 92px;
+  --yellow-color: yellow;
+
+  /*===== Colores =====*/
+  --first-color: #0c5df4;
+  --bg-color: #12192c;
+  --sub-color: #b6cefc;
+  --white-color: #fff;
+
+  /*===== Fuente y tipografia =====*/
+  --body-font: "Poppins", sans-serif;
+  --normal-font-size: 1rem;
+  --small-font-size: 0.875rem;
+
+  /*===== z index =====*/
+  --z-fixed: 100;
+}
+
+/*===== BASE =====*/
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+body {
+  position: flex;
+  background-image: url('{{ url_for('static', filename='bdesign.jpg') }}');
+  /* Other CSS properties go here */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-size: 500% auto; /* Use "cover" to make the background image cover the entire container */
+  margin: 0px; /* Adjust the margin value as needed */
+  padding: 1rem 0 0 6.75rem;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  transition: 0.5s;
+  overflow-y: scroll;
+  width: 103vw; /* Set the width to the viewport width */
+  height: 100vh; /* Set the height to the viewport height */
+}
+
+
+h1 {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+/*===== l NAV =====*/
+.l-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--nav-width);
+  height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--white-color);
+  padding: 1.5rem 1.5rem 2rem;
+  transition: 0.5s;
+  z-index: var(--z-fixed);
+}
+
+/*===== NAV =====*/
+.nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.nav__brand {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.nav__toggle {
+  font-size: 1.25rem;
+  padding: 0.75rem;
+  cursor: pointer;
+}
+.nav__logo {
+  color: var(--white-color);
+  font-weight: 600;
+}
+
+.nav__link {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  column-gap: 0.75rem;
+  padding: 0.75rem;
+  color: var(--white-color);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.nav__link:hover {
+  background-color: var(--first-color);
+}
+.nav__icon {
+  font-size: 1.25rem;
+}
+.nav__name {
+  font-size: var(--small-font-size);
+}
+
+/*Expander menu*/
+.expander {
+  width: calc(var(--nav-width) + 9.25rem);
+}
+
+/*Add padding body*/
+.body-pd {
+  padding: 2rem 0 0 16rem;
+}
+
+/*Active links menu*/
+.active {
+  background-color: var(--first-color);
+}
+
+/*===== COLLAPSE =====*/
+.collapse {
+  grid-template-columns: 20px max-content 1fr;
+}
+.collapse__link {
+  justify-self: flex-end;
+  transition: 0.5s;
+}
+.collapse__menu {
+  display: none;
+  padding: 0.75rem 2.25rem;
+}
+.collapse__sublink {
+  color: var(--sub-color);
+  font-size: var(--small-font-size);
+}
+.collapse__sublink:hover {
+  color: var(--yellow-color);
+  text-decoration: underline;
+}
+
+/*Show collapse*/
+.showCollapse {
+  display: block;
+}
+
+/*Rotate icon*/
+.rotate {
+  transform: rotate(180deg);
+}
+
+
+
+
+body {
+  background-color: #d9e7fc;
+}
+
+.wrapper {
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  background-color: #343436;
+}
+
+nav {
+<!--  display: flex;-->
+  width: 90%;
+}
+
+ul li a {
+  margin-left: 1.5em;
+}
+
+a.logo {
+  margin-right: auto;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+  position: relative;
+  font-size: 1.25em;
+}
+
+a::after {
+  content:"";
+  top: 80%;
+  border-bottom: 2px solid #F8E71C;
+  transition: all 0.35s;
+  position: absolute;
+}
+
+a:hover::after {
+  transition: all 0.35s;
+}
+
+a::after {
+  right: 50%;
+  left: 50%;
+}
+
+a:hover::after {
+  right: 0;
+  left: 0;
+}
+
+/*@media (max-width: 768px) {*/
+/*  .wrapper {*/
+/*    height: auto;*/
+/*  }*/
+
+/*  nav {*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*  }*/
+
+/*  a.logo {*/
+/*    margin-top: 1.5em;*/
+/*    margin-bottom: 1.5em;*/
+/*    margin-right: 0px;*/
+/*  }*/
+
+/*  ul {*/
+/*    width: 100%;*/
+/*    margin-bottom: 1em;*/
+/*    justify-content: space-between;*/
+/*  }*/
+
+/*  ul li a {*/
+/*    margin-left: 0px;*/
+/*  }*/
+/*}*/
+
+/*@media (max-width: 768px) {*/
+/*  a.logo {*/
+/*    margin: 1.5em;*/
+/*  }*/
+
+/*  ul {*/
+/*    flex-direction: column;*/
+/*  }*/
+
+/*  ul li {*/
+/*    margin: 0.3em;*/
+/*    text-align: center;*/
+/*  }*/
+
+/*  ul li a {*/
+/*    margin-left: 0px;*/
+/*  }*/
+/*}*/
+
+
+
+
+h1 {
+  color: black;
+  font-family: verdana;
+  font-size: 160%;
+}
+
+h2 {
+  color: black;
+  font-family: verdana;
+  font-size: 100%;
+}
+
+button {
+  all: initial;
+<!--  background-color: #4CAF50;-->
+  border: none;
+  color: green;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 40px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.primary {
+  background-color: springgreen;
+}
+
+.danger {
+  background-color: black;
+}
+
+
+
+label {
+  display: block;
+  width: 150px;
+  text-align: left;
+  vertical-align: bottom;
+}
+
+<!--select {-->
+<!--  width: 200px;-->
+<!--  height: 35px;-->
+<!--  padding: 5px;-->
+<!--  border: 1px solid #ccc;-->
+<!--  border-radius: 4px;-->
+<!--  box-sizing: border-box;-->
+<!--  margin-bottom: 10px;-->
+<!--  vertical-align: bottom;-->
+<!--}-->
+
+input[type=text], select {
+  width: 150px;
+  height: 35px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  vertical-align: bottom;
+}
+
+input[type=number], select {
+  width: 150px;
+  height: 35px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  vertical-align: bottom;
+}
+
+<!--textarea {-->
+<!--  width: 200px;-->
+<!--  height: 100px;-->
+<!--  padding: 5px;-->
+<!--  border: 1px solid #ccc;-->
+<!--  border-radius: 4px;-->
+<!--  box-sizing: border-box;-->
+<!--  margin-bottom: 10px;-->
+<!--  vertical-align: bottom;-->
+<!--}-->
+
+<!--button {-->
+<!--  background-color: #4CAF50;-->
+<!--  color: white;-->
+<!--  padding: 10px 15px;-->
+<!--  border: none;-->
+<!--  border-radius: 4px;-->
+<!--  cursor: pointer;-->
+<!--  vertical-align: center;-->
+<!--}-->
+
+
+
+<!--button:hover {-->
+<!--  background-color: #45a049;-->
+<!--}-->
+
+<!--button[type=button] {-->
+<!--  background-color: green;-->
+<!--}-->
+
+<!--button[type=button]:hover {-->
+<!--  background-color: #da190b;-->
+<!--}-->
+
+
+<!--#box {-->
+<!--  margin: 50px auto;-->
+<!--  padding: 20px;-->
+<!--  width: 600px;-->
+<!--  border: 1px solid #ccc;-->
+<!--  border-radius: 4px;-->
+<!--}-->
+
+td {
+  vertical-align: bottom;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 5rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+
+.animated-button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  position: relative;
+}
+
+.animated-button i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s ease;
+}
+
+.animated-button:hover i {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+label {
+  color: black;
+  font-family: verdana;
+  font-size: 80%;
+  font-weight:bold
+}
+
+
+
+/*     ///////###### Mobile View ####*/
+
+     @media screen and (max-width: 767px) {
+
+
+
+         .table-container {
+/*  max-width: 1400px; *//* Change as needed */
+  margin: 20px auto; /* Centers the container horizontally */
+  border: 2px solid black;
+  padding: 10px;
+/*  max-height: auto*/
+  width: 1290px; /* Set the width to the viewport width */
+  height: auto; /* Set the height to the viewport height */
+}
+    .delete-row {
+    color: red;
+    width: 24px; /* Adjust the width as needed */
+    height: 24px; /* Adjust the height as needed */
+    font-size: 80px; /* Adjust the font size as needed */
+  }
+
+ .small-td {
+        width: 20px;
+    }
+	/*===== GOOGLE FONTS =====*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+/*===== VARIABLES CSS =====*/
+:root {
+  --nav-width: 92px;
+  --yellow-color: yellow;
+
+  /*===== Colores =====*/
+  --first-color: #0c5df4;
+  --bg-color: #12192c;
+  --sub-color: #b6cefc;
+  --white-color: #fff;
+
+  /*===== Fuente y tipografia =====*/
+  --body-font: "Poppins", sans-serif;
+  --normal-font-size: 1rem;
+  --small-font-size: 0.875rem;
+
+  /*===== z index =====*/
+  --z-fixed: 100;
+}
+
+/*===== BASE =====*/
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+body {
+  position: relative;
+  background-image: url('{{ url_for('static', filename='bdesign.jpg') }}');
+  /* Other CSS properties go here */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-size: 500% auto; /* Use "cover" to make the background image cover the entire container */
+  margin: 0px; /* Adjust the margin value as needed */
+  padding: 1rem 0 0 6.75rem;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  transition: 0.5s;
+  overflow-y: scroll;
+  width: 103vw; /* Set the width to the viewport width */
+  height: 100vh; /* Set the height to the viewport height */
+}
+
+
+h1 {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+/*===== l NAV =====*/
+.l-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--nav-width);
+  height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--white-color);
+  padding: 1.5rem 1.5rem 2rem;
+  transition: 0.5s;
+  z-index: var(--z-fixed);
+}
+
+/*===== NAV =====*/
+.nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.nav__brand {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.nav__toggle {
+  font-size: 1.25rem;
+  padding: 0.75rem;
+  cursor: pointer;
+}
+.nav__logo {
+  color: var(--white-color);
+  font-weight: 600;
+}
+
+.nav__link {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  column-gap: 0.75rem;
+  padding: 0.75rem;
+  color: var(--white-color);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.nav__link:hover {
+  background-color: var(--first-color);
+}
+.nav__icon {
+  font-size: 1.25rem;
+}
+.nav__name {
+  font-size: var(--small-font-size);
+}
+
+/*Expander menu*/
+.expander {
+  width: calc(var(--nav-width) + 9.25rem);
+}
+
+/*Add padding body*/
+.body-pd {
+  padding: 2rem 0 0 16rem;
+}
+
+/*Active links menu*/
+.active {
+  background-color: var(--first-color);
+}
+
+/*===== COLLAPSE =====*/
+.collapse {
+  grid-template-columns: 20px max-content 1fr;
+}
+.collapse__link {
+  justify-self: flex-end;
+  transition: 0.5s;
+}
+.collapse__menu {
+  display: none;
+  padding: 0.75rem 2.25rem;
+}
+.collapse__sublink {
+  color: var(--sub-color);
+  font-size: var(--small-font-size);
+}
+.collapse__sublink:hover {
+  color: var(--yellow-color);
+  text-decoration: underline;
+}
+
+/*Show collapse*/
+.showCollapse {
+  display: block;
+}
+
+/*Rotate icon*/
+.rotate {
+  transform: rotate(180deg);
+}
+
+
+
+
+body {
+  background-color: #d9e7fc;
+}
+
+.wrapper {
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  background-color: #343436;
+}
+
+nav {
+<!--  display: flex;-->
+  width: 90%;
+}
+
+ul li a {
+  margin-left: 1.5em;
+}
+
+a.logo {
+  margin-right: auto;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+  position: relative;
+  font-size: 1.25em;
+}
+
+a::after {
+  content:"";
+  top: 80%;
+  border-bottom: 2px solid #F8E71C;
+  transition: all 0.35s;
+  position: absolute;
+}
+
+a:hover::after {
+  transition: all 0.35s;
+}
+
+a::after {
+  right: 50%;
+  left: 50%;
+}
+
+a:hover::after {
+  right: 0;
+  left: 0;
+}
+
+@media (max-width: 1024px) {
+  .wrapper {
+    height: auto;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  a.logo {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    margin-right: 0px;
+  }
+
+  ul {
+    width: 100%;
+    margin-bottom: 1em;
+    justify-content: space-between;
+  }
+
+  ul li a {
+    margin-left: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  a.logo {
+    margin: 1.5em;
+  }
+
+  ul {
+    flex-direction: column;
+  }
+
+  ul li {
+    margin: 0.3em;
+    text-align: center;
+  }
+
+  ul li a {
+    margin-left: 0px;
+  }
+}
+
+
+
+
+h1 {
+  color: black;
+  font-family: verdana;
+  font-size: 160%;
+}
+
+h2 {
+  color: black;
+  font-family: verdana;
+  font-size: 100%;
+}
+
+button {
+  all: initial;
+<!--  background-color: #4CAF50;-->
+  border: none;
+  color: green;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 40px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.primary {
+  background-color: springgreen;
+}
+
+.danger {
+  background-color: black;
+}
+
+
+
+label {
+  display: block;
+  width: 150px;
+  text-align: left;
+  vertical-align: bottom;
+}
+
+<!--select {-->
+<!--  width: 200px;-->
+<!--  height: 35px;-->
+<!--  padding: 5px;-->
+<!--  border: 1px solid #ccc;-->
+<!--  border-radius: 4px;-->
+<!--  box-sizing: border-box;-->
+<!--  margin-bottom: 10px;-->
+<!--  vertical-align: bottom;-->
+<!--}-->
+
+input[type=text], select {
+  width: 150px;
+  height: 35px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  vertical-align: bottom;
+}
+
+input[type=number], select {
+  width: 150px;
+  height: 35px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  vertical-align: bottom;
+}
+
+<!--textarea {-->
+<!--  width: 200px;-->
+<!--  height: 100px;-->
+<!--  padding: 5px;-->
+<!--  border: 1px solid #ccc;-->
+<!--  border-radius: 4px;-->
+<!--  box-sizing: border-box;-->
+<!--  margin-bottom: 10px;-->
+<!--  vertical-align: bottom;-->
+<!--}-->
+
+<!--button {-->
+<!--  background-color: #4CAF50;-->
+<!--  color: white;-->
+<!--  padding: 10px 15px;-->
+<!--  border: none;-->
+<!--  border-radius: 4px;-->
+<!--  cursor: pointer;-->
+<!--  vertical-align: center;-->
+<!--}-->
+
+
+
+<!--button:hover {-->
+<!--  background-color: #45a049;-->
+<!--}-->
+
+<!--button[type=button] {-->
+<!--  background-color: green;-->
+<!--}-->
+
+<!--button[type=button]:hover {-->
+<!--  background-color: #da190b;-->
+<!--}-->
+
+
+<!--#box {-->
+<!--  margin: 50px auto;-->
+<!--  padding: 20px;-->
+<!--  width: 600px;-->
+<!--  border: 1px solid #ccc;-->
+<!--  border-radius: 4px;-->
+<!--}-->
+
+td {
+  vertical-align: bottom;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+
+.animated-button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  position: relative;
+}
+
+.animated-button i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s ease;
+}
+
+.animated-button:hover i {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+label {
+  color: black;
+  font-family: verdana;
+  font-size: 80%;
+  font-weight:bold
+}
+     }
+
+
+
+
+@media screen and (max-width: 767px) {
+
+        .delete-row {
+    color: red;
+    width: 24px; /* Adjust the width as needed */
+    height: 24px; /* Adjust the height as needed */
+    font-size: 80px; /* Adjust the font size as needed */
+  }
+
+ .small-td {
+        width: 20px;
+    }
+	/*===== GOOGLE FONTS =====*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+/*===== VARIABLES CSS =====*/
+:root {
+  --nav-width: 92px;
+  --yellow-color: yellow;
+
+  /*===== Colores =====*/
+  --first-color: #0c5df4;
+  --bg-color: #12192c;
+  --sub-color: #b6cefc;
+  --white-color: #fff;
+
+  /*===== Fuente y tipografia =====*/
+  --body-font: "Poppins", sans-serif;
+  --normal-font-size: 1rem;
+  --small-font-size: 0.875rem;
+
+  /*===== z index =====*/
+  --z-fixed: 100;
+}
+
+/*===== BASE =====*/
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+body {
+  position: relative;
+  background-image: url('{{ url_for('static', filename='bdesign.jpg') }}');
+  /* Other CSS properties go here */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-size: 500% auto; /* Use "cover" to make the background image cover the entire container */
+  margin: 0px; /* Adjust the margin value as needed */
+  padding: 1rem 0 0 6.75rem;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  transition: 0.5s;
+  overflow-y: scroll;
+  width: 103vw; /* Set the width to the viewport width */
+  height: 100vh; /* Set the height to the viewport height */
+}
+
+
+h1 {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+/*===== l NAV =====*/
+.l-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--nav-width);
+  height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--white-color);
+  padding: 1.5rem 1.5rem 2rem;
+  transition: 0.5s;
+  z-index: var(--z-fixed);
+}
+
+/*===== NAV =====*/
+.nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.nav__brand {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.nav__toggle {
+  font-size: 1.25rem;
+  padding: 0.75rem;
+  cursor: pointer;
+}
+.nav__logo {
+  color: var(--white-color);
+  font-weight: 600;
+}
+
+.nav__link {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  column-gap: 0.75rem;
+  padding: 0.75rem;
+  color: var(--white-color);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.nav__link:hover {
+  background-color: var(--first-color);
+}
+.nav__icon {
+  font-size: 1.25rem;
+}
+.nav__name {
+  font-size: var(--small-font-size);
+}
+
+/*Expander menu*/
+.expander {
+  width: calc(var(--nav-width) + 9.25rem);
+}
+
+/*Add padding body*/
+.body-pd {
+  padding: 2rem 0 0 16rem;
+}
+
+/*Active links menu*/
+.active {
+  background-color: var(--first-color);
+}
+
+/*===== COLLAPSE =====*/
+.collapse {
+  grid-template-columns: 20px max-content 1fr;
+}
+.collapse__link {
+  justify-self: flex-end;
+  transition: 0.5s;
+}
+.collapse__menu {
+  display: none;
+  padding: 0.75rem 2.25rem;
+}
+.collapse__sublink {
+  color: var(--sub-color);
+  font-size: var(--small-font-size);
+}
+.collapse__sublink:hover {
+  color: var(--yellow-color);
+  text-decoration: underline;
+}
+
+/*Show collapse*/
+.showCollapse {
+  display: block;
+}
+
+/*Rotate icon*/
+.rotate {
+  transform: rotate(180deg);
+}
+
+
+
+
+body {
+  background-color: #d9e7fc;
+}
+
+.wrapper {
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  background-color: #343436;
+}
+
+nav {
+<!--  display: flex;-->
+  width: 90%;
+}
+
+ul li a {
+  margin-left: 1.5em;
+}
+
+a.logo {
+  margin-right: auto;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+  position: relative;
+  font-size: 1.25em;
+}
+
+a::after {
+  content:"";
+  top: 80%;
+  border-bottom: 2px solid #F8E71C;
+  transition: all 0.35s;
+  position: absolute;
+}
+
+a:hover::after {
+  transition: all 0.35s;
+}
+
+a::after {
+  right: 50%;
+  left: 50%;
+}
+
+a:hover::after {
+  right: 0;
+  left: 0;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    height: auto;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  a.logo {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    margin-right: 0px;
+  }
+
+  ul {
+    width: 100%;
+    margin-bottom: 1em;
+    justify-content: space-between;
+  }
+
+  ul li a {
+    margin-left: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  a.logo {
+    margin: 1.5em;
+  }
+
+  ul {
+    flex-direction: column;
+  }
+
+  ul li {
+    margin: 0.3em;
+    text-align: center;
+  }
+
+  ul li a {
+    margin-left: 0px;
+  }
+}
+
+
+
+
+h1 {
+  color: black;
+  font-family: verdana;
+  font-size: 160%;
+}
+
+h2 {
+  color: black;
+  font-family: verdana;
+  font-size: 100%;
+}
+
+button {
+  all: initial;
+<!--  background-color: #4CAF50;-->
+  border: none;
+  color: green;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 40px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.primary {
+  background-color: springgreen;
+}
+
+.danger {
+  background-color: black;
+}
+
+.table-container {
+  max-width: 1290px; /* Change as needed */
+  margin: 20px auto; /* Centers the container horizontally */
+  border: 2px solid black;
+  padding: 10px;
+  height: auto
+}
+
+label {
+  display: block;
+  width: 150px;
+  text-align: left;
+  vertical-align: bottom;
+}
+
+<!--select {-->
+<!--  width: 200px;-->
+<!--  height: 35px;-->
+<!--  padding: 5px;-->
+<!--  border: 1px solid #ccc;-->
+<!--  border-radius: 4px;-->
+<!--  box-sizing: border-box;-->
+<!--  margin-bottom: 10px;-->
+<!--  vertical-align: bottom;-->
+<!--}-->
+
+input[type=text], select {
+  width: 150px;
+  height: 35px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  vertical-align: bottom;
+}
+
+input[type=number], select {
+  width: 150px;
+  height: 35px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  vertical-align: bottom;
+}
+
+<!--textarea {-->
+<!--  width: 200px;-->
+<!--  height: 100px;-->
+<!--  padding: 5px;-->
+<!--  border: 1px solid #ccc;-->
+<!--  border-radius: 4px;-->
+<!--  box-sizing: border-box;-->
+<!--  margin-bottom: 10px;-->
+<!--  vertical-align: bottom;-->
+<!--}-->
+
+<!--button {-->
+<!--  background-color: #4CAF50;-->
+<!--  color: white;-->
+<!--  padding: 10px 15px;-->
+<!--  border: none;-->
+<!--  border-radius: 4px;-->
+<!--  cursor: pointer;-->
+<!--  vertical-align: center;-->
+<!--}-->
+
+
+
+<!--button:hover {-->
+<!--  background-color: #45a049;-->
+<!--}-->
+
+<!--button[type=button] {-->
+<!--  background-color: green;-->
+<!--}-->
+
+<!--button[type=button]:hover {-->
+<!--  background-color: #da190b;-->
+<!--}-->
+
+
+<!--#box {-->
+<!--  margin: 50px auto;-->
+<!--  padding: 20px;-->
+<!--  width: 600px;-->
+<!--  border: 1px solid #ccc;-->
+<!--  border-radius: 4px;-->
+<!--}-->
+
+td {
+  vertical-align: bottom;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+
+.animated-button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  position: relative;
+}
+
+.animated-button i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s ease;
+}
+
+.animated-button:hover i {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+label {
+  color: black;
+  font-family: verdana;
+  font-size: 80%;
+  font-weight:bold
+}
+
+
+
+/*     ///////###### Mobile View ####*/
+
+
+    @media screen and (max-width: 767px) {
+
+    .delete-row {
+    color: red;
+    width: 24px; /* Adjust the width as needed */
+    height: 24px; /* Adjust the height as needed */
+    font-size: 80px; /* Adjust the font size as needed */
+  }
+
+ .small-td {
+        width: 20px;
+    }
+	/*===== GOOGLE FONTS =====*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+/*===== VARIABLES CSS =====*/
+:root {
+  --nav-width: 92px;
+  --yellow-color: yellow;
+
+  /*===== Colores =====*/
+  --first-color: #0c5df4;
+  --bg-color: #12192c;
+  --sub-color: #b6cefc;
+  --white-color: #fff;
+
+  /*===== Fuente y tipografia =====*/
+  --body-font: "Poppins", sans-serif;
+  --normal-font-size: 1rem;
+  --small-font-size: 0.875rem;
+
+  /*===== z index =====*/
+  --z-fixed: 100;
+}
+
+/*===== BASE =====*/
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+body {
+  position: flex;
+  background-image: url('{{ url_for('static', filename='bdesign.jpg') }}');
+  /* Other CSS properties go here */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-size: 500% auto; /* Use "cover" to make the background image cover the entire container */
+  margin: 0px; /* Adjust the margin value as needed */
+  padding: 1rem 0 0 6.75rem;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  transition: 0.5s;
+  overflow-y: scroll;
+  width: 103vw; /* Set the width to the viewport width */
+  height: 100vh; /* Set the height to the viewport height */
+}
+
+
+h1 {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+/*===== l NAV =====*/
+.l-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--nav-width);
+  height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--white-color);
+  padding: 1.5rem 1.5rem 2rem;
+  transition: 0.5s;
+  z-index: var(--z-fixed);
+}
+
+/*===== NAV =====*/
+.nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.nav__brand {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.nav__toggle {
+  font-size: 1.25rem;
+  padding: 0.75rem;
+  cursor: pointer;
+}
+.nav__logo {
+  color: var(--white-color);
+  font-weight: 600;
+}
+
+.nav__link {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  column-gap: 0.75rem;
+  padding: 0.75rem;
+  color: var(--white-color);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.nav__link:hover {
+  background-color: var(--first-color);
+}
+.nav__icon {
+  font-size: 1.25rem;
+}
+.nav__name {
+  font-size: var(--small-font-size);
+}
+
+/*Expander menu*/
+.expander {
+  width: calc(var(--nav-width) + 9.25rem);
+}
+
+/*Add padding body*/
+.body-pd {
+  padding: 2rem 0 0 16rem;
+}
+
+/*Active links menu*/
+.active {
+  background-color: var(--first-color);
+}
+
+/*===== COLLAPSE =====*/
+.collapse {
+  grid-template-columns: 20px max-content 1fr;
+}
+.collapse__link {
+  justify-self: flex-end;
+  transition: 0.5s;
+}
+.collapse__menu {
+  display: none;
+  padding: 0.75rem 2.25rem;
+}
+.collapse__sublink {
+  color: var(--sub-color);
+  font-size: var(--small-font-size);
+}
+.collapse__sublink:hover {
+  color: var(--yellow-color);
+  text-decoration: underline;
+}
+
+/*Show collapse*/
+.showCollapse {
+  display: block;
+}
+
+/*Rotate icon*/
+.rotate {
+  transform: rotate(180deg);
+}
+
+
+
+
+body {
+  background-color: #d9e7fc;
+}
+
+.wrapper {
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  background-color: #343436;
+}
+
+nav {
+<!--  display: flex;-->
+  width: 90%;
+}
+
+ul li a {
+  margin-left: 1.5em;
+}
+
+a.logo {
+  margin-right: auto;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+  position: relative;
+  font-size: 1.25em;
+}
+
+a::after {
+  content:"";
+  top: 80%;
+  border-bottom: 2px solid #F8E71C;
+  transition: all 0.35s;
+  position: absolute;
+}
+
+a:hover::after {
+  transition: all 0.35s;
+}
+
+a::after {
+  right: 50%;
+  left: 50%;
+}
+
+a:hover::after {
+  right: 0;
+  left: 0;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    height: auto;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  a.logo {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    margin-right: 0px;
+  }
+
+  ul {
+    width: 100%;
+    margin-bottom: 1em;
+    justify-content: space-between;
+  }
+
+  ul li a {
+    margin-left: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  a.logo {
+    margin: 1.5em;
+  }
+
+  ul {
+    flex-direction: column;
+  }
+
+  ul li {
+    margin: 0.3em;
+    text-align: center;
+  }
+
+  ul li a {
+    margin-left: 0px;
+  }
+}
+
+
+
+
+h1 {
+  color: black;
+  font-family: verdana;
+  font-size: 160%;
+}
+
+h2 {
+  color: black;
+  font-family: verdana;
+  font-size: 100%;
+}
+
+button {
+  all: initial;
+<!--  background-color: #4CAF50;-->
+  border: none;
+  color: green;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 40px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.primary {
+  background-color: springgreen;
+}
+
+.danger {
+  background-color: black;
+}
+
+
+
+label {
+  display: block;
+  width: 150px;
+  text-align: left;
+  vertical-align: bottom;
+}
+
+<!--select {-->
+<!--  width: 200px;-->
+<!--  height: 35px;-->
+<!--  padding: 5px;-->
+<!--  border: 1px solid #ccc;-->
+<!--  border-radius: 4px;-->
+<!--  box-sizing: border-box;-->
+<!--  margin-bottom: 10px;-->
+<!--  vertical-align: bottom;-->
+<!--}-->
+
+input[type=text], select {
+  width: 150px;
+  height: 35px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  vertical-align: bottom;
+}
+
+input[type=number], select {
+  width: 150px;
+  height: 35px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  vertical-align: bottom;
+}
+
+<!--textarea {-->
+<!--  width: 200px;-->
+<!--  height: 100px;-->
+<!--  padding: 5px;-->
+<!--  border: 1px solid #ccc;-->
+<!--  border-radius: 4px;-->
+<!--  box-sizing: border-box;-->
+<!--  margin-bottom: 10px;-->
+<!--  vertical-align: bottom;-->
+<!--}-->
+
+<!--button {-->
+<!--  background-color: #4CAF50;-->
+<!--  color: white;-->
+<!--  padding: 10px 15px;-->
+<!--  border: none;-->
+<!--  border-radius: 4px;-->
+<!--  cursor: pointer;-->
+<!--  vertical-align: center;-->
+<!--}-->
+
+
+
+<!--button:hover {-->
+<!--  background-color: #45a049;-->
+<!--}-->
+
+<!--button[type=button] {-->
+<!--  background-color: green;-->
+<!--}-->
+
+<!--button[type=button]:hover {-->
+<!--  background-color: #da190b;-->
+<!--}-->
+
+
+<!--#box {-->
+<!--  margin: 50px auto;-->
+<!--  padding: 20px;-->
+<!--  width: 600px;-->
+<!--  border: 1px solid #ccc;-->
+<!--  border-radius: 4px;-->
+<!--}-->
+
+td {
+  vertical-align: bottom;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+
+.animated-button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  position: relative;
+}
+
+.animated-button i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s ease;
+}
+
+.animated-button:hover i {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+label {
+  color: black;
+  font-family: verdana;
+  font-size: 80%;
+  font-weight:bold
+}
+     }
+
+
+</style>
+
+</html>
+
+{% endblock %}

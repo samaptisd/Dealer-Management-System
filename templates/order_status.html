@@ -1,0 +1,1436 @@
+<html lang="en">
+
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+        /* Media query to hide the sidebar on screens smaller than 768px (tablets and below) */
+    @media (max-width: 767px) {
+      #navbar {
+        display: none; /* Hide the sidebar for small screens (phones) */
+      }
+      body {
+        margin: 5px !important;
+        padding: 5px !important;
+      }
+    }
+
+    /* Media query to hide the sidebar on screens smaller than 1024px (tablets and below) */
+    @media (max-width: 1024px) {
+      #navbar {
+        display: none; /* Hide the sidebar for small screens (phones) */
+      }
+        body {
+            margin: 5px !important;
+            padding: 5px !important;
+          }
+    }
+
+    /* Media query to hide the sidebar on iPad devices */
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1.5) {
+      #navbar {
+        display: none; /* Hide the sidebar on iPads */
+      }
+      body {
+        margin: 5px !important;
+        padding: 5px !important;
+      }
+    }
+
+
+    @media only screen and (max-width: 767px) and (orientation: portrait) {
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.8);
+        filter: blur(5px);
+        z-index: 9999;
+      }
+
+      #orientation-message {
+        display: block;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        font-size: 18px;
+        text-align: center;
+        z-index: 10000;
+      }
+    }
+
+    @media only screen and (orientation: landscape), (min-width: 768px) and (max-width: 1024px) {
+      body::before,
+      #orientation-message {
+        display: none;
+      }
+    }
+
+
+    </style>
+
+    <div id="orientation-message">
+            Please rotate your device to landscape mode.
+    </div>
+</head>
+    <img src="{{ url_for('static', filename='logo.png') }}" style="width:150px;height: 50px; alt=""/></i>
+<body id="body-pd">
+        <div class="l-navbar" id="navbar">
+            <nav class="nav">
+                <div>
+                    <div class="nav__brand">
+                        <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
+                        <a href="#" class="nav__logo">Aludecor</a>
+                    </div>
+                    <div class="nav__list">
+                        <a href="{{ url_for('home') }}" class="nav__link active">
+                            <ion-icon name="home-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Home</span>
+                        </a>
+                        <a href="{{ url_for('flip') }}" class="nav__link">
+                            <ion-icon name="reader-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Catalogue</span>
+                        </a>
+
+						<a href="{{ url_for('form') }}" class="nav__link">
+                            <ion-icon name="desktop-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Order Booking</span>
+                        </a>
+                        <a href="{{ url_for('requisition') }}" class="nav__link">
+                          <ion-icon name="desktop-outline" class="nav__icon"></ion-icon>
+                          <span class="nav__name">Requisition Form</span>
+                      </a>
+
+						<a href="{{ url_for('profile') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Purchase Overview</span>
+                        </a>
+
+                        <a href="{{ url_for('booked_order') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Confirmation Pending</span>
+                        </a>
+
+                        <a href="{{ url_for('order_status') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Conf. Pending Orders</span>
+                        </a>
+
+                        <a href="{{ url_for('order_transuction') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Completed Transaction History</span>
+                        </a>
+
+<!--                        <div  class="nav__link collapse">-->
+<!--                            <ion-icon name="shapes-outline" class="nav__icon"></ion-icon>-->
+<!--                            <span class="nav__name">Purchase Tracker</span>-->
+
+<!--                            <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>-->
+
+<!--                            <ul class="collapse__menu">-->
+<!--                                <a href="{{ url_for('booked_order') }}" class="collapse__sublink">Pending for Confirmation</a>-->
+<!--                                <a href="{{ url_for('order_status') }}" class="collapse__sublink">Confirmed Pending Orders</a>-->
+<!--                                <a href="{{ url_for('order_transuction') }}" class="collapse__sublink">Completed Transaction History</a>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+
+                        <a href="{{url_for('balance_overview')}}" class="nav__link">
+                            <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Balance Overview</span>
+                        </a>
+                        <a href="{{url_for('care_support')}}" class="nav__link">
+                            <ion-icon name="umbrella-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Care Support</span>
+                        </a>
+
+                        <a href="{{ url_for('account_details') }}" class="nav__link">
+                            <ion-icon name="person-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">ProfileHub</span>
+                        </a>
+
+                <a href="{{ url_for('logout') }}" class="nav__link">
+                    <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+                    <span class="nav__name">Log Out</span>
+                </a>
+            </nav>
+        </div>
+
+<!-- Prefixfree -->
+         <script>
+	/*===== EXPANDER MENU  =====*/
+var showMenu = (toggleId, navbarId, bodyId)=>{
+  var toggle = document.getElementById(toggleId),
+  navbar = document.getElementById(navbarId),
+  bodypadding = document.getElementById(bodyId)
+
+  if(toggle && navbar){
+    toggle.addEventListener('click', ()=>{
+      navbar.classList.toggle('expander')
+
+      bodypadding.classList.toggle('body-pd')
+    })
+  }
+}
+showMenu('nav-toggle','navbar','body-pd')
+
+/*===== LINK ACTIVE  =====*/
+var linkColor = document.querySelectorAll('.nav__link')
+function colorLink(){
+  linkColor.forEach(l=> l.classList.remove('active'))
+  this.classList.add('active')
+}
+linkColor.forEach(l=> l.addEventListener('click', colorLink))
+
+
+/*===== COLLAPSE MENU  =====*/
+var linkCollapse = document.getElementsByClassName('collapse__link')
+var i
+
+for(i=0;i<linkCollapse.length;i++){
+  linkCollapse[i].addEventListener('click', function(){
+    var collapseMenu = this.nextElementSibling
+    collapseMenu.classList.toggle('showCollapse')
+
+    var rotate = collapseMenu.previousElementSibling
+    rotate.classList.toggle('rotate')
+  })
+}
+
+</script>
+<script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+<script src="http://thecodeplayer.com/uploads/js/prefixfree-1.0.7.js" type="text/javascript" type="text/javascript"></script>
+
+
+
+
+    <!-- <link rel="stylesheet" href="./css-1.css"> -->
+    <title>Order Details table</title>
+
+    <style>
+
+.logo {
+  text-align: right;
+
+  }
+
+ 	/*===== GOOGLE FONTS =====*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+/*===== VARIABLES CSS =====*/
+:root {
+  --nav-width: 92px;
+  --yellow-color: yellow;
+
+  /*===== Colores =====*/
+  --first-color: #0c5df4;
+  --bg-color: #12192c;
+  --sub-color: #b6cefc;
+  --white-color: #fff;
+
+  /*===== Fuente y tipografia =====*/
+  --body-font: "Poppins", sans-serif;
+  --normal-font-size: 1rem;
+  --small-font-size: 0.875rem;
+
+  /*===== z index =====*/
+  --z-fixed: 100;
+}
+
+/*===== BASE =====*/
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+
+/*===== l NAV =====*/
+.l-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--nav-width);
+  height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--white-color);
+  padding: 1.5rem 1.5rem 2rem;
+  transition: 0.5s;
+  z-index: var(--z-fixed);
+}
+
+/*===== NAV =====*/
+.nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.nav__brand {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.nav__toggle {
+  font-size: 1.25rem;
+  padding: 0.75rem;
+  cursor: pointer;
+}
+.nav__logo {
+  color: var(--white-color);
+  font-weight: 600;
+}
+
+.nav__link {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  column-gap: 0.75rem;
+  padding: 0.75rem;
+  color: var(--white-color);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.nav__link:hover {
+  background-color: var(--first-color);
+}
+.nav__icon {
+  font-size: 1.25rem;
+}
+.nav__name {
+  font-size: var(--small-font-size);
+}
+
+/*Expander menu*/
+.expander {
+  width: calc(var(--nav-width) + 9.25rem);
+}
+
+/*Add padding body*/
+.body-pd {
+  padding: 2rem 0 0 16rem;
+}
+
+/*Active links menu*/
+.active {
+  background-color: var(--first-color);
+}
+
+/*===== COLLAPSE =====*/
+.collapse {
+  grid-template-columns: 20px max-content 1fr;
+}
+.collapse__link {
+  justify-self: flex-end;
+  transition: 0.5s;
+}
+.collapse__menu {
+  display: none;
+  padding: 0.75rem 2.25rem;
+}
+.collapse__sublink {
+  color: var(--sub-color);
+  font-size: var(--small-font-size);
+}
+.collapse__sublink:hover {
+  color: var(--yellow-color);
+  text-decoration: underline;
+}
+
+/*Show collapse*/
+.showCollapse {
+  display: block;
+}
+
+/*Rotate icon*/
+.rotate {
+  transform: rotate(180deg);
+}
+
+
+
+h1 {
+  color: blue;
+  font-family: verdana;
+  font-size: 160%;
+}
+
+body {
+  position: relative;
+  background-image: url('{{ url_for('static', filename='bdesign.jpg') }}');
+  /* Other CSS properties go here */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-size: cover;
+  margin: 40px; /* Adjust the margin value as needed */
+  padding: 2rem 0 0 6.75rem;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  transition: 0.5s;
+  overflow-y: scroll;
+}
+
+
+
+
+        .btn_date_range{
+            top:50%;
+            font-size: 20px;
+            background-color:Green;
+            color: #fff;
+            border:none;
+            border-radius:2px;
+            box-shadow: 0px 0px 2px 2px rgb(0,0,0);
+            cursor: pointer;
+        }
+
+         .btn_export{
+            top:50%;
+            font-size: 20px;
+            background-color:Blue;
+            color: #fff;
+            border:none;
+            border-radius:2px;
+            box-shadow: 0px 0px 2px 2px rgb(0,0,0);
+            cursor: pointer;
+        }
+h2 {
+ color: black;
+}
+
+
+p,
+span {
+ color: white;
+}
+<!--#maintwo {-->
+<!-- transition: margin-left .5s;-->
+<!-- padding: 12px;-->
+<!--}-->
+
+<!--.sidenav {-->
+<!-- text-align: center;-->
+<!-- height: 100%;-->
+<!-- width: 0;-->
+<!-- position: fixed;-->
+<!-- z-index: 1;-->
+<!-- top: 0;-->
+<!-- left: 0;-->
+<!-- background-color: #0288d1;-->
+<!-- overflow-x: hidden;-->
+<!-- transition: 0.5s;-->
+<!-- padding-top: 60px;-->
+<!--}-->
+
+<!--.sidenav a {-->
+<!-- padding: 8px 8px 8px 32px;-->
+<!-- text-decoration: none;-->
+<!-- font-size: 16px;-->
+<!-- color: #fff;-->
+<!-- display: block;-->
+<!-- transition: 0.3s;-->
+<!-- padding: 30px;-->
+<!--}-->
+
+<!--.sidenav a:hover,-->
+<!--.offcanvas a:focus {-->
+<!-- color: #f1f1f1;-->
+<!--}-->
+
+<!--.closebtn {-->
+<!-- position: absolute;-->
+<!-- top: 0;-->
+<!-- right: 20px;-->
+<!-- font-size: 36px !important;-->
+<!-- margin-left: 30px;-->
+<!--}-->
+
+<!--@media screen and (max-height: 450px) {-->
+<!-- .sidenav {-->
+<!--  padding-top: 15px;-->
+<!-- }-->
+<!-- .sidenav a {-->
+<!--  font-size: 18px;-->
+<!-- }-->
+<!--}-->
+    </style>
+
+</head>
+
+<body>
+
+
+
+ <title>Confirmed Order</title>
+
+
+
+  <!-- Font Awesome Cdn Link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+ <center><div>
+     </div></center>
+</body>
+
+
+<center><h1>Confirmed Pending Orders</h1></center>
+<!--<center style="color:blue"><h3>Logged In as: {{fullname}}</h3></center>-->
+
+
+</div></center>
+        <br>
+
+<center><div style="font-weight:bold;font-size:20px;">
+<!--    <marquee style="color:green" behavior="alternate">Please select Start Date and End Date and Click on Get Data to filter your orders</marquee>-->
+    <br><br>
+    <form id="date_range" method="post">
+
+        <label style="color:blue" for="start_date">Start Date:</label>
+        <input style="font-weight:bold; font-size:18px; color:blue" type="date" id="start_date" name="start_date" required>
+
+        <label  style="color:blue" for="end_date">End Date:</label>
+        <input style="font-weight:bold; font-size:18px; color:blue" type="date" id="end_date" name="end_date" required>
+
+        <button class="btn_date_range" type="submit">Get Data</button>&nbsp&nbsp&nbsp&nbsp
+        <button id="export-csv" class="btn_export">Export Data</button>
+
+    </form>
+
+</div></center>
+<br>
+
+<center><h2>Item wise Confirmed Pending Orders</h2>
+
+    <br>
+        <br>
+  <table>
+
+    <tbody id="summary-table-body"></tbody>
+  </table>
+</div></center>
+
+
+<div class="clearfix"></div>
+    <div class="outer-wrapper">
+    <div class="table-wrapper">
+    <table id="emp-table">
+<thead>
+
+            <th col-index = 1>Order Number
+                 <input type="text" class="table-filter" oninput="filter_rows()">
+            </th>
+             <th col-index = 2>Order SO Number
+             <input type="text" class="table-filter" oninput="filter_rows()">
+            </th>
+
+            <th col-index = 3>Order_Date
+                 <input type="text" class="table-filter" oninput="filter_rows()">
+            </th>
+            <th col-index = 4>Item Code
+
+                 <input type="text" class="table-filter" oninput="filter_rows()">
+                </select>
+            </th>
+           <th col-index = 5>Product Grade
+
+                 <input type="text" class="table-filter" oninput="filter_rows()">
+            </th>
+            <th col-index = 6>Color
+                 <input type="text" class="table-filter" oninput="filter_rows()">
+            </th>
+
+              <th col-index = 7>Length
+                <input type="text" class="table-filter" oninput="filter_rows()">
+            </th>
+            <th col-index = 8>Width
+                <input type="text" class="table-filter" oninput="filter_rows()">
+            </th>
+            <th col-index = 9>Matching Lot
+                 <input type="text" class="table-filter" oninput="filter_rows()">
+            </th>
+            <th col-index = 10>Pending Qty (Sheet)
+                 <input type="text" class="table-filter" oninput="filter_rows()">
+            </th>
+            <th col-index = 11>Pending Qty (SQM)
+                 <input type="text" class="table-filter" oninput="filter_rows()">
+            </th>
+
+
+
+        </thead>
+        <tbody>
+            <tr>
+        {% for row in order_status %}
+        <td>{{row.Order_Number}}</td>
+        <td>{{row.SO_No}}</td>
+        <td>{{row.Order_Date}}</td>
+        <td>{{row.Item_Name}}</td>
+        <td>{{row.Grade}}</td>
+        <td>{{row.Colour}}</td>
+        <td>{{row.Length}}</td>
+        <td>{{row.Width}}</td>
+        <td>{{row.Required_Batch}}</td>
+        <td>{{row.Pending_SO_Qty}}</td>
+        <td>{{row.Pending_SQ_Mtr}}</td>
+
+
+
+
+
+
+    </tr>
+    {% endfor %}
+            </tr>
+
+
+        </tbody>
+    </table>
+
+ <script>
+// Calculate and display sum for Order Qty(Sheet) and calculated Order Qty(SQM)
+function calculateSummaryTable() {
+  var summaryTableBody = document.getElementById("summary-table-body");
+  summaryTableBody.innerHTML = ""; // Clear previous summary data
+
+  var table = document.getElementById("emp-table");
+  var rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+
+  // Initialize total quantities
+  var totalQty = 0;
+  var totalQtySqm = 0;
+
+  // Initialize an array to store the summary data
+  var summaryData = [];
+
+  // Iterate through the rows of the main table
+  for (var i = 0; i < rows.length; i++) {
+    var itemCodeCell = rows[i].getElementsByTagName("td")[3].textContent.trim();
+    var qtyCell = parseInt(rows[i].getElementsByTagName("td")[9].textContent.trim());
+    var lengthCell = parseFloat(rows[i].getElementsByTagName("td")[6].textContent.trim());
+    var widthCell = parseFloat(rows[i].getElementsByTagName("td")[7].textContent.trim());
+    var qtySqm = parseFloat(rows[i].getElementsByTagName("td")[10].textContent.trim());
+
+    // Calculate the Invoice Quantity (sqm) and round it
+    //var qtySqm = (lengthCell * widthCell * qtyCell) / 1000000;
+    //console.log(qtySqm)
+
+    // Find the summary data for the current item code
+    var existingData = summaryData.find((item) => item.itemCode === itemCodeCell);
+
+    if (!existingData) {
+      // If the item code doesn't exist in summaryData, add it
+      summaryData.push({
+        itemCode: itemCodeCell,
+        totalQty: qtyCell,
+        totalQtySqm: qtySqm,
+      });
+    } else {
+      // If the item code already exists in summaryData, update it
+      existingData.totalQty += qtyCell;
+      existingData.totalQtySqm += qtySqm;
+    }
+    //console.log(qtySqm)
+
+    // Update total quantities
+    totalQty += qtyCell;
+    totalQtySqm += qtySqm;
+  }
+
+  //console.log(totalQtySqm)
+
+  // Sort summaryData by item code
+  summaryData.sort((a, b) => a.itemCode.localeCompare(b.itemCode));
+
+  // Create a row for headers
+  var headerRow = document.createElement("tr");
+
+  var itemCodeHeader = document.createElement("td");
+  itemCodeHeader.textContent = "Product Code";
+
+  var totalQtyHeader = document.createElement("td");
+  totalQtyHeader.textContent = "Pending Qty (Sheet)";
+
+  var totalQtySqmHeader = document.createElement("td");
+  totalQtySqmHeader.textContent = "Pending Qty (SQM)";
+
+  headerRow.appendChild(itemCodeHeader);
+  headerRow.appendChild(totalQtyHeader);
+  headerRow.appendChild(totalQtySqmHeader);
+
+  summaryTableBody.appendChild(headerRow);
+
+  // Create rows for the sorted summary data
+  for (var itemData of summaryData) {
+    var row = document.createElement("tr");
+
+    var itemCodeCell = document.createElement("td");
+    itemCodeCell.textContent = itemData.itemCode;
+
+    var totalQtyCell = document.createElement("td");
+    totalQtyCell.textContent = itemData.totalQty;
+
+    var totalQtySqmCell = document.createElement("td");
+    totalQtySqmCell.textContent = itemData.totalQtySqm.toFixed(3);
+
+    //console.log(itemData.totalQtySqm);
+
+    row.appendChild(itemCodeCell);
+    row.appendChild(totalQtyCell);
+    row.appendChild(totalQtySqmCell);
+
+    summaryTableBody.appendChild(row);
+  }
+
+   // Create a "Total" row at the bottom
+  var totalRow = document.createElement("tr");
+var totalTotalCell = document.createElement("td");
+totalTotalCell.textContent = `Total Qty`;
+  var totalQtyTotalCell = document.createElement("td");
+  totalQtyTotalCell.textContent = ` ${totalQty}`;
+
+  var totalQtySqmTotalCell = document.createElement("td");
+  totalQtySqmTotalCell.textContent = `${totalQtySqm.toFixed(3)}`;
+
+<!--  totalRow.appendChild(document.createElement("td"));-->
+  totalRow.appendChild(totalTotalCell);
+  totalRow.appendChild(totalQtyTotalCell);
+  totalRow.appendChild(totalQtySqmTotalCell);
+
+  summaryTableBody.appendChild(totalRow);
+}
+
+// Call the calculateSummaryTable function initially
+calculateSummaryTable();
+
+
+
+
+
+</script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script>
+    $(document).ready(function() {
+        $('#date_range').submit(function(event) {
+            // Prevent the form from submitting normally
+            event.preventDefault();
+
+
+            // Send an AJAX request to the get_data_status endpoint
+            $.ajax({
+                type: 'POST',
+                url: '{{ url_for("get_data_status") }}',
+                data: $(this).serialize(),
+                success: function(response) {
+                    // Clear the table
+                    $('#emp-table tbody').empty();
+
+                    // Populate the table with the orders data
+                    $.each(response.order, function(index, order) {
+                        $('#emp-table tbody').append(
+                            '<tr>' +
+                            '<td>' + order.Order_Number +'</td>' +
+                            '<td>' + order.SO_No +'</td>' +
+                            '<td>' + order.Order_Date+'</td>' +
+                            '<td>' + order.Item_Name +'</td>' +
+                            '<td>' + order.Grade +'</td>' +
+                            '<td>' + order.Colour +'</td>' +
+                            '<td>' + order.Length +'</td>' +
+                            '<td>' + order.Width +'</td>' +
+                            '<td>' + order.Required_Batch +'</td>' +
+                            '<td>' + order.Pending_SO_Qty +'</td>' +
+                            '<td>' + order.Pending_SQ_Mtr +'</td>' +
+
+
+
+
+
+                            '</tr>'
+                        );
+                    });
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+
+
+</script>
+<script>
+
+function transposeSummaryTable() {
+  var summaryTableBody = document.getElementById("summary-table-body");
+
+  // Create a new table element for the transposed data
+  var transposedTable = document.createElement("table");
+  transposedTable.id = "transposed-summary-table"; // Optionally, give it an ID for styling or further manipulation
+
+  // Create a new tbody element for the transposed data
+  var transposedTableBody = document.createElement("tbody");
+
+  // Get all rows from the original summary table
+  var rows = Array.from(summaryTableBody.getElementsByTagName("tr"));
+
+  // Find the maximum number of columns in any row (for creating headers)
+  var maxColumns = Math.max(...rows.map((row) => row.children.length));
+
+  // Create header cells in the transposed table
+  var headerRow = document.createElement("tr");
+  for (let i = 0; i < maxColumns; i++) {
+    var headerCell = document.createElement("tr");
+<!--    headerCell.textContent = `Column ${i + 1}`; // Customize column headers as needed-->
+    headerRow.appendChild(headerCell);
+  }
+  transposedTableBody.appendChild(headerRow);
+
+  // Create a new row for each column in the original table
+  for (let i = 0; i < maxColumns; i++) {
+    var newRow = document.createElement("tr");
+
+    // Create data cells for the transposed data
+    for (let j = 0; j < rows.length; j++) {
+      var dataCell = document.createElement("td");
+      var originalRow = rows[j];
+      if (i < originalRow.children.length) {
+        dataCell.textContent = originalRow.children[i].textContent;
+      }
+      newRow.appendChild(dataCell);
+    }
+
+    // Append the new row to the transposed table body
+    transposedTableBody.appendChild(newRow);
+  }
+
+  // Append the transposed table body to the transposed table
+  transposedTable.appendChild(transposedTableBody);
+
+  // Replace the existing summary table with the transposed table
+  summaryTableBody.parentNode.replaceChild(transposedTable, summaryTableBody);
+}
+
+// Call the transposeSummaryTable function to transpose the summary table
+transposeSummaryTable();
+
+
+</script>
+
+
+
+<script>
+document.getElementById("export-csv").addEventListener("click", function () {
+    // Get all table rows
+    console.log("Clicked")
+    let rows = document.querySelectorAll("#emp-table tbody tr");
+
+    // Create a CSV header row
+    let csvContent = "data:text/csv;charset=utf-8," +
+        "Order SO Number ,Order_Date,Item Code,Product Grade,Color,Length,Width, Matching Lot,Pending Order Qty(Sheet),Order Qty(SQM)\n";
+
+    // Loop through the rows and add data to CSV
+    rows.forEach(function (row) {
+        let rowData = [];
+        row.querySelectorAll("td").forEach(function (cell) {
+            rowData.push(cell.innerText);
+        });
+        csvContent += rowData.join(",") + "\n";
+    });
+
+    // Create a data URI to download the CSV file
+    var encodedUri = encodeURI(csvContent);
+    var link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "orders.csv");
+    document.body.appendChild(link);
+    link.click();
+});
+</script>
+
+
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+    <script>
+<!--        window.onload = () => {-->
+<!--            console.log(document.querySelector("#emp-table > tbody > tr:nth-child(1) > td:nth-child(2) ").innerHTML);-->
+<!--        };-->
+
+        getUniqueValuesFromColumn()
+
+
+
+<!--    // Get unique values for the desired columns-->
+
+<!--// {2 : ["M", "F"], 3 : ["RnD", "Engineering", "Design"], 4 : [], 5 : []}-->
+
+function getUniqueValuesFromColumn() {
+
+    var unique_col_values_dict = {}
+
+    allFilters = document.querySelectorAll(".table-filter")
+    allFilters.forEach((filter_i) => {
+        col_index = filter_i.parentElement.getAttribute("col-index");
+<!--        // alert(col_index)-->
+        var rows = document.querySelectorAll("#emp-table > tbody > tr")
+
+        rows.forEach((row) => {
+            cell_value = row.querySelector("td:nth-child("+col_index+")").innerHTML;
+<!--            // if the col index is already present in the dict-->
+            if (col_index in unique_col_values_dict) {
+
+                 if (unique_col_values_dict[col_index].includes(cell_value)) {
+<!--                    // alert(cell_value + " is already present in the array : " + unique_col_values_dict[col_index])-->
+
+                } else {
+                    unique_col_values_dict[col_index].push(cell_value)
+<!--                    // alert("Array after adding the cell value : " + unique_col_values_dict[col_index])-->
+
+                }
+
+
+            } else {
+                unique_col_values_dict[col_index] = new Array(cell_value)
+            }
+        });
+
+
+    });
+
+    for(i in unique_col_values_dict) {
+<!--        alert("Column index : " + i + " has Unique values : \n" + unique_col_values_dict[i]);-->
+    }
+
+    updateSelectOptions(unique_col_values_dict)
+
+};
+
+<!--// Add <option> tags to the desired columns based on the unique values-->
+
+function updateSelectOptions(unique_col_values_dict) {
+    allFilters = document.querySelectorAll(".table-filter")
+
+    allFilters.forEach((filter_i) => {
+        col_index = filter_i.parentElement.getAttribute('col-index')
+
+        unique_col_values_dict[col_index].forEach((i) => {
+            filter_i.innerHTML = filter_i.innerHTML + `\n<option value="${i}">${i}</option>`
+        });
+
+    });
+};
+
+
+<!--// Create filter_rows() function-->
+
+<!--// filter_value_dict {2 : Value selected, 4:value, 5: value}-->
+
+function filter_rows() {
+  allFilters = document.querySelectorAll(".table-filter");
+  var filter_value_dict = {};
+
+  allFilters.forEach((filter_i) => {
+    col_index = filter_i.parentElement.getAttribute("col-index");
+
+    value = filter_i.value;
+    if (value != "all") {
+      filter_value_dict[col_index] = value.toLowerCase(); // Convert to lowercase
+    }
+  });
+
+  var col_cell_value_dict = {};
+
+  var rows = document.querySelectorAll("#emp-table tbody tr");
+  rows.forEach((row) => {
+    var display_row = true;
+
+    allFilters.forEach((filter_i) => {
+      col_index = filter_i.parentElement.getAttribute("col-index");
+      col_cell_value_dict[col_index] = row.querySelector(
+        "td:nth-child(" + col_index + ")"
+      ).innerHTML.toLowerCase(); // Convert to lowercase
+    });
+
+    for (var col_i in filter_value_dict) {
+      filter_value = filter_value_dict[col_i];
+      row_cell_value = col_cell_value_dict[col_i];
+
+      if (row_cell_value.indexOf(filter_value) == -1 && filter_value != "all") {
+        display_row = false;
+        break;
+      }
+    }
+
+    if (display_row == true) {
+      row.style.display = "table-row";
+    } else {
+      row.style.display = "none";
+    }
+  });
+}
+
+
+
+
+
+
+
+    </script>
+
+        <script>
+
+            function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "1";
+}
+
+
+
+
+        </script>
+
+
+
+
+
+</div>
+</div>
+
+</body>
+
+<style>
+
+    * {
+    margin: 0px;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+
+.heading {
+    display: flex;
+    background-color: #232f3e;
+    box-shadow: 0px 1px 2px #232f3e;
+
+}
+h1 {
+    color: coral;
+    font-weight: bold;
+
+    background: transparent;
+    padding: 7px;
+
+}
+
+
+.outer-wrapper {
+    margin-top: 50px;
+    margin-left: 0px;
+    margin-right: 0px;
+    border: 1px solid black;
+    border-radius: 4px;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.9);
+
+}
+.table-wrapper {
+
+    overflow-y: scroll;
+    overflow-x: scroll;
+    height: fit-content;
+    max-height: 66.4vh;
+    margin-top: 22px;
+    margin: 15px;
+    padding-bottom: 20px;
+
+}
+
+
+table {
+
+    min-width: max-content;
+
+    border-collapse: separate;
+    border-spacing: 0px;
+
+}
+
+.table-filter {
+    border-radius: 5px;
+    text-align: center;
+    color: #4CAF50;
+    display: block;
+    margin-top: 5px;
+}
+
+table th{
+    position: sticky;
+    top: 0px;
+
+    background-color: #133b5c;
+    color: rgb(241, 245, 179);
+
+    text-align: center;
+    font-weight: normal;
+    font-size: 18px;
+    outline: 0.7px solid black;
+    border: 1.5px solid black;
+
+}
+
+
+
+table th, table td {
+
+    padding: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+
+}
+
+table td {
+    text-align: center;
+
+    font-size: 15px;
+    border: 1px solid rgb(177, 177, 177);
+    padding-left: 20px;
+    word-wrap: break-word;
+     background-color: white;
+
+}
+
+
+/*  import google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+<!--nav{-->
+<!--  position: sticky;-->
+<!--  top: 0;-->
+<!--  bottom: 0;-->
+<!--  height: 100vh;-->
+<!--  left: 0;-->
+<!--  width: 90px;-->
+<!--  /* width: 280px; */-->
+<!--  background: #fff;-->
+<!--  overflow: hidden;-->
+<!--  transition: 1s;-->
+<!--}-->
+<!--nav:hover{-->
+<!--  width: 280px;-->
+<!--  transition: 1s;-->
+<!--}-->
+.logo{
+  text-align: center;
+  display: flex;
+  margin: 10px 0 0 10px;
+  padding-bottom: 3rem;
+}
+
+.logo img{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+.logo span{
+  font-weight: bold;
+  padding-left: 15px;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+<!--a{-->
+<!--  position: relative;-->
+<!--  width: 280px;-->
+<!--  font-size: 14px;-->
+<!--  color: rgb(85, 83, 83);-->
+<!--  display: table;-->
+<!--  padding: 10px;-->
+<!--}-->
+<!--nav .fas{-->
+<!--  position: relative;-->
+<!--  width: 70px;-->
+<!--  height: 40px;-->
+<!--  top: 20px;-->
+<!--  font-size: 20px;-->
+<!--  text-align: center;-->
+<!--}-->
+<!--.nav-item{-->
+<!--  position: relative;-->
+<!--  top: 12px;-->
+<!--  margin-left: 10px;-->
+<!--}-->
+<!--a:hover{-->
+<!--  background: #eee;-->
+<!--}-->
+<!--a:hover i{-->
+<!--  color: #34AF6D;-->
+<!--  transition: 0.5s;-->
+<!--}-->
+.logout{
+  position: absolute;
+  bottom: 0;
+}
+
+.container{
+  display: flex;
+}
+
+/* MAin Section */
+.main{
+  position: relative;
+  padding: 20px;
+  width: 100%;
+}
+.main-top{
+  display: flex;
+  width: 100%;
+}
+.main-top i{
+  position: absolute;
+  right: 0;
+  margin: 10px 30px;
+  color: rgb(110, 109, 109);
+  cursor: pointer;
+}
+.main .users{
+  display: flex;
+  width: 100%;
+}
+.users .card{
+  width: 40%;
+  margin: 10px;
+  background: #090A00;
+  text-align: center;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+.users .card img{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+.users .card h4{
+  text-transform: uppercase;
+}
+.users .card p{
+  font-size: 12px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+.users table{
+  margin:  auto;
+}
+.users .per span{
+  padding: 5px;
+  border-radius: 10px;
+  background: rgb(74, 64, 64);
+}
+.users td{
+  font-size: 14px;
+  padding-right: 15px;
+  color: white;
+}
+.users .card button{
+  width: 100%;
+  margin-top: 8px;
+  padding: 7px;
+  cursor: pointer;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px solid #4AD489;
+}
+.users .card button:hover{
+  background: #4AD489;
+  color: #fff;
+  transition: 0.5s;
+}
+
+/*Attendance List serction  */
+.attendance{
+  margin-top: 20px;
+  text-transform: capitalize;
+}
+.attendance-list{
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+.table{
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 15px;
+  min-width: 100%;
+  overflow: hidden;
+  border-radius: 5px 5px 0 0;
+}
+table thead tr{
+  color: #fff;
+  background: #34AF6D;
+  text-align: left;
+  font-weight: bold;
+}
+.table th,
+.table td{
+  padding: 12px 15px;
+}
+.table tbody tr{
+  border-bottom: 1px solid #ddd;
+}
+.table tbody tr:nth-of-type(odd){
+  background: #f3f3f3;
+}
+.table tbody tr.active{
+  font-weight: bold;
+  color: #4AD489;
+}
+.table tbody tr:last-of-type{
+<!--  border-bottom: 2px solid #4AD489;-->
+}
+.table button{
+  padding: 6px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid #4AD489;
+}
+.table button:hover{
+  background: #4AD489;
+  color: #fff;
+  transition: 0.5rem;
+}
+
+.table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#table td, #table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#table tr:nth-child(even){background-color: #f2f2f2;}
+
+#table tr:hover {background-color: #ddd;}
+
+#table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+
+.users .card1{
+  width: 55%;
+  margin: 10px;
+  background: #090A00;
+  text-align: center;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+.users .card1 img{
+  width: 80px;
+  height: 70px;
+  border-radius: 50%;
+}
+.users .card1 h4{
+  text-transform: uppercase;
+}
+.users .card1 p{
+  font-size: 12px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.users .card1 button{
+  width: 100%;
+  margin-top: 8px;
+  padding: 7px;
+  cursor: pointer;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px solid #4AD489;
+}
+.users .card1 button:hover{
+  background: #4AD489;
+  color: #fff;
+  transition: 0.5s;
+}
+
+from {
+    transform: scale(0) rotate(0deg) translate(-50%, -50%);
+    opacity: 1;
+  }
+  to {
+    transform: scale(20) rotate(960deg) translate(-50%, -50%);
+    opacity: 0;
+  }
+
+<!--  a:link, a:visited {-->
+<!--  background-color: #4a36f7;-->
+<!--  color: white;-->
+<!--  padding: 14px 10px;-->
+<!--  text-align: center;-->
+<!--  text-decoration: none;-->
+<!--  display: inline-block;-->
+<!--}-->
+
+<!--a:hover, a:active {-->
+<!--  background-color: red;-->
+<!--}-->
+
+</style>
+
+
+
+
+
+</html>
+
+

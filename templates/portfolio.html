@@ -1,0 +1,490 @@
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<body>
+<nav class="navbar">
+					<ul>
+						<li><a href="{{ url_for('home') }}">Home</a></li>
+						<li><a href="{{ url_for('profile') }}">Profile</a></li>
+						<li><a href="{{ url_for('form') }}">Book New Order</a></li>
+						<li><a href="{{ url_for('booked_order') }}">Order Details</a></li>
+			           <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+					</ul>
+				</nav>
+				<!-- navbar -->
+		</main>
+  <div style="height:80px;"></div>
+      <u><center><h1><p>Aludecor E-Catalogue</p></h1></center></u>
+
+  <main>
+				<!-- navbar -->
+
+
+  <div class="container">
+
+    <div class="card top_card">
+<h9>Aludecor MSC Regular</h9>
+       <img src="1.jpg"width="240" height="175">
+      <br><left><a href = "https://drive.google.com/uc?export=download&id=1JX5_B8dI57sTbUM97MbDtQXsB81lTAkO" class="button" attributes-list> Download </a> </left>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <right><a href = "{{ url_for('regular')}}"  class="button" attributes-list> View </a> </right></div>
+
+
+     <div class="card">
+        <h9>Aludecor MSC Special</h9>
+<img src="https://d1uo8s3pf4k37h.cloudfront.net/brochures/1644819122Aludecor%20MSC%20Special_LR_Page_01.jpg"width="240" height="175">
+      <br><left><a href = "https://drive.google.com/uc?export=download&id=1WvzHC1Ijp_WQbVgfZJJ-UG02KxQVX1hJ" class="button" attributes-list> Download </a> </left>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <right><a href = "{{ url_for('special')}}"  class="button" attributes-list> View </a> </right></div>
+
+     <div class="card top_card">
+      <h9>AL33</h9>
+<img src="https://d1uo8s3pf4k37h.cloudfront.net/catalog/product/cache/7a414ebf49f9809eb5ae4e744b5ed4b3/s/h/sh-320.jpg"width="240" height="175">
+      <br><left><a href = "https://drive.google.com/uc?export=download&id=1wBPBL1XfQwiHy240GIiahAUNNRPYOR6O" class="button" attributes-list> Download </a> </left>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <right><a href = "{{ url_for('AL33')}}"  class="button" attributes-list> View </a> </right></div>
+
+      <div class="card">
+      <h9>AL43</h9>
+<img src="https://d1uo8s3pf4k37h.cloudfront.net/catalog/product/cache/7a414ebf49f9809eb5ae4e744b5ed4b3/s/h/sh-010.jpg"width="240" height="175">
+      <br><left><a href = "https://drive.google.com/uc?export=download&id=1jdulU0L3rmwBuDiP9YG2yDnH2dYPjBaH" class="button" attributes-list> Download </a> </left>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <right><a href = "{{ url_for('AL45')}}"  class="button" attributes-list> View </a> </right></div>
+
+</div>
+      </div>
+</body>
+</head>
+<body>
+<style>
+
+    @media only screen
+    and (min-device-width: 320px)
+    /*  and (min-device-width: 768px)*/
+    and (max-device-width: 1024px)
+    and (-webkit-min-device-pixel-ratio: 1.5) {
+
+ body {
+        font-family: verdana;
+        background: #444;
+        background-image: linear-gradient(-45deg, #404, #b36);
+        height: 100vh;
+        margin: 0;
+    }
+
+    .container,
+    .card {
+        border-radius: 25px;
+        border: double 5px transparent;
+        /*Set both inset and outset box shadow using CSS, separated by , */
+        box-shadow: inset -10px -10px 80px 1px rgba(0, 0, 0, 0.3),
+        10px 20px 50px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .container {
+        perspective: 660px; /*This gives  perspective */
+        width: 800px;
+        height: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 70px;
+        padding-right: 30px;
+        background-image: linear-gradient(to bottom right, #aaa, #434);
+    }
+
+    .card {
+        color: #555;
+        text-shadow: 1px 3px 3px rgba(255, 255, 255, 0.7);
+        width: 230px;
+        height: 200px;
+        float: left;
+        padding: 20px;
+        margin: 15px;
+        margin-right: -32px;
+        background: #eee;
+        background-image: linear-gradient(110deg, #ddd, #888);
+        opacity: 0.9;
+        backdrop-filter: blur(5px);
+
+        /* Animation attributes */
+        animation-name: turn-animation; /* any name what you give */
+        animation-duration: 6000ms; /* length of one animation cycle*/
+        animation-iteration-count: infinite; /* repeats forever */
+        transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1); /* ease-in-out */
+    }
+
+    /* Animation keyframes */
+    @keyframes turn-animation {
+        0%,
+        100% {
+        /*Card position at start and end */
+            transform: rotate3d(0, 1, 0, 10deg);
+        }
+        /* Experiment with these numbers at 50% -> */
+        50% {
+            transform: rotate3d(0, 1, -0.2, 45deg);
+        }
+    }
+
+    /* THE COLORED CARDS */
+    .top_card {
+        background-image: linear-gradient(-70deg, #09c, #5f9);
+    }
+
+    .middle_card {
+        background-image: linear-gradient(-70deg, #505, #f68);
+        color: #000;
+        text-shadow: -2px -2px 3px rgba(255, 255, 255, 0.7);
+    }
+
+    .bottom_card {
+        background-image: linear-gradient(-70deg, #03a, #c6f);
+
+        font-size: 1.3em;
+        text-shadow: 1px 3px 3px rgba(255, 255, 255, 0.7);
+    }
+
+    /* ALL CARD HOVER */
+    .card:hover {
+        opacity: 0.7;
+        background-image: linear-gradient(-70deg, #627, #9a9);
+        color: #223;
+    }
+
+    .top_card:hover {
+        background-image: linear-gradient(-70deg, #90c, #5f9);
+    }
+
+    .middle_card:hover {
+        background-image: linear-gradient(-70deg, #90c, #5f9);
+    }
+
+    .bottom_card:hover {
+        background-image: linear-gradient(-70deg, #90c, #5f9);
+    }
+
+    .signo {
+        margin: auto;
+        color: #a8a;
+        position: absolute;
+        bottom: 10px;
+        right: 14px;
+    }
+
+    .signo:hover {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    @-webkit-keyframes leftRight {
+        0%    { -webkit-transform: translateX(0)}
+        25%   { -webkit-transform: translateX(-10px)}
+        75%   { -webkit-transform: translateX(10px)}
+        100%  { -webkit-transform: translateX(0)}
+    }
+    @keyframes leftRight {
+        0%    { transform: translateX(0)}
+        25%   { transform: translateX(-10px)}
+        75%   { transform: translateX(10px)}
+        100%  { transform: translateX(0)}
+    }
+
+    a:link, a:visited {
+    <!--  background-color: #061bbf    ;-->
+    color: white;
+        padding: 3px 5px;
+        text-align: center;
+        text-decoration: none;
+    <!--  display: inline-block;-->
+    animation-name: rotate;
+        animation-duration: 0.7s;
+
+    }
+
+    .button {
+        appearance: button;
+        -moz-appearance: button;
+        -webkit-appearance: button;
+        text-decoration: none;
+        font: menu;
+        color: ButtonText;
+        display: inline-block;
+        padding: 2px 8px;
+    }
+
+    body, html
+    {
+        padding: 0;
+        margin: 0px;
+        font-family: verdana,sans-serif;
+    }
+    main
+    {
+        width: 100%;
+        display: inline-block;
+    }
+    .navbar
+    {
+        width: 100%;
+        background: #4568DC;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #B06AB3, #4568DC);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #B06AB3, #4568DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        border-bottom: 2px solid linear-gradient(to right, #B06AB3, #4568DC);
+        box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.7);
+        margin: 0px;
+
+    }
+    .navbar > ul
+    {
+        margin: 0px;
+        padding: 0px;
+        text-align: center;
+    }
+    .navbar > ul li
+    {
+        display: inline-block;
+    }
+    .navbar > ul li a
+    {
+        text-decoration: none;
+        color: #fff;
+        width: 120px;
+        display: inline-block;
+        text-align: center;
+        padding: 20px 0;
+        font-weight: bold;
+        position: relative;
+    }
+    .navbar > ul li a::before {
+        background: #fff none repeat scroll 0 0;
+        bottom: -2px;
+        content: "";
+        height: 3px;
+        left: 0;
+        position: absolute;
+        width: 0%;
+        transition: 0.5s;
+    }
+    .navbar > ul li a:hover::before
+    {
+        width: 100%;
+    }
+
+
+
+}
+
+
+
+    body {
+        font-family: verdana;
+        background: #444;
+        background-image: linear-gradient(-45deg, #404, #b36);
+        height: 100vh;
+        margin: 0;
+    }
+
+    .container,
+    .card {
+        border-radius: 25px;
+        border: double 5px transparent;
+        /*Set both inset and outset box shadow using CSS, separated by , */
+        box-shadow: inset -10px -10px 80px 1px rgba(0, 0, 0, 0.3),
+        10px 20px 50px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .container {
+        perspective: 660px; /*This gives  perspective */
+        width: 800px;
+        height: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 70px;
+        padding-right: 30px;
+        background-image: linear-gradient(to bottom right, #aaa, #434);
+    }
+
+    .card {
+        color: #555;
+        text-shadow: 1px 3px 3px rgba(255, 255, 255, 0.7);
+        width: 230px;
+        height: 200px;
+        float: left;
+        padding: 20px;
+        margin: 15px;
+        margin-right: -32px;
+        background: #eee;
+        background-image: linear-gradient(110deg, #ddd, #888);
+        opacity: 0.9;
+        backdrop-filter: blur(5px);
+
+        /* Animation attributes */
+        animation-name: turn-animation; /* any name what you give */
+        animation-duration: 6000ms; /* length of one animation cycle*/
+        animation-iteration-count: infinite; /* repeats forever */
+        transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1); /* ease-in-out */
+    }
+
+    /* Animation keyframes */
+    @keyframes turn-animation {
+        0%,
+        100% {
+        /*Card position at start and end */
+            transform: rotate3d(0, 1, 0, 10deg);
+        }
+        /* Experiment with these numbers at 50% -> */
+        50% {
+            transform: rotate3d(0, 1, -0.2, 45deg);
+        }
+    }
+
+    /* THE COLORED CARDS */
+    .top_card {
+        background-image: linear-gradient(-70deg, #09c, #5f9);
+    }
+
+    .middle_card {
+        background-image: linear-gradient(-70deg, #505, #f68);
+        color: #000;
+        text-shadow: -2px -2px 3px rgba(255, 255, 255, 0.7);
+    }
+
+    .bottom_card {
+        background-image: linear-gradient(-70deg, #03a, #c6f);
+
+        font-size: 1.3em;
+        text-shadow: 1px 3px 3px rgba(255, 255, 255, 0.7);
+    }
+
+    /* ALL CARD HOVER */
+    .card:hover {
+        opacity: 0.7;
+        background-image: linear-gradient(-70deg, #627, #9a9);
+        color: #223;
+    }
+
+    .top_card:hover {
+        background-image: linear-gradient(-70deg, #90c, #5f9);
+    }
+
+    .middle_card:hover {
+        background-image: linear-gradient(-70deg, #90c, #5f9);
+    }
+
+    .bottom_card:hover {
+        background-image: linear-gradient(-70deg, #90c, #5f9);
+    }
+
+    .signo {
+        margin: auto;
+        color: #a8a;
+        position: absolute;
+        bottom: 10px;
+        right: 14px;
+    }
+
+    .signo:hover {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    @-webkit-keyframes leftRight {
+        0%    { -webkit-transform: translateX(0)}
+        25%   { -webkit-transform: translateX(-10px)}
+        75%   { -webkit-transform: translateX(10px)}
+        100%  { -webkit-transform: translateX(0)}
+    }
+    @keyframes leftRight {
+        0%    { transform: translateX(0)}
+        25%   { transform: translateX(-10px)}
+        75%   { transform: translateX(10px)}
+        100%  { transform: translateX(0)}
+    }
+
+    a:link, a:visited {
+    <!--  background-color: #061bbf    ;-->
+    color: white;
+        padding: 3px 5px;
+        text-align: center;
+        text-decoration: none;
+    <!--  display: inline-block;-->
+    animation-name: rotate;
+        animation-duration: 0.7s;
+
+    }
+
+    .button {
+        appearance: button;
+        -moz-appearance: button;
+        -webkit-appearance: button;
+        text-decoration: none;
+        font: menu;
+        color: ButtonText;
+        display: inline-block;
+        padding: 2px 8px;
+    }
+
+    body, html
+    {
+        padding: 0;
+        margin: 0px;
+        font-family: verdana,sans-serif;
+    }
+    main
+    {
+        width: 100%;
+        display: inline-block;
+    }
+    .navbar
+    {
+        width: 100%;
+        background: #4568DC;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #B06AB3, #4568DC);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #B06AB3, #4568DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        border-bottom: 2px solid linear-gradient(to right, #B06AB3, #4568DC);
+        box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.7);
+        margin: 0px;
+
+    }
+    .navbar > ul
+    {
+        margin: 0px;
+        padding: 0px;
+        text-align: center;
+    }
+    .navbar > ul li
+    {
+        display: inline-block;
+    }
+    .navbar > ul li a
+    {
+        text-decoration: none;
+        color: #fff;
+        width: 120px;
+        display: inline-block;
+        text-align: center;
+        padding: 20px 0;
+        font-weight: bold;
+        position: relative;
+    }
+    .navbar > ul li a::before {
+        background: #fff none repeat scroll 0 0;
+        bottom: -2px;
+        content: "";
+        height: 3px;
+        left: 0;
+        position: absolute;
+        width: 0%;
+        transition: 0.5s;
+    }
+    .navbar > ul li a:hover::before
+    {
+        width: 100%;
+    }
+</style>
+</body>
+</html>
+
+{% endblock %}

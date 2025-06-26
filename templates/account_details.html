@@ -1,0 +1,888 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+         <style>
+        /* Media query to hide the sidebar on screens smaller than 768px (tablets and below) */
+    @media (max-width: 767px) {
+      #navbar {
+        display: none; /* Hide the sidebar for small screens (phones) */
+      }
+      body {
+        margin: 5px !important;
+        padding: 5px !important;
+      }
+        .pf-container{
+            flex-direction: column;
+        }
+        .pf-info{
+            margin-bottom: 1px;
+        }
+    }
+
+        /* Media query to hide the sidebar on screens smaller than 1024px (tablets and below) */
+        @media (max-width: 1024px) {
+          #navbar {
+            display: none; /* Hide the sidebar for small screens (phones) */
+          }
+            body {
+                margin: 5px !important;
+                padding: 5px !important;
+              }
+        }
+
+    /* Media query to hide the sidebar on iPad devices */
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1.5) {
+      #navbar {
+        display: none; /* Hide the sidebar on iPads */
+      }
+      body {
+        margin: 5px !important;
+        padding: 5px !important;
+      }
+        .pf-container{
+            flex-direction: column;
+        }
+        .pf-info{
+            margin-bottom: 1px;
+        }
+    }
+
+
+    @media only screen and (max-width: 767px) and (orientation: portrait) {
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.8);
+        filter: blur(5px);
+        z-index: 9999;
+      }
+
+      #orientation-message {
+        display: block;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        font-size: 18px;
+        text-align: center;
+        z-index: 10000;
+      }
+    }
+
+    @media only screen and (orientation: landscape), (min-width: 768px) and (max-width: 1024px) {
+      body::before,
+      #orientation-message {
+        display: none;
+      }
+    }
+
+
+    </style>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        .pf-info{
+            background-color: #5a1d5a;
+            padding: 30px;
+            color: white;
+            border-radius: 10px;
+            margin-right: 5px;
+        }
+
+        .pf-container {
+            display: flex;
+            align-items: stretch;
+            /*          background-color: #f1f1f1;*/
+        }
+
+        /*        .pf-container>div {*/
+        /*          background-color: DodgerBlue;*/
+        /*          color: white;*/
+        /*          width: 100px;*/
+        /*          margin: 10px;*/
+        /*          text-align: center;*/
+        /*          line-height: 75px;*/
+        /*          font-size: 30px;*/
+        /*        }*/
+
+
+        /* Style the tab */
+        .tab {
+            overflow: hidden;
+/*            border: 1px solid #ccc;*/
+/*            background-color: #f1f1f1;*/
+/*            background-color: #5a1d5a;*/
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+            position: relative;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+/*            border: 1px solid #ccc;*/
+            border-top: none;
+        }
+    </style>
+
+<script>
+    function openTab(evt, tabName) {
+        console.log(evt, tabName);
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
+    window.onload = function() {
+    // Trigger click on the "Renew" button by default
+    document.querySelector('.tab button:nth-child(1)').click();
+  };
+</script>
+
+
+    <div class="logo"><left><i class="material-icons">
+    <img src="{{ url_for('static', filename='logo.png') }}" style="width:150px;height: 50px; alt=""/></i></left>
+</div>
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Neuton|Oswald" />
+
+    <body id="body-pd">
+         <div id="orientation-message">
+            <p>Please rotate your device to landscape mode.</p>
+        </div>
+        <div class="l-navbar" id="navbar">
+            <nav class="nav">
+                <div>
+                    <div class="nav__brand">
+                        <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
+                        <a href="#" class="nav__logo">Aludecor</a>
+                    </div>
+                    <div class="nav__list">
+                        <a href="{{ url_for('home') }}" class="nav__link active">
+                            <ion-icon name="home-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Home</span>
+                        </a>
+                        <a href="{{ url_for('flip') }}" class="nav__link">
+                            <ion-icon name="reader-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Catalogue</span>
+                        </a>
+
+						<a href="{{ url_for('form') }}" class="nav__link">
+                            <ion-icon name="desktop-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Order Booking</span>
+                        </a>
+                        <a href="{{ url_for('requisition') }}" class="nav__link">
+                          <ion-icon name="desktop-outline" class="nav__icon"></ion-icon>
+                          <span class="nav__name">Requisition Form</span>
+                      </a>
+
+						<a href="{{ url_for('profile') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Purchase Overview</span>
+                        </a>
+                        <a href="{{ url_for('booked_order') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Confirmation Pending</span>
+                        </a>
+
+                        <a href="{{ url_for('order_status') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Conf. Pending Orders</span>
+                        </a>
+
+                        <a href="{{ url_for('order_transuction') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Completed Transaction History</span>
+                        </a>
+
+<!--                        <div  class="nav__link collapse">-->
+<!--                            <ion-icon name="shapes-outline" class="nav__icon"></ion-icon>-->
+<!--                            <span class="nav__name">Purchase Tracker</span>-->
+
+<!--                            <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>-->
+
+<!--                            <ul class="collapse__menu">-->
+<!--                                <a href="{{ url_for('booked_order') }}" class="collapse__sublink">Pending for Confirmation</a>-->
+<!--                                <a href="{{ url_for('order_status') }}" class="collapse__sublink">Confirmed Pending Orders</a>-->
+<!--                                <a href="{{ url_for('order_transuction') }}" class="collapse__sublink">Completed Transaction History</a>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+
+                        <a href="{{url_for('balance_overview')}}" class="nav__link">
+                            <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Balance Overview</span>
+                        </a>
+                        <a href="{{url_for('care_support')}}" class="nav__link">
+                            <ion-icon name="umbrella-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Care Support</span>
+                        </a>
+
+                        <a href="{{ url_for('account_details') }}" class="nav__link">
+                            <ion-icon name="person-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">ProfileHub</span>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="{{ url_for('logout') }}" class="nav__link">
+                    <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+                    <span class="nav__name">Log Out</span>
+                </a>
+            </nav>
+        </div>
+</head>
+
+
+<br>
+<div class="pf-container">
+    <div>
+        <table class="pf-info">
+            <tr>
+                <td style="border:none;" rowspan="2">
+                        <img src="https://cdn-icons-png.flaticon.com/512/727/727399.png" alt="" width="50">
+                </td>
+                <td style="border:none;">Name:</td>
+                <td style="border:none;">{{fullname}}</td>
+            </tr>
+            <tr>
+                <td style="border:none;">Email:</td>
+                <td style="border:none;">{{ account['email'] }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <table class="pf-info">
+            <tr>
+                <td style="border:none;" rowspan="2">
+                    <img src="{{url_for('static', filename='user_id_icon.png')}}" alt="" width="50">
+                </td>
+                <td style="border:none;">Username:</td>
+                <td style="border:none;">{{account['username']}}</td>
+            </tr>
+            <tr>
+                <td style="border:none;">Password:</td>
+                <td style="border:none;">
+                    <span id="passwordPlaceholder">********</span>
+                    <a href="javascript:void(0);" id="togglePasswordVisibility">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    </a>
+                    <a style="color:#ffe002; text-decoration:underline;" href="{{url_for('changepassword')}}"> [Change Password] </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!--{{url_for('static', filename='platinum.png')}}-->
+
+<br>
+
+<div class="card-container">
+    {% if prev_category == 'Platinum' %}
+        <div class="card" style="background-color:white;margin-right:-3px;">
+    {% elif prev_category == 'Gold' %}
+        <div class="card" style="background-color:#ffe600;margin-right:-3px;">
+    {% elif prev_category == 'Silver' %}
+        <div class="card" style="background-color:#93938f;margin-right:-3px;">
+    {% elif prev_category == 'Base' %}
+        <div class="card" style="background-color:#3b3b36;margin-right:-3px;">
+    {% endif %}
+        <div class="card-overlay"></div>
+        <img src="{{url_for('static', filename='platinum.png')}}" alt="Image 1" class="card-img">
+            <h2 style="position:absolute; left:50%; top:5%; transform: translateX(-50%); white-space: nowrap;">Current Membership</h2>
+            <h2 style="position:absolute; left:50%; top:13%; transform: translateX(-50%); white-space: nowrap;">Status</h2>
+        <div class="card-text">
+
+            <h3>{{prev_category}} Club</h3>
+            <br>
+            <p>Valid till:<br> 31-Mar-2026</p>
+        </div>
+    </div>
+    <div class="card2" style="background-color:transparent;">
+        {% if prev_category == 'Platinum' %}
+            <div class="tab" style="background-color:#afafaf;">
+                <button class="tablinks" onclick="openTab(event, 'Renew')">Renew</button>
+<!--                <button class="tablinks" onclick="openTab(event, 'Upgrade')">Upgrade</button>-->
+        {% elif prev_category == 'Gold' %}
+            <div class="tab" style="background-color:#afa232;">
+            <button class="tablinks" onclick="openTab(event, 'Renew')">Renew</button>
+            <button class="tablinks" onclick="openTab(event, 'Upgrade')">Upgrade</button>
+        {% elif prev_category == 'Silver' %}
+            <div class="tab" style="background-color:#7a7a78;">
+            <button class="tablinks" onclick="openTab(event, 'Renew')">Renew</button>
+            <button class="tablinks" onclick="openTab(event, 'Upgrade')">Upgrade</button>
+        {% elif prev_category == 'Base' %}
+            <div class="tab" style="background-color:#535350;">
+            <button class="tablinks" onclick="openTab(event, 'Renew')">Summary</button>
+            <button class="tablinks" onclick="openTab(event, 'Upgrade')">Upgrade</button>
+        {% endif %}
+        </div>
+
+        <div id="Renew" class="tabcontent">
+            {% if (renew_upgrade_data['req_for_renew_t'] <= 0 or renew_upgrade_data['req_for_renew_t_sp'] <= 0) and prev_category != 'Base' %}
+                <br>
+                <div style="border-style:dashed; padding:20px; border-radius:5px;">
+                    <div style="border-style:outset; padding:10px;">
+                        <h3>You are Eligible for Membership Renewal for FY26</h3>
+                    </div>
+                    <div style="border-style:outset; padding:10px;">
+                        <h4 style="text-decoration:underline;">Current FY Purchase Summary:</h4>
+                        <br>
+                        <h3>Current FY Volume: {{cur_fy_data['Total_Sale']}} sqm</h3>
+                        <h3>Current FY Special Series Volume: {{cur_fy_data['Total_Sale_Special']}} sqm</h3>
+                    </div>
+                </div>
+            {% elif prev_category == 'Base' %}
+                <br>
+                <div style="border-style:dashed; padding:20px; border-radius:5px;">
+                    <div style="border-style:outset; padding:10px;">
+                        <h4 style="text-decoration:underline;">Current FY Purchase Summary:</h4>
+                        <br>
+                        <h3>Current FY Volume: {{cur_fy_data['Total_Sale']}} sqm</h3>
+                        <h3>Current FY Special Series Volume: {{cur_fy_data['Total_Sale_Special']}} sqm</h3>
+                    </div>
+                </div>
+            {% else %}
+                <div style="border-style:dashed; padding:5px; border-radius:5px; margin-top:5px;">
+                    <div style="border-style:outset; padding:10px;">
+                        <h4 style="text-decoration:underline;">Additional Volume is Required for Current Membership Renewal:</h4>
+                        <br>
+                        <h3>Additional Volume: {{renew_upgrade_data['req_for_renew_t']}} sqm</h3>
+                        <h4 style="margin-top:2px; margin-bottom:2px;">OR</h4>
+                        <h3>Additional Special Series Volume: {{renew_upgrade_data['req_for_renew_t_sp']}} sqm</h3>
+                    </div>
+                    <div style="border-style:outset; padding:10px;">
+                        <h4 style="text-decoration:underline;">Current FY Purchase Summary:</h4>
+                        <br>
+                        <h3>Current FY Volume: {{cur_fy_data['Total_Sale']}}</h3>
+                        <h3>Current FY Special Series Volume: {{cur_fy_data['Total_Sale_Special']}}</h3>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <div id="Upgrade" class="tabcontent">
+            <br>
+            <div style="border-style:dashed; padding:20px; border-radius:5px;">
+                {% if renew_upgrade_data['Higher_Achieved'] == 'Yes' %}
+                    <div style="border-style:outset; padding:10px;">
+                        <h3>You are Eligible for {{renew_upgrade_data['cur_category']}} Membership Upgrade in FY26</h3>
+                    </div>
+                {% endif %}
+                {% if renew_upgrade_data['Max_Tier'] != 'Yes' %}
+                    <div style="border-style:outset; padding:10px;">
+                        <h4 style="text-decoration:underline;">Additional Volume is Required for {{renew_upgrade_data['next_category']}} Membership Upgrade:</h4>
+                        <br>
+                        <h3>Additional Volume: {{renew_upgrade_data['req_for_upgrade_t']}} sqm</h3>
+                        <h4 style="margin-top:2px; margin-bottom:2px;">OR</h4>
+                        <h3>Additional Special Series Volume: {{renew_upgrade_data['req_for_upgrade_t_sp']}} sqm</h3>
+                    </div>
+                {% endif %}
+<!--                <h2>Coming Soon......</h2>-->
+            </div>
+        </div>
+
+</div>
+
+
+
+<style>
+    .card-container {
+        display: flex;
+        /*    justify-content: space-between;*/
+        align-items: stretch;
+    }
+
+    .card {
+        position: relative;
+        width: 300px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+
+    .card2 {
+        position: relative;
+        width: 600px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+
+    .card-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 1;
+    }
+
+    .card:hover {
+        transform: scale(1.01);
+    }
+
+    .card-img {
+        width: 100%;
+        height: auto;
+        opacity: 0.3;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        position: relative;
+    }
+
+    .card:hover .card-img {
+        transform: scale(1.1);
+        opacity: 0.4;
+    }
+
+    .card-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+        z-index: 2;
+    }
+
+    .card-text2 {
+        position: absolute;
+        top: 15%;
+        left: 15%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+        z-index: 2;
+    }
+
+    .card-text h3 {
+        margin: 0;
+        font-size: 1.5em;
+    }
+
+    .card-text p {
+        margin: 0;
+        color: black;
+        font-weight: bold;
+    }
+
+
+</style>
+
+
+
+
+
+
+<script>
+  // Get the actual password value from the account object (you may need to adjust this depending on your setup)
+  var actualPassword = "{{ account['password'] }}";
+
+  // Function to toggle password visibility
+  function togglePasswordVisibility() {
+    var passwordPlaceholder = document.getElementById("passwordPlaceholder");
+    var toggleButton = document.getElementById("togglePasswordVisibility");
+
+    if (passwordPlaceholder.textContent === actualPassword) {
+      passwordPlaceholder.textContent = "********";
+      toggleButton.innerHTML = '<i class="fa fa-eye" aria-hidden="true"></i>';
+    } else {
+      passwordPlaceholder.textContent = actualPassword;
+      toggleButton.innerHTML = '<i class="fa fa-eye-slash" aria-hidden="true"></i>';
+    }
+  }
+
+  // Add a click event listener to the toggle link
+  var toggleLink = document.getElementById("togglePasswordVisibility");
+  toggleLink.addEventListener("click", togglePasswordVisibility);
+</script>
+
+
+
+
+
+<script>
+	/*===== EXPANDER MENU  =====*/
+const showMenu = (toggleId, navbarId, bodyId)=>{
+  const toggle = document.getElementById(toggleId),
+  navbar = document.getElementById(navbarId),
+  bodypadding = document.getElementById(bodyId)
+
+  if(toggle && navbar){
+    toggle.addEventListener('click', ()=>{
+      navbar.classList.toggle('expander')
+
+      bodypadding.classList.toggle('body-pd')
+    })
+  }
+}
+showMenu('nav-toggle','navbar','body-pd')
+
+/*===== LINK ACTIVE  =====*/
+const linkColor = document.querySelectorAll('.nav__link')
+function colorLink(){
+  linkColor.forEach(l=> l.classList.remove('active'))
+  this.classList.add('active')
+}
+linkColor.forEach(l=> l.addEventListener('click', colorLink))
+
+
+/*===== COLLAPSE MENU  =====*/
+const linkCollapse = document.getElementsByClassName('collapse__link')
+var i
+
+for(i=0;i<linkCollapse.length;i++){
+  linkCollapse[i].addEventListener('click', function(){
+    const collapseMenu = this.nextElementSibling
+    collapseMenu.classList.toggle('showCollapse')
+
+    const rotate = collapseMenu.previousElementSibling
+    rotate.classList.toggle('rotate')
+  })
+}
+
+</script>
+<script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+
+
+<style>
+
+   .logo {
+  text-align: right;
+
+  }
+
+	/*===== GOOGLE FONTS =====*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+/*===== VARIABLES CSS =====*/
+:root {
+   --nav-width: 92px;
+  --yellow-color: yellow;
+
+  /*===== Colores =====*/
+  --first-color: #0c5df4;
+  --bg-color: #12192c;
+  --sub-color: #b6cefc;
+  --white-color: #fff;
+
+  /*===== Fuente y tipografia =====*/
+  --body-font: "Poppins", sans-serif;
+  --normal-font-size: 1rem;
+  --small-font-size: 0.875rem;
+
+  /*===== z index =====*/
+  --z-fixed: 100;
+}
+
+/*===== BASE =====*/
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+body {
+  position: relative;
+  background-image: url('{{ url_for('static', filename='bdesign.jpg') }}');
+  /* Other CSS properties go here */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-size: cover;
+  margin: 40px; /* Adjust the margin value as needed */
+  padding: 2rem 0 0 6.75rem;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  transition: 0.5s;
+//<!--  overflow-y: scroll;-->
+}
+}
+h1 {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+/*===== l NAV =====*/
+.l-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--nav-width);
+  height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--white-color);
+  padding: 1.5rem 1.5rem 2rem;
+  transition: 0.5s;
+  z-index: var(--z-fixed);
+}
+
+/*===== NAV =====*/
+.nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: inherit;
+  overflow: hidden;
+
+
+}
+.nav__brand {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.nav__toggle {
+  font-size: 1.25rem;
+  padding: 0.75rem;
+  cursor: pointer;
+}
+.nav__logo {
+  color: var(--white-color);
+  font-weight: 600;
+}
+
+.nav__link {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  column-gap: 0.75rem;
+  padding: 0.75rem;
+  color: var(--white-color);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.nav__link:hover {
+  background-color: var(--first-color);
+}
+.nav__icon {
+  font-size: 1.25rem;
+}
+.nav__name {
+  font-size: var(--small-font-size);
+}
+
+
+
+
+
+
+
+
+
+
+/*Expander menu*/
+.expander {
+  width: calc(var(--nav-width) + 9.25rem);
+}
+
+/*Add padding body*/
+.body-pd {
+  padding: 2rem 0 0 16rem;
+
+}
+
+/*Active links menu*/
+.active {
+  background-color: var(--first-color);
+}
+
+/*===== COLLAPSE =====*/
+.collapse {
+  grid-template-columns: 20px max-content 1fr;
+}
+.collapse__link {
+  justify-self: flex-end;
+  transition: 0.5s;
+}
+.collapse__menu {
+  display: none;
+  padding: 0.75rem 2.25rem;
+}
+.collapse__sublink {
+  color: var(--sub-color);
+  font-size: var(--small-font-size);
+}
+.collapse__sublink:hover {
+  color: var(--yellow-color);
+  text-decoration: underline;
+}
+
+/*Show collapse*/
+.showCollapse {
+  display: block;
+}
+
+/*Rotate icon*/
+.rotate {
+  transform: rotate(180deg);
+}
+
+
+
+
+
+.tbl1{
+    display: table;
+    border-collapse: separate;
+    border: 1px solid;
+    border-spacing: 0;
+    box-sizing: border-box;
+    text-indent: initial;
+    padding: 15px;
+     color: blue;
+}
+
+
+p {
+  color: blue;
+  font-family: verdana;
+  font-size: 100%;
+}
+
+h1 {
+  color: white;
+  font-family: verdana;
+  font-size: 180%;
+}
+
+tr, td, th {
+    padding: 5px;
+    border: 1px solid black;
+}
+
+
+
+
+#main-navbar {
+  font: 1.15em;
+}
+
+#main-navbar ul {
+  margin: 5;
+  padding: 10;
+  text-align: center;
+}
+
+<!--#main-navbar li {-->
+<!--  display: inline-block;-->
+<!--  padding: 10px 20px;-->
+<!--  font-size: 16px;-->
+<!--  text-decoration: underline;-->
+<!--  text-decoration-color: white;-->
+<!--}-->
+
+#main-navbar li a {
+  text-decoration: none;
+  color: #EDA51A;
+}
+
+<!--#main-navbar li a:hover {-->
+<!--  padding-bottom: 3px;-->
+<!--  color: #ffffff;-->
+<!--  font-size: 15px;-->
+<!--}-->
+
+
+#main-navbar li {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 17px;
+  position: relative; /* Needed for the absolute positioning of the animated underline */
+}
+
+#main-navbar li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px; /* Adjust this value to position the underline properly */
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  transform: scaleX(0); /* Start with no width */
+  transform-origin: bottom left;
+  transition: transform 0.3s ease; /* Animation duration and easing */
+}
+
+#main-navbar li:hover::after {
+  transform: scaleX(1); /* Expand the underline to full width on hover */
+}
+
+  * {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  overflow: auto !important;
+}
+
+
+
+
+
+</style>
+</body>
+
+</html>
+
+
+
+
+
+

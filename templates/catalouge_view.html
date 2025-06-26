@@ -1,0 +1,415 @@
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+
+body {
+    margin: auto;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: auto;
+    background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(255,25,25,1) 98%);
+    animation: gradient 15s ease infinite;
+    background-size: 400% 400%;
+    background-attachment: fixed;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+.wave {
+    background: rgb(255 255 255 / 25%);
+    border-radius: 1000% 1000% 0 0;
+    position: fixed;
+    width: 200%;
+    height: 12em;
+    animation: wave 10s -3s linear infinite;
+    transform: translate3d(0, 0, 0);
+    opacity: 0.8;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.wave:nth-of-type(2) {
+    bottom: -1.25em;
+    animation: wave 18s linear reverse infinite;
+    opacity: 0.8;
+}
+
+.wave:nth-of-type(3) {
+    bottom: -2.5em;
+    animation: wave 20s -1s reverse infinite;
+    opacity: 0.9;
+}
+
+@keyframes wave {
+    2% {
+        transform: translateX(1);
+    }
+
+    25% {
+        transform: translateX(-25%);
+    }
+
+    50% {
+        transform: translateX(-50%);
+    }
+
+    75% {
+        transform: translateX(-25%);
+    }
+
+    100% {
+        transform: translateX(1);
+    }
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f1f1f1;
+  padding: 20px;
+  font-family: Arial;
+}
+
+/* Center website */
+.main {
+  max-width: 1000px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 50px;
+  word-break: break-all;
+}
+
+.row {
+  margin: 10px -16px;
+}
+
+/* Add padding BETWEEN each column */
+.row,
+.row > .column {
+  padding: 8px;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  display: none; /* Hide all elements by default */
+}
+
+/* Clear floats after rows */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Content */
+.content {
+  background-color: white;
+  padding: 10px;
+}
+
+/* The "show" class is added to the filtered elements */
+.show {
+  display: block;
+}
+
+/* Style the buttons */
+.btn {
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #ddd;
+}
+
+.btn.active {
+  background-color: #666;
+  color: white;
+}
+
+.btn {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: RoyalBlue;
+}
+h1::before {
+  transform: scaleX(0);
+  transform-origin: bottom right;
+}
+
+h1:hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+h1::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  inset: 0 0 0 0;
+  background: hsl(200 100% 80%);
+  z-index: -1;
+  transition: transform .5s ease;
+}
+
+h1 {
+  position: relative;
+  font-size: 5rem;
+}
+
+html {
+  block-size: 100%;
+  inline-size: 100%;
+}
+
+body {
+  min-block-size: 100%;
+  min-inline-size: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  display: grid;
+  place-content: center;
+  font-family: system-ui, sans-serif;
+}
+
+@media (orientation: landscape) {
+  body {
+    grid-auto-flow: column;
+  }
+}
+*
+/******** Styling Header *******/
+header{
+  background:#;
+  height:50px;
+  width:100%;
+  padding:10px;
+  border-bottom:1px solid black;
+  position:fixed; /** fixed menu */
+  top:0;
+}
+.main-content, .about-content{
+  background:;
+  width:100%;
+  padding:20px;
+  border:1px solid black;
+  text-align:center;
+}
+.main-content{
+  margin-top:100px;
+}
+
+</style>
+</head>
+<body>
+ <div>
+     <div class="wave"></div>
+     <div class="wave"></div>
+     <div class="wave"></div>
+  </div>
+<!-- MAIN (Center website) -->
+<div class="main">
+
+<h1>Aludecor E-Catalogue</h1>
+<hr>
+
+<h2>PORTFOLIO FOR CATALOUGE</h2>
+
+<div id="myBtnContainer">
+  <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+  <button class="btn" onclick="filterSelection('E-Catalogues')"> E-Catalogues</button>
+  <button class="btn" onclick="filterSelection('Brochures')"> Brochures</button>
+  <button class="btn" onclick="filterSelection('Adorner')"> Adorner</button>
+</div>
+<hr>
+<!--  <section class="main-content clearfix">-->
+<!-- Portfolio Gallery Grid -->
+<div class="row">
+  <div class="column E-Catalogues">
+    <div class="content">
+      <img src="https://blogs.aludecor.com/wp-content/uploads/2018/07/Copper-composite-panels.jpg" alt="Mountains" style="width:100%" height="142">
+      <h4>E-Catalogues</h4>
+      <p>Zinc & Copper Composite Panels</p>
+      <a href="https://drive.google.com/uc?export=download&id=1JX5_B8dI57sTbUM97MbDtQXsB81lTAkO" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+    </div>
+  </div>
+  <div class="column E-Catalogues">
+    <div class="content">
+    <img src="https://blogs.aludecor.com/wp-content/uploads/2022/03/index_1-4.jpg" alt="Mountains" style="width:100%" height="142">
+      <h4>E-Catalogues</h4>
+      <p>Timber Series – Wood finish ACPs</p>
+      <a href="https://drive.google.com/uc?export=download&id=1Z4vyGhguc5NaMLyLFJHuBRECYgIk7PiN" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+    </div>
+  </div>
+  <div class="column E-Catalogues">
+    <div class="content">
+    <img src="https://blogs.aludecor.com/wp-content/uploads/2021/01/Angel-Business-Center-Surat-Cover.jpg" alt="Mountains" style="width:100%" height="142">
+      <h4>E-Catalogues</h4>
+      <p>Sand & Rustic Series</p>
+      <a href="https://drive.google.com/uc?export=download&id=1eFlYTx0CePRIMKfcxLw90Yd3yZiq09DU" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+    </div>
+  </div>
+
+<!--  <div class="column cars">-->
+  <div class="column E-Catalogues">
+    <div class="content">
+      <img src="https://blogs.aludecor.com/wp-content/uploads/2021/01/New-Tinsukia-Railway-Station-Cover.jpg" alt="Mountains" style="width:100%" height="142">
+      <h4>E-Catalogues</h4>
+      <p>Pedra Series – Stone finish ACPs</p>
+      <a href="https://drive.google.com/uc?export=download&id=15DdsX1YklHyrIf44kT3QHy1O1vpkwAmc" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+    </div>
+  </div>
+<!--  <div class="column cars">-->
+  <div class="column E-Catalogues">
+    <div class="content">
+    <img src="https://blogs.aludecor.com/wp-content/uploads/2020/09/Introducing-Aluwall-696x364.jpg" alt="Mountains" style="width:100%" height="142">
+      <h4>E-Catalogues</h4>
+      <p>Aluwall</p>
+      <a href="https://drive.google.com/uc?export=download&id=1VcDm-ZwS8gsp9UkrHTYqM5ueFaPv42g4" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+    </div>
+  </div>
+<!--  <div class="column cars">-->
+  <div class="column E-Catalogues">
+    <div class="content">
+    <img src="https://blogs.aludecor.com/wp-content/uploads/2018/12/Aludecor-Ace-6mm-ACP-696x365.jpg" alt="Mountains" style="width:100%" height="142">
+      <h4>E-Catalogues</h4>
+      <p>ACE - Series- 6mm ACPs</p>
+      <a href="https://drive.google.com/uc?export=download&id=1WQ2k-5PtKffk465rSyw43L8RBt8D6Dq5" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+    </div>
+  </div>
+
+<!--  <div class="column people">-->
+  <div class="column E-Catalogues">
+    <div class="content">
+      <img src="https://blogs.aludecor.com/wp-content/uploads/2020/05/AG-plus-cover-image-696x365.jpg" alt="Mountains" style="width:100%" height="142">
+      <h4>E-Catalogues</h4>
+      <p>AG+ & Armour (Antibacterial & Anti-Insect ACPs)</p>
+      <a href="https://drive.google.com/uc?export=download&id=13Lon9ESVLTQ8yI5nqMf03nXbiouR29Nd" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+    </div>
+  </div>
+<!--  <div class="column people">-->
+  <div class="column E-Catalogues">
+    <div class="content">
+    <img src="https://blogs.aludecor.com/wp-content/uploads/2020/10/Amin-Nayyar-Blog-696x364.png" alt="Mountains" style="width:100%" height="160">
+      <h4>E-Catalogues</h4>
+      <p>Master Shade Card - Regular Series</p>
+      <a href="https://drive.google.com/uc?export=download&id=1c5KlGZHev55cTG7CJwprOgWymDGqGbE9" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+    </div>
+  </div>
+<!--  <div class="column people">-->
+  <div class="column E-Catalogues">
+    <div class="content">
+    <img src="https://blogs.aludecor.com/wp-content/uploads/2020/11/Wabi-Sabi-Cover-696x365.jpg" alt="Mountains" style="width:100%" height="142">
+      <h4>E-Catalogues</h4>
+      <p>Wabi Sabi Series – Imperfectly perfect ACPs</p>
+      <a href="https://drive.google.com/uc?export=download&id=1Iikv-npo21XuMl4d2cPJ2jfSeKHpo34S" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+    </div>
+  </div>
+<!--  <div class="column people">-->
+  <div class="column E-Catalogues">
+    <div class="content">
+    <img src="https://blogs.aludecor.com/wp-content/uploads/2020/04/Kalapuge-Swimming-Pool-696x365.jpg" alt="Mountains" style="width:100%" height="142">
+      <h4>E-Catalogues</h4>
+      <p>Master Shade Card - Special Series</p>
+      <a href="https://drive.google.com/uc?export=download&id=1OIhpKv6LKqbnZtOHXnJp87ZZe5mutgrK" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+    </div>
+  </div>
+<!-- END GRID -->
+</div>
+
+<!-- END MAIN -->
+</div>
+
+
+<script>
+filterSelection("all")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("column");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
+
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+
+// Add active class to the current button (highlight it)
+var btnContainer = document.getElementById("myBtnContainer");
+var btns = btnContainer.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+</script>
+
+</body>
+</html>

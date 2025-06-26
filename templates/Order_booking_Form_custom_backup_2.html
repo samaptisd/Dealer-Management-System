@@ -1,0 +1,411 @@
+{% extends 'layout.html' %}
+
+{% block title %}Form {% endblock %}
+{% block content %}
+
+<center><h1>Order Booking Form</h1></center>
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+       <!-- font awesome  -->
+<!--      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />-->
+<!--      <link rel="stylesheet" href="static/css/AdminLTE.min.css" />-->
+      <!-- Bootstrap CSS -->
+<!--      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">-->
+      <!-- custom styling -->
+<!--      <link rel="stylesheet" type="text/css" href="style.css">-->
+      <!-- <script src="static/js/jquery.min.js"></script> -->
+<!--      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>-->
+<!--      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>-->
+      <title>Order Booking Form</title>
+  </head>
+<body>
+<div class="table-container">
+    <table id="myTable">
+      <thead>
+        <tr>
+          <td>
+              <label for="order_type">Order Type</label>
+              <select id="order_type" name="order_type" required>
+<!--                  <option value="" disabled selected>Select Here</option>-->
+                  <option value="Standard">Standard</option>
+                  <option value="Customized">Customized</option>
+              </select>
+          </td>
+            <td>
+              <label for="same_address">Shipping Address Different from Billing Address?</label>
+                <select id="same_address" name="same_address" required>
+<!--                  <option value="" disabled selected>Select Here</option>-->
+                  <option value="No">No</option>
+                  <option value="Yes">Yes</option>
+              </select>
+            </td>
+            <td>
+                <label for="address">Shipping Address (If Required)</label>
+                <input type="text" id="address" name="address" placeholder="Address" required disabled>
+            </td>
+            <td>
+                <label for="state">State/Province</label>
+                <input type="text" id="state" name="state" placeholder="State/Province" required disabled>
+            </td>
+            <td>
+                <label for="pincode">Pin Code</label>
+                <input type="number" id="pincode" name="pincode" placeholder="Pincode" required disabled>
+            </td>
+            <td></td>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+              <label for="item_code">Item Code</label>
+              <select id="item_code" name="item_code" required>
+                  <option value="" disabled selected>Select Here</option>
+                  <option value=""></option>
+                  <option value="Customized">Customized</option>
+              </select>
+          </td>
+            <td>
+              <label for="product_grade">Product Grade</label>
+                <select id="product_grade" name="product_grade" required>
+                  <option value="" disabled selected>Select Here</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+            </td>
+            <td>
+                <label for="color_code">Color Code</label>
+                <select id="color_code" name="color_code" required>
+                  <option value="" disabled selected>Select Here</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+            </td>
+            <td>
+                <label for="length"> Length</label>
+                <select id="length" name="length" required>
+                  <option value="" disabled selected>Select Here</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+            </td>
+            <td>
+                <label for="width"> Width</label>
+                <select id="width" name="width" required>
+                  <option value="" disabled selected>Select Here</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+            </td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button id="addRow">+</button>
+    <button id="submitForm">Submit</button>
+</div>
+
+<script>
+const sameAddressDropdown = document.getElementById("same_address");
+const addressInput = document.getElementById("address");
+const stateInput = document.getElementById("state");
+const pincodeInput = document.getElementById("pincode");
+
+sameAddressDropdown.addEventListener("change", () => {
+  if (sameAddressDropdown.value === "Yes") {
+    addressInput.disabled = false;
+    stateInput.disabled = false;
+    pincodeInput.disabled = false;
+  } else {
+    addressInput.disabled = true;
+    stateInput.disabled = true;
+    pincodeInput.disabled = true;
+  }
+});
+
+
+const table = document.getElementById("myTable");
+const addRowButton = document.getElementById("addRow");
+const submitFormButton = document.getElementById("submitForm");
+
+// Add new row to table
+function addRow() {
+  const firstRow = table.rows[1];
+  const newRow = firstRow.cloneNode(true);
+  const minusButton = document.createElement("button");
+  minusButton.innerHTML = "-";
+  minusButton.addEventListener("click", deleteRow);
+  newRow.cells[5].appendChild(minusButton);
+  table.tBodies[0].appendChild(newRow);
+}
+
+// Delete current row from table
+function deleteRow() {
+  const currentRow = this.parentNode.parentNode;
+  if (table.rows.length > 1) {
+    currentRow.parentNode.removeChild(currentRow);
+  }
+}
+
+// Add event listener to 'addRowButton'
+addRowButton.addEventListener("click", addRow);
+
+
+
+
+const orderTypeSelect = document.getElementById("order_type");
+var LengthSelect = document.getElementById("length");
+var WidthSelect = document.getElementById("width");
+var LengthInput = document.getElementById("length");
+var WidthInput = document.getElementById("width");
+
+
+// Hide the Length, and Width select elements
+function hideSelectElements() {
+  LengthSelect.style.display = "none";
+  WidthSelect.style.display = "none";
+}
+
+// Hide the Length, and Width input elements
+function hideInputElements() {
+  var LengthInput = document.getElementById("length");
+  var WidthInput = document.getElementById("width");
+  LengthInput.style.display = "none";
+  WidthInput.style.display = "none";
+}
+
+
+// Show the Length, and Width input elements
+function showInputElements() {
+  var LengthInput = document.getElementById("length");
+  var WidthInput = document.getElementById("width");
+  LengthInput.style.display = "initial";
+  WidthInput.style.display = "initial";
+}
+
+// Show the Length, and Width Select elements
+function showSelectElements() {
+  var LengthSelect = document.getElementById("length");
+  var WidthSelect = document.getElementById("width");
+  LengthSelect.style.display = "initial";
+  WidthSelect.style.display = "initial";
+}
+
+// Replace select elements with input elements for Length, and Width
+function replaceSelectsWithInputs() {
+
+  var LengthSelect = document.getElementById("length");
+  var WidthSelect = document.getElementById("width");
+
+  const LengthInput = document.createElement("input");
+  LengthInput.type = "number";
+  LengthInput.id = "length";
+  LengthInput.name = "length";
+  LengthInput.required = true;
+  LengthInput.placeholder = "Customized Length";
+
+  const WidthInput = document.createElement("input");
+  WidthInput.type = "number";
+  WidthInput.id = "width";
+  WidthInput.name = "width";
+  WidthInput.required = true;
+  WidthInput.placeholder = "Customized Width";
+
+  LengthSelect.parentNode.replaceChild(LengthInput, LengthSelect);
+  WidthSelect.parentNode.replaceChild(WidthInput, WidthSelect);
+}
+
+
+// Replace input elements with select elements for Length, and Width
+function replaceInputsWithSelects() {
+  var LengthInput = document.getElementById("length");
+  var WidthInput = document.getElementById("width");
+
+  const LengthSelect = document.createElement("select");
+  LengthSelect.id = "length";
+  LengthSelect.name = "length";
+  LengthSelect.required = true;
+
+  const WidthSelect = document.createElement("select");
+  WidthSelect.id = "width";
+  WidthSelect.name = "width";
+  WidthSelect.required = true;
+
+  // Add options to length select
+  const lengthOptions = [
+    { label: "2 feet", value: 2 },
+    { label: "4 feet", value: 4 },
+    { label: "6 feet", value: 6 },
+    { label: "8 feet", value: 8 },
+    { label: "Customized Length", value: "" }
+  ];
+  lengthOptions.forEach(option => {
+    const optionElem = document.createElement("option");
+    optionElem.value = option.value;
+    optionElem.text = option.label;
+    LengthSelect.appendChild(optionElem);
+  });
+
+  // Add options to width select
+  const widthOptions = [
+    { label: "2 feet", value: 2 },
+    { label: "4 feet", value: 4 },
+    { label: "6 feet", value: 6 },
+    { label: "8 feet", value: 8 },
+    { label: "Customized Width", value: "" }
+  ];
+  widthOptions.forEach(option => {
+    const optionElem = document.createElement("option");
+    optionElem.value = option.value;
+    optionElem.text = option.label;
+    WidthSelect.appendChild(optionElem);
+  });
+
+  // Replace input elements with select elements
+  LengthInput.parentNode.replaceChild(LengthSelect, LengthInput);
+  WidthInput.parentNode.replaceChild(WidthSelect, WidthInput);
+}
+
+
+// Listen for changes in the order_type select element
+orderTypeSelect.addEventListener("change", () => {
+  if (orderTypeSelect.value === "Customized") {
+    hideSelectElements();
+    replaceSelectsWithInputs();
+  }
+  else if (orderTypeSelect.value === "Standard") {
+    hideInputElements();
+    replaceInputsWithSelects();
+  }
+});
+
+
+
+
+
+
+// Add event listener to 'submitFormButton'
+submitFormButton.addEventListener("click", () => {
+  const form = document.createElement("form");
+  form.method = "POST";
+  form.action = "your-form-handler.php";
+  table.querySelectorAll("input").forEach((input) => {
+    const inputClone = input.cloneNode(true);
+    form.appendChild(inputClone);
+  });
+  document.body.appendChild(form);
+  form.submit();
+});
+</script>
+
+</body>
+<style>
+.table-container {
+  max-width: 1080px; /* Change as needed */
+  margin: 0 auto; /* Centers the container horizontally */
+  margin: 20px auto;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+label {
+  display: block;
+  width: 200px;
+  text-align: left;
+  vertical-align: bottom;
+}
+
+<!--select {-->
+<!--  width: 200px;-->
+<!--  height: 35px;-->
+<!--  padding: 5px;-->
+<!--  border: 1px solid #ccc;-->
+<!--  border-radius: 4px;-->
+<!--  box-sizing: border-box;-->
+<!--  margin-bottom: 10px;-->
+<!--  vertical-align: bottom;-->
+<!--}-->
+
+input[type=text], select {
+  width: 200px;
+  height: 35px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  vertical-align: bottom;
+}
+
+input[type=number], select {
+  width: 200px;
+  height: 35px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  vertical-align: bottom;
+}
+
+<!--textarea {-->
+<!--  width: 200px;-->
+<!--  height: 100px;-->
+<!--  padding: 5px;-->
+<!--  border: 1px solid #ccc;-->
+<!--  border-radius: 4px;-->
+<!--  box-sizing: border-box;-->
+<!--  margin-bottom: 10px;-->
+<!--  vertical-align: bottom;-->
+<!--}-->
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+
+
+button:hover {
+  background-color: #45a049;
+}
+
+button[type=button] {
+  background-color: #f44336;
+}
+
+button[type=button]:hover {
+  background-color: #da190b;
+}
+
+<!--#box {-->
+<!--  margin: 50px auto;-->
+<!--  padding: 20px;-->
+<!--  width: 600px;-->
+<!--  border: 1px solid #ccc;-->
+<!--  border-radius: 4px;-->
+<!--}-->
+
+td {
+  vertical-align: bottom;
+}
+
+
+
+
+
+
+
+</style>
+
+</html>
+
+{% endblock %}

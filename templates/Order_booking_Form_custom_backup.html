@@ -1,0 +1,201 @@
+{% extends 'layout.html' %}
+
+{% block title %}Form {% endblock %}
+{% block content %}
+
+<center><h1>Order Booking Form</h1></center>
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+       <!-- font awesome  -->
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+      <link rel="stylesheet" href="static/css/AdminLTE.min.css" />
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+      <!-- custom styling -->
+      <link rel="stylesheet" type="text/css" href="style.css">
+      <!-- <script src="static/js/jquery.min.js"></script> -->
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+      <title>Order Booking Form</title>
+  </head>
+<body>
+<div class="table-container">
+    <table id="myTable">
+<!--      <thead>-->
+<!--        <tr>-->
+<!--          <th>Item Name</th>-->
+<!--          <th>Quantity</th>-->
+<!--          <th>Actions</th>-->
+<!--        </tr>-->
+<!--      </thead>-->
+      <tbody>
+        <tr>
+          <td>
+              <label for="order_type">Order Type</label><br>
+              <select id="order_type" name="order_type" required>
+                  <option value="" disabled selected>Select Here</option>
+                  <option value="Standard">Standard</option>
+                  <option value="Customized">Customized</option>
+              </select>
+          </td>
+            <td>
+              <label for="same_address">Shipping Address Different from Billing Address?</label><br>
+              <select id="same_address" name="same_address" required>
+                  <option value="" disabled selected>Select Here</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+              </select>
+            </td>
+            <td>
+                <label for="address">Shipping Address (If Required)</label>
+                <input type="text" id="address" name="address" required>
+            </td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button id="addRow">+</button>
+    <button id="submitForm">Submit</button>
+</div>
+
+<script>
+const table = document.getElementById("myTable");
+const addRowButton = document.getElementById("addRow");
+const submitFormButton = document.getElementById("submitForm");
+
+// Add new row to table
+function addRow() {
+  const firstRow = table.rows[0];
+  const newRow = firstRow.cloneNode(true);
+  const minusButton = document.createElement("button");
+  minusButton.innerHTML = "-";
+  minusButton.addEventListener("click", deleteRow);
+  newRow.cells[2].appendChild(minusButton);
+  table.tBodies[0].appendChild(newRow);
+}
+
+// Delete current row from table
+function deleteRow() {
+  const currentRow = this.parentNode.parentNode;
+  if (table.rows.length > 1) {
+    currentRow.parentNode.removeChild(currentRow);
+  }
+}
+
+// Add event listener to 'addRowButton'
+addRowButton.addEventListener("click", addRow);
+
+// Add event listener to 'submitFormButton'
+submitFormButton.addEventListener("click", () => {
+  const form = document.createElement("form");
+  form.method = "POST";
+  form.action = "your-form-handler.php";
+  table.querySelectorAll("input").forEach((input) => {
+    const inputClone = input.cloneNode(true);
+    form.appendChild(inputClone);
+  });
+  document.body.appendChild(form);
+  form.submit();
+});
+</script>
+
+</body>
+<style>
+.table-container {
+  max-width: 1000px; /* Change as needed */
+  margin: 0 auto; /* Centers the container horizontally */
+  margin: 20px auto;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+label {
+<!--  display: inline-block;-->
+  display: block;
+  width: 180px;
+<!--  margin-right: 10px;-->
+  text-align: right;
+  vertical-align: bottom;
+}
+
+input[type=text], select {
+  width: 200px;
+  height: 35px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  vertical-align: bottom;
+}
+
+input[type=number], select {
+  width: 200px;
+  height: 35px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  vertical-align: bottom;
+}
+
+<!--textarea {-->
+<!--  width: 200px;-->
+<!--  height: 100px;-->
+<!--  padding: 5px;-->
+<!--  border: 1px solid #ccc;-->
+<!--  border-radius: 4px;-->
+<!--  box-sizing: border-box;-->
+<!--  margin-bottom: 10px;-->
+<!--  vertical-align: bottom;-->
+<!--}-->
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button[type=button] {
+  background-color: #f44336;
+}
+
+button[type=button]:hover {
+  background-color: #da190b;
+}
+
+<!--#box {-->
+<!--  margin: 50px auto;-->
+<!--  padding: 20px;-->
+<!--  width: 600px;-->
+<!--  border: 1px solid #ccc;-->
+<!--  border-radius: 4px;-->
+<!--}-->
+
+td {
+  vertical-align: bottom;
+}
+
+
+
+
+
+
+</style>
+
+</html>
+
+{% endblock %}

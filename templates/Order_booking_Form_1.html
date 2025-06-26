@@ -1,0 +1,1371 @@
+{% extends 'layout.html' %}
+
+{% block title %}Form {% endblock %}
+{% block content %}
+
+<center><h1>Order Booking Form</h1></center>
+
+
+<!doctype html>
+<html lang="en">
+  <head class = "scroll">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+       <!-- font awesome  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+       <!-- font awesome  -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+    <link rel="stylesheet" href="static/css/AdminLTE.min.css" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <!-- custom styling -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+
+     <!-- <script src="static/js/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+    <title>Order Booking Form</title>
+
+  </head>
+  <div class="container">
+  <body >
+
+<form method="POST">
+
+<div class="container">
+ <div class="row">
+      <div class="col-md-12 form_sec_outer_task border ">
+        <div class="row">
+          <div class="col-md-12 bg-primary p-2 mb-3">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="row">
+                  <div class="col-md-4" >
+<!--                    <h4 class="frm_section_n text-align: center">Order Booking Form</h4>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+<!--            <label>Mobile No.</label>-->
+          </div>
+          <div class="col-md-4">
+<!--            <label> Type </label>-->
+          </div>
+        </div>
+
+        <div class="col-md-12 p-0">
+          <div class="col-md-12 form_field_outer p-1" >
+            <div class="row form_field_outer_row" >
+           <div class="form-group col-md-4">
+                <label>Order Type</label>
+                <select name="order_type[]" value="" id="order_type" class="form-control bg-light" >
+                  <option value="standard">Standard</option>
+                  <option value= "customised">Customised</option>
+                </select>
+              </div>
+
+			  <div class="form-group col-md-4">
+                <label>Is Shipping Address Different from Billing Address?</label>
+                <select name="shipping_type[]" value="" id="address" class="form-control bg-light" >
+                  <option value="N">No</option>
+                  <option value= "Y">Yes</option>
+
+                </select>
+              </div>
+<div class="form-group col-md-4">
+
+                <label hidden>SAP Code </label>
+                <input type="hidden" class="form-control w_50 bg-light" name="sap_code[]" value={{session['username']}} id="mobileb_no_1" placeholder="Enter SAP Code"/>
+              </div>
+
+
+			  <div class="form-group col-md-4">
+ <div id="dvaddress" style="display: none;">
+                <label>Shipping Address (If Required) </label>
+                <input type="text" class="form-control w_50 bg-light" name="address_no[]" value="" id="dvaddress" placeholder="Enter the Shipping Address" />
+
+              </div>
+                  </div>
+			  <div class="form-group col-md-4">
+<div id="dvaddress1" style="display: none;">
+                <label>State/Province</label>
+                <input type="text" class="form-control w_50 bg-light" name="state_no[]" value="" id="dvaddress1" placeholder="Enter the State/Province" />
+
+              </div>
+                  </div>
+			  <div class="form-group col-md-4">
+<div id="dvaddress2" style="display: none;">
+                <label>Pincode</label>
+                <input type="text" class="form-control w_90 bg-light" name="pincode_no[]" value="" id="dvaddress2" placeholder="Enter the Pincode" />
+ </div>
+              </div>
+
+			  <div class="col-md-12 bg-light" >
+
+
+<!--                    <h5 class="frm_section_n text-success ">Item Details </h5>-->
+                  </div>
+<!--          <div class="col-md-12 form_field_outer p-2">-->
+
+<!--<div class="row form_field_outer_row">-->
+
+              <div class="form-group col-md-4">
+                 <label>Item Code</label>
+                <select name="item_code[]" value="" id="no_type_1" class="form-control" >
+                  <option>--Select type--</option>
+
+                  <option>AL32</option>
+                  <option>AL33R</option>
+                     <option>AL43R</option>
+                     <option>AL63</option>
+                     <option>Aluwall</option>
+                     <option>AL445</option>
+                     <option>AL45</option>
+                     <option>AL65</option>
+                    <option>AL451</option>
+                     <option>AL4E</option>
+                     <option>AL3C</option>
+
+                </select>
+              </div>
+                <div class="form-group col-md-4">
+                  <label>Product Grade</label>
+                <select name="product_grade[]" value="" id="no_type_1" class="form-control" >
+                    <option>--Select type--</option>
+                  <option>Regular</option>
+                  <option>FRB1</option>
+                  <option>FRB</option>
+                     <option>FRA2</option>
+                     <option>MW</option>
+                     <option>AG+</option>
+
+                </select>
+              </div>
+                <div class="form-group col-md-4">
+                  <label>Colour Code</label>
+                <select name="color_code[]" value="" id="no_type_1" class="form-control" >
+                  <option>--Select type--</option>
+                  <option>AD01</option>
+<option>AD02</option>
+<option>AD03</option>
+<option>AD04</option>
+<option>AD05</option>
+<option>AD06</option>
+<option>AD07</option>
+<option>AD08</option>
+<option>AD09</option>
+<option>AD1001</option>
+<option>AD1002</option>
+<option>AD1003</option>
+<option>AD1004</option>
+<option>AD1007</option>
+<option>AD1008</option>
+<option>AD1009</option>
+<option>AD101</option>
+<option>AD1013</option>
+<option>AD101O</option>
+<option>AD102</option>
+<option>AD103</option>
+<option>AD105</option>
+<option>AD1073</option>
+<option>AD1092</option>
+<option>AD11</option>
+<option>AD111</option>
+<option>AD112</option>
+<option>AD114</option>
+<option>AD12</option>
+<option>AD1201</option>
+<option>AD1202</option>
+<option>AD1205</option>
+<option>AD1206</option>
+<option>AD1207</option>
+<option>AD1208</option>
+<option>AD121</option>
+<option>AD121P</option>
+<option>AD122</option>
+<option>AD1308</option>
+<option>AD1309</option>
+<option>AD131</option>
+<option>AD1310</option>
+<option>AD132</option>
+<option>AD1380</option>
+<option>AD14</option>
+<option>AD141</option>
+<option>AD143</option>
+<option>AD146</option>
+<option>AD147</option>
+<option>AD149</option>
+<option>AD15</option>
+<option>AD152</option>
+<option>AD155</option>
+<option>AD158</option>
+<option>AD161</option>
+<option>AD173</option>
+<option>AD174</option>
+<option>AD183</option>
+<option>AD194</option>
+<option>AD195</option>
+<option>AD2001</option>
+<option>AD2001</option>
+<option>AD201</option>
+<option>AD202</option>
+<option>AD203</option>
+<option>AD204</option>
+<option>AD205</option>
+<option>AD206</option>
+<option>AD207</option>
+<option>AD208</option>
+<option>AD21</option>
+<option>AD211</option>
+<option>AD2121</option>
+<option>AD21ARM</option>
+<option>AD22</option>
+<option>AD222</option>
+<option>AD232</option>
+<option>AD273</option>
+<option>AD301</option>
+<option>AD302</option>
+<option>AD303</option>
+<option>AD305</option>
+<option>AD306</option>
+<option>AD307</option>
+<option>AD31</option>
+<option>AD313</option>
+<option>AD32</option>
+<option>AD332</option>
+<option>AD333</option>
+<option>AD401</option>
+<option>AD404</option>
+<option>AD404N</option>
+<option>AD405</option>
+<option>AD41</option>
+<option>AD42</option>
+<option>AD43</option>
+<option>AD44</option>
+<option>AD442</option>
+<option>AD445</option>
+<option>AD46</option>
+<option>AD47</option>
+<option>AD49</option>
+<option>AD50</option>
+<option>AD501</option>
+<option>AD502</option>
+<option>AD503</option>
+<option>AD504</option>
+<option>AD505</option>
+<option>AD506</option>
+<option>AD507</option>
+<option>AD508</option>
+<option>AD509</option>
+<option>AD510</option>
+<option>AD511</option>
+<option>AD512</option>
+<option>AD514</option>
+<option>AD515</option>
+<option>AD516</option>
+<option>AD517</option>
+<option>AD518</option>
+<option>AD519</option>
+<option>AD52</option>
+<option>AD520</option>
+<option>AD521</option>
+<option>AD523</option>
+<option>AD524</option>
+<option>AD527</option>
+<option>AD529</option>
+<option>AD530</option>
+<option>AD531</option>
+<option>AD532</option>
+<option>AD539</option>
+<option>AD54</option>
+<option>AD55</option>
+<option>AD551</option>
+<option>AD552</option>
+<option>AD555</option>
+<option>AD556</option>
+<option>AD557</option>
+<option>AD558</option>
+<option>AD559</option>
+<option>AD56</option>
+<option>AD560</option>
+<option>AD561</option>
+<option>AD562</option>
+<option>AD563</option>
+<option>AD564</option>
+<option>AD566</option>
+<option>AD567</option>
+<option>AD568</option>
+<option>AD569</option>
+<option>AD56N</option>
+<option>AD57</option>
+<option>AD570</option>
+<option>AD571</option>
+<option>AD572</option>
+<option>AD574</option>
+<option>AD575</option>
+<option>AD578</option>
+<option>AD58</option>
+<option>AD585</option>
+<option>AD593</option>
+<option>AD601</option>
+<option>AD604</option>
+<option>AD61</option>
+<option>AD621</option>
+<option>AD7001</option>
+<option>AD7002</option>
+<option>AD701</option>
+<option>AD715</option>
+<option>AD72</option>
+<option>AD73</option>
+<option>AD7366</option>
+<option>AD74</option>
+<option>AD745</option>
+<option>AD75</option>
+<option>AD77</option>
+<option>AD8001</option>
+<option>AD8002</option>
+<option>AD8004</option>
+<option>AD8007</option>
+<option>AD8010</option>
+<option>AD81</option>
+<option>AD82</option>
+<option>AD83</option>
+<option>AD84</option>
+<option>AD901</option>
+<option>AD902</option>
+<option>AD903</option>
+<option>AD904</option>
+<option>AD905</option>
+<option>AD92</option>
+<option>AD94</option>
+<option>AM04</option>
+<option>AM05</option>
+<option>ANTZNC</option>
+<option>AP501</option>
+<option>AP502</option>
+<option>AP503</option>
+<option>AP504</option>
+<option>AP505</option>
+<option>AP506</option>
+<option>AP508</option>
+<option>AP509</option>
+<option>AP510</option>
+<option>AP511</option>
+<option>AP512</option>
+<option>AP514</option>
+<option>AP515</option>
+<option>AP517</option>
+<option>AP520</option>
+<option>AP521</option>
+<option>AP522</option>
+<option>AS21</option>
+<option>AS71</option>
+<option>AT11</option>
+<option>AT12</option>
+<option>AT13</option>
+<option>AT14</option>
+<option>AT15</option>
+<option>AT16</option>
+<option>AT18</option>
+<option>AT19</option>
+<option>AT20</option>
+<option>AT21</option>
+<option>AT22</option>
+<option>AT23</option>
+<option>AT24</option>
+<option>AT25</option>
+<option>AT26</option>
+<option>AT31</option>
+<option>AT32</option>
+<option>AT33</option>
+<option>AT34</option>
+<option>AW01</option>
+<option>AW06</option>
+<option>AW210</option>
+<option>AW220</option>
+<option>AW501</option>
+<option>AW502</option>
+<option>AW504</option>
+<option>AW505</option>
+<option>AW507</option>
+<option>AW508</option>
+<option>AW509</option>
+<option>AW510</option>
+<option>AW511</option>
+<option>AW512</option>
+<option>AW513</option>
+<option>AW515</option>
+<option>AW516</option>
+<option>AW518</option>
+<option>AW519</option>
+<option>BF113</option>
+<option>BGRADE</option>
+<option>CR01</option>
+<option>CR02</option>
+<option>CR03</option>
+<option>CR04</option>
+<option>CR05</option>
+<option>CS01</option>
+<option>CS02</option>
+<option>CS03</option>
+<option>CS04</option>
+<option>CS05</option>
+<option>CS06</option>
+<option>CS06DS</option>
+<option>CS07</option>
+<option>CS08</option>
+<option>CS09</option>
+<option>CT01</option>
+<option>CT02</option>
+<option>CT03</option>
+<option>CT04</option>
+<option>CT08</option>
+<option>CT09</option>
+<option>CT10</option>
+<option>CT11</option>
+<option>CT12</option>
+<option>CT14</option>
+<option>CT15</option>
+<option>CT16</option>
+<option>CU01</option>
+<option>CU02</option>
+<option>DC1719</option>
+<option>DC2021</option>
+<option>HPL01</option>
+<option>HPL02</option>
+<option>HPL03</option>
+<option>HPL04</option>
+<option>HPL04DS</option>
+<option>HPL06</option>
+<option>HPL06DS</option>
+<option>HPL104</option>
+<option>HPL104DS</option>
+<option>HPL115</option>
+<option>HPL12</option>
+<option>HPL121</option>
+<option>HPL121DS</option>
+<option>HPL127</option>
+<option>HPL17</option>
+<option>HPL18</option>
+<option>HPL19</option>
+<option>HPL21</option>
+<option>HPL23</option>
+<option>HPL24</option>
+<option>HPL25</option>
+<option>HPL30</option>
+<option>HPL30DS</option>
+<option>HPL31</option>
+<option>HPL31DS</option>
+<option>HPL32</option>
+<option>HPL37</option>
+<option>HPL37DS</option>
+<option>HPL39</option>
+<option>HPL39DS</option>
+<option>HPL40</option>
+<option>HPL40DS</option>
+<option>HPL42</option>
+<option>HPL42DS</option>
+<option>HPL43</option>
+<option>HPL43DS</option>
+<option>HPL44</option>
+<option>HPL44DS</option>
+<option>HPL45</option>
+<option>HPL45DS</option>
+<option>HPL46</option>
+<option>HPL46A</option>
+<option>HPL46DS</option>
+<option>HPL47</option>
+<option>HPL47DS</option>
+<option>HPL48</option>
+<option>HPL48DS</option>
+<option>HPL49</option>
+<option>HPL50</option>
+<option>HPL50DS</option>
+<option>HPL51</option>
+<option>HPL51DS</option>
+<option>HPL52</option>
+<option>HPL52DS</option>
+<option>HPL54</option>
+<option>HPL54DS</option>
+<option>HPL55</option>
+<option>MA01</option>
+<option>MA02</option>
+<option>MA04</option>
+<option>MA05</option>
+<option>MA07</option>
+<option>MA08</option>
+<option>MA09</option>
+<option>MA10</option>
+<option>MA101</option>
+<option>MA11</option>
+<option>MA12</option>
+<option>MT15001</option>
+<option>MT15002</option>
+<option>MT15004</option>
+<option>MT15007</option>
+<option>MT5001</option>
+<option>MT5002</option>
+<option>MT5003</option>
+<option>MT5004</option>
+<option>MT5005</option>
+<option>MT5006</option>
+<option>MT5007</option>
+<option>MT5008</option>
+<option>MT5009</option>
+<option>MT5010</option>
+<option>MT5011</option>
+<option>MT5012</option>
+<option>MT5013</option>
+<option>MT5014</option>
+<option>MT5015</option>
+<option>MT5016</option>
+<option>MT5017</option>
+<option>MT5018</option>
+<option>OZPBR</option>
+<option>PE05</option>
+<option>PE05DS</option>
+<option>PE05N</option>
+<option>PE06</option>
+<option>PE10</option>
+<option>PE100</option>
+<option>PE11</option>
+<option>PE1100</option>
+<option>PE12</option>
+<option>PE13</option>
+<option>PE14</option>
+<option>PE15</option>
+<option>PE16</option>
+<option>PE18</option>
+<option>PE19</option>
+<option>PE20</option>
+<option>PE21</option>
+<option>PE22</option>
+<option>PE23</option>
+<option>PE24</option>
+<option>PE25</option>
+<option>PE26</option>
+<option>PE27</option>
+<option>PP1004</option>
+<option>PP1005</option>
+<option>PP1006</option>
+<option>PP1007</option>
+<option>PP1008</option>
+<option>PP1009</option>
+<option>PP1010</option>
+<option>PP1011</option>
+<option>PP1012</option>
+<option>PP1013</option>
+<option>PP1014</option>
+<option>PP1015</option>
+<option>PP1016</option>
+<option>PP1017</option>
+<option>PP1018</option>
+<option>PP1019</option>
+<option>PP1020</option>
+<option>PP1021</option>
+<option>PP537</option>
+<option>PP538</option>
+<option>PP539</option>
+<option>PP540</option>
+<option>PP541</option>
+<option>PP542</option>
+<option>PP543</option>
+<option>PP544</option>
+<option>SD16002</option>
+<option>SD16007</option>
+<option>SD6001</option>
+<option>SD6002</option>
+<option>SD6003</option>
+<option>SD6004</option>
+<option>SD6005</option>
+<option>SD6006</option>
+<option>SD6007</option>
+<option>SD6008</option>
+<option>SD6009</option>
+<option>SD6010</option>
+<option>SD6011</option>
+<option>SD6012</option>
+<option>SD6013</option>
+<option>SD6014</option>
+<option>SD6015</option>
+<option>SD6016</option>
+<option>SD6017</option>
+<option>SH010</option>
+<option>SH030</option>
+<option>SH050</option>
+<option>SH060</option>
+<option>SH070</option>
+<option>SH090</option>
+<option>SH110</option>
+<option>SH1201</option>
+<option>SH12011</option>
+<option>SH1210</option>
+<option>SH1220</option>
+<option>SH12210</option>
+<option>SH1310</option>
+<option>SH1480</option>
+<option>SH17030</option>
+<option>SH1730</option>
+<option>SH194</option>
+<option>SH201</option>
+<option>SH2010</option>
+<option>SH2011</option>
+<option>SH203</option>
+<option>SH210</option>
+<option>SH220</option>
+<option>SH3010</option>
+<option>SH3020</option>
+<option>SH310</option>
+<option>SH320</option>
+<option>SH4080</option>
+<option>SH480</option>
+<option>SH5010</option>
+<option>SH5250</option>
+<option>SH6010</option>
+<option>SH7030</option>
+<option>SH730</option>
+<option>SP01</option>
+<option>SP01E</option>
+<option>SP02</option>
+<option>SP04</option>
+<option>SP04E</option>
+<option>SP04I</option>
+<option>SP04N</option>
+<option>SP05</option>
+<option>SP05E</option>
+<option>SP05I</option>
+<option>SP06E</option>
+<option>SP07</option>
+<option>SP08</option>
+<option>SP09</option>
+<option>SP101</option>
+<option>SP102</option>
+<option>SP103</option>
+<option>SP104</option>
+<option>SP105</option>
+<option>SP106</option>
+<option>SP107</option>
+<option>SP121</option>
+<option>SP122</option>
+<option>SP123</option>
+<option>SP124</option>
+<option>SP125</option>
+<option>SP126</option>
+<option>SP127</option>
+<option>SP131</option>
+<option>SP132</option>
+<option>SP133</option>
+<option>SP134</option>
+<option>SP135</option>
+<option>SP136</option>
+<option>SP137</option>
+<option>SP401</option>
+<option>ST01</option>
+<option>ST03</option>
+<option>ST04</option>
+<option>ST05</option>
+<option>ST06</option>
+<option>ST07</option>
+<option>ST08</option>
+<option>ST11</option>
+<option>ST12</option>
+<option>ST128</option>
+<option>ST13</option>
+<option>ST15</option>
+<option>ST17</option>
+<option>ST20</option>
+<option>ST21</option>
+<option>ST22</option>
+<option>ST23</option>
+<option>ST25</option>
+<option>ST26</option>
+<option>ST27</option>
+<option>ST28</option>
+<option>TC1022</option>
+<option>TI101</option>
+<option>TI24</option>
+<option>TR01</option>
+<option>TR02</option>
+<option>TR03</option>
+<option>TR04</option>
+<option>TR05</option>
+<option>TR06</option>
+<option>TR101</option>
+<option>TR119</option>
+<option>TR12</option>
+<option>TR13</option>
+<option>TR17</option>
+<option>TR18</option>
+<option>TR19</option>
+<option>TR23</option>
+<option>TR24</option>
+<option>TR25</option>
+<option>TR26</option>
+<option>TR28</option>
+<option>TR30</option>
+<option>TR31</option>
+<option>TR32</option>
+<option>TR33</option>
+<option>TR34</option>
+<option>TR36</option>
+<option>TR37</option>
+<option>TR38</option>
+<option>TR39</option>
+<option>TR40</option>
+<option>TR41</option>
+<option>TR42</option>
+<option>TR43</option>
+<option>TR44</option>
+<option>TR45</option>
+<option>TR46</option>
+<option>TR46A</option>
+<option>TR47</option>
+<option>TR48</option>
+<option>TR49</option>
+<option>TR50</option>
+<option>TR51</option>
+<option>TR52</option>
+<option>TR53</option>
+<option>TR54</option>
+<option>TR55</option>
+<option>WSHCOAT</option>
+<option>ZPOR</option>
+<option>00ZA</option>
+<option>00ZE</option>
+<option>00ZQ</option>
+<option>0ZAS</option>
+<option>0ZAZ</option>
+<option>0ZCP</option>
+<option>0ZPB</option>
+<option>0ZPG</option>
+<option>0ZPR</option>
+<option>0ZQS</option>
+<option>AD21DS</option>
+<option>ZPBR</option>
+<option>AD594</option>
+<option>AD595</option>
+<option>HPL13</option>
+<option>AD525</option>
+<option>CS01DS</option>
+<option>AD8022</option>
+<option>MA01DS</option>
+<option>TI02</option>
+<option>TI09</option>
+<option>TI42H</option>
+<option>AD8024</option>
+<option>AD207DS</option>
+<option>AD22DS</option>
+<option>AD01DS</option>
+
+                </select>
+              </div>
+
+                 <div class="form-group col-md-4">
+                     <div id="dvstand" style="display: none;">
+                <label>Standard Length</label>
+                <select name="length_no_standerd[]" value="" id="dvstand" class="form-control bg-light" >
+                  <option>--Select--</option>
+                  <option value= "2440">2440</option>
+                  <option value="3050">3050</option>
+                    <option value="3660">3660</option>
+                </select>
+                </select>
+              </div>
+</div>
+       <div class="form-group col-md-4">
+<div id="dvstand1" style="display: none;">
+                <label>Standard Width</label>
+                <select name="width_no_standerd[]" value="" id="dvstand1" class="form-control bg-light" >
+
+                  <option value= "1220">1220</option>
+
+                </select>
+                </select>
+              </div>
+</div>
+                <div class="form-group col-md-4">
+<div id="dvcustom" style="display: none;">
+
+                   <label>Length</label>
+                <input type="text" class="form-control w_90 bg-light " name="length_no_customised[]" value="" id="dvcustom" placeholder="Enter the Length" />
+              </div>
+</div>
+
+                <div class="form-group col-md-4">
+<div id="dvcustom1" style="display: none;">
+                  <label>Width</label>
+                <input type="text" class="form-control w_90 bg-light" name="width_no_customised[]" value="" id="dvcustom1" placeholder="Enter the Width" />
+              </div>
+                     </div>
+                <div class="form-group col-md-4">
+                  <label>Matching Lot</label>
+                <input type="text" class="form-control w_90" name="matching_lot[]" value="" id="mobileb_no_1" placeholder="Enter the Matching Lot" />
+              </div>
+                <div class="form-group col-md-4">
+                  <label>Order Quantity (Nos.)</label>
+                <input type="text" class="form-control w_90" name="order_qty[]" value="" id="mobileb_no_1" placeholder="Enter the Order Quantity (Nos.)" />
+              </div>
+              <div class="form-group col-md-2 add_del_btn_outer">
+                <add-input class="btn_round add_node_btn_frm_field" title="Copy or clone this row">
+                  <i class="fa fa-plus" ></i>
+                </add-input>
+
+                <remove-input class="btn_round remove_node_btn_frm_field" disabled>
+                  <i class="fas fa-trash-alt"></i>
+                </remove-input>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<!--      <div class="row ml-0 bg-light mt-3 border py-3">-->
+<!--        <div class="col-md-12">-->
+<!--          <button class="btn btn-outline-lite py-0 add_new_frm_field_btn"><i class="fas fa-plus add_icon"></i> Add New field row</button>-->
+        </div>
+      </div>
+ </div>
+  <div class="row ml-0 bg-light mt-3 border py-3">
+        <div class="col-md-12">
+  <center><input type="submit" class="btn btn-success" name="cmdsubmit" href="{{ url_for('thank') }}" ></center>
+<!--<div class="col-md-12">-->
+<!--<center><a href="{{ url_for('thank') }}" input type="submit" class="btn btn-dark" name="cmdsubmit">Submit</a></p></center>-->
+
+</div>
+    </div>
+  </div>
+
+<script type="text/javascript">
+
+
+
+$(document).ready(function(){
+    $("body").on("click",".add_new_frm_field_btn", function (){
+      console.log("clicked");
+      var index = $(".form_field_outer").find(".form_field_outer_row").length + 1;
+      $(".form_field_outer").append(`
+          <div class="form-group col-md-6">
+
+                <label>SAP Code</label>
+                <input type="text" class="form-control w_90 bg-light" name="sap_code" id="mobileb_no_1" placeholder="Enter SAP Code" />
+
+              </div>
+              <div class="form-group col-md-4">
+                <select name="no_type[]" id="no_type_${index}" class="form-control" >
+                  <option>--Select type--</option>
+                  <option>Personal No.</option>
+                  <option>Company No.</option>
+                  <option>Parents No.</option>
+                </select>
+              </div>
+			  <div class="form-group col-md-4">
+                <select name="no_type[]" id="no_type_${index}" class="form-control" >
+                  <option>--Select type--</option>
+                  <option>Personal No.</option>
+                  <option>Company No.</option>
+                  <option>Parents No.</option>
+                </select>
+              </div>
+			  <div class="form-group col-md-4">
+                <select name="no_type[]" id="no_type_${index}" class="form-control" >
+                  <option>--Select type--</option>
+                  <option>Personal No.</option>
+                  <option>Company No.</option>
+                  <option>Parents No.</option>
+                </select>
+              </div>
+			  <div class="form-group col-md-6">
+                <input type="text" class="form-control w_90" name="mobileb_no[]" id="mobileb_no_${index}" placeholder="Enter mobiel no." />
+              </div>
+			  <div class="form-group col-md-6">
+                <input type="text" class="form-control w_90" name="mobileb_no[]" id="mobileb_no_${index}" placeholder="Enter mobiel no." />
+              </div>
+			  <div class="form-group col-md-6">
+                <input type="text" class="form-control w_90" name="mobileb_no[]" id="mobileb_no_${index}" placeholder="Enter mobiel no." />
+              </div>
+			  <div class="form-group col-md-6">
+                <input type="text" class="form-control w_90" name="mobileb_no[]" id="mobileb_no_${index}" placeholder="Enter mobiel no." />
+              </div>
+              <div class="form-group col-md-2 add_del_btn_outer">
+                <add-input class="btn_round add_node_btn_frm_field" title="Copy or clone this row">
+                  <i class="fas fa-copy"></i>
+                </add-input>
+
+                <remove-input class="btn_round remove_node_btn_frm_field" disabled>
+                  <i class="fas fa-trash-alt"></i>
+                </remove-input>
+              </div>
+            </div>
+        `);
+
+      $(".form_field_outer").find(".remove_node_btn_frm_field:not(:first)").prop("disabled", false);
+      $(".form_field_outer").find(".remove_node_btn_frm_field").first().prop("disabled", true);
+    });
+ });
+
+
+    ///======Clone method
+$(document).ready(function(){
+    $("body").on("click", ".add_node_btn_frm_field", function (e) {
+      var index = $(e.target).closest(".form_field_outer").find(".form_field_outer_row").length + 1;
+      var cloned_el = $(e.target).closest(".form_field_outer_row").clone(true);
+
+      $(e.target).closest(".form_field_outer").last().append(cloned_el).find(".remove_node_btn_frm_field:not(:first)").prop("disabled", false);
+
+      $(e.target).closest(".form_field_outer").find(".remove_node_btn_frm_field").first().prop("disabled", true);
+
+
+      //change id
+      $(e.target).closest(".form_field_outer").find(".form_field_outer_row").last().find("input[type='text']").attr("id", "mobileb_no_"+index);
+
+      $(e.target).closest(".form_field_outer").find(".form_field_outer_row").last().find("select").attr("id", "no_type_"+index);
+
+      console.log(cloned_el);
+      //count++;
+    });
+ });
+
+
+$(document).ready(function(){
+    //===== delete the form fieed row
+    $("body").on("click", ".remove_node_btn_frm_field", function () {
+      $(this).closest(".form_field_outer_row").remove();
+      console.log("success");
+    });
+  });
+
+ $(function () {
+        $("#address").change(function () {
+            if ($(this).val() == "Y") {
+                $("#dvaddress").show();
+            } else {
+                $("#dvaddress").hide();
+            }
+        });
+    });
+$(function () {
+        $("#address").change(function () {
+            if ($(this).val() == "Y") {
+                $("#dvaddress1").show();
+            } else {
+                $("#dvaddress1").hide();
+            }
+        });
+    });
+    $(function () {
+        $("#address").change(function () {
+            if ($(this).val() == "Y") {
+                $("#dvaddress2").show();
+            } else {
+                $("#dvaddress2").hide();
+            }
+        });
+    });
+
+
+
+$(function () {
+        $("#order_type").change(function () {
+            if ($(this).val() == "customised") {
+                $("#dvcustom").show();
+            } else {
+                $("#dvcustom").hide();
+            }
+        });
+    });
+$(function () {
+        $("#order_type").change(function () {
+            if ($(this).val() == "customised") {
+                $("#dvcustom1").show();
+            } else {
+                $("#dvcustom1").hide();
+            }
+        });
+    });
+
+
+
+$(function () {
+        $("#order_type").change(function () {
+            if ($(this).val() == "standard") {
+                $("#dvstand").show();
+            } else {
+                $("#dvstand").hide();
+            }
+        });
+    });
+$(function () {
+        $("#order_type").change(function () {
+            if ($(this).val() == "standard") {
+                $("#dvstand1").show();
+            } else {
+                $("#dvstand1").hide();
+            }
+        });
+    });
+
+
+
+</script>
+
+
+
+
+<style>
+.scroll {
+                margin:4px, 4px;
+<!--                padding:4px;-->
+<!--                background-color: green;-->
+                width: 500px;
+                height: 500px;
+                overflow-x: hidden;
+                overflow-y: auto;
+                text-align:justify;
+            }
+
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  box-sizing: border-box;
+  margin:4px, 4px;
+                padding:4px;
+                background-color: green;
+                width: 500px;
+                height: 500px;
+                overflow-x: hidden;
+                overflow-y: auto;
+                text-align:justify;
+
+
+}
+
+  .btn_round{
+  width: 25px;
+  height: 35px;
+  display: inline-block;
+  border-radius: 35%;
+  text-align: center;
+  line-height: 35px;
+  margin-left: 10px;
+  border:1px solid #ccc;
+  cursor: pointer;
+}
+.btn_round:hover{
+  color:333399	;
+  background:#6b4acc;
+  border:1px solid #6b4acc;
+}
+
+.btn_content_outer{
+display: inline-block;
+width: 35%;
+}
+.close_c_btn{
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 10px;
+  top: 0px;
+  line-height: 30px;
+  border-radius: 50%;
+  background: #ededed;
+  border: 1px solid #ccc;
+  color: #ff5c5c;
+  text-align: center;
+  cursor: pointer;
+}
+
+.add_icon{
+  padding:10px;
+  border: 1px dashed #aaa;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.add_group_btn{
+  display: flex-container;
+}
+.add_group_btn i{
+ font-size: 25px;
+ display: inline-block;
+ margin-right: 10px;
+
+}
+
+.add_group_btn span{
+ margin-top: 8px;
+}
+.add_group_btn, .clone_sub_task{
+  cursor: pointer;
+}
+
+
+.sub_task_append_area .custom_square{
+  cursor: move;
+}
+
+.del_btn_d{
+  display: inline-block;
+    position: absolute;
+    right: 20px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+textarea {
+    font-size: .5rem;
+    letter-spacing: 1px;
+}
+textarea {
+    padding: 10px;
+    max-width: 50%;
+    line-height: 1.5;
+    border-radius: 8px;
+    border: 8px solid #33339;
+    box-shadow: 1px 1px 1px b81448;
+}
+
+h4 {
+  text-align: center;
+
+}
+
+
+
+.form-control {
+  background-color: #b1f2da;
+  color: blue;
+  padding: 5px;
+  font-size: 16px;
+  border: 2px light blue;
+  border-radius: 4px;
+  width: 60%
+}
+
+
+.btn {
+  background-color: #004A7F;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Arial;
+  font-size: 20px;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-animation: glowing 1500ms infinite;
+  -moz-animation: glowing 1500ms infinite;
+  -o-animation: glowing 1500ms infinite;
+  animation: glowing 1500ms infinite;
+}
+@-webkit-keyframes glowing {
+  0% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; -webkit-box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
+}
+
+@-moz-keyframes glowing {
+  0% { background-color: #B20000; -moz-box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; -moz-box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; -moz-box-shadow: 0 0 3px #B20000; }
+}
+
+@-o-keyframes glowing {
+  0% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #1840de; box-shadow: 0 0 3px #B20000; }
+}
+
+@keyframes glowing {
+  0% { background-color: #069c33; box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #1840de; box-shadow: 0 0 3px #B20000; }
+}
+
+.body {
+  margin:0;
+  padding:0;
+  font-family: sans-serif;
+  background: linear-gradient(#141e30, #243b55);
+}
+
+.col-md-12 p-0 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1200px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background-color: hsla(120, 60%, 70%, 0.3);
+  box-sizing: border-box;
+  box-shadow: 5 125px 25px rgba(0,0,0,.9);
+  border-radius: 10px;
+}
+<!--.background {-->
+<!--  background: linear-gradient(132deg, #FC415A, #591BC5, #212335);-->
+<!--  background-size: 600% 600%;-->
+<!--  animation: Gradient 15s ease infinite;-->
+<!--  position: relative;-->
+<!--  height: 100vh;-->
+<!--  width: 100%;-->
+<!--  overflow: hidden;-->
+<!--  padding:0;-->
+<!--  margin:0px;-->
+<!--}-->
+
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+}
+.wrapper {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(180deg, #04fafd, 5%, #119dff, 50%, #030423);
+  position: absolute;
+}
+.wrapper h1 {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  font-family: sans-serif;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: 888;
+  text-transform: uppercase;
+}
+.wrapper div {
+  height: 50px;
+  width: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50px;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  animation: 4s linear infinite;
+}
+div .dot {
+  height: 10px;
+  width: 10px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: 20%;
+  right: 20%;
+
+}
+.wrapper div:nth-child(1) {
+  top: 20%;
+  left: 20%;
+  animation: animate 8s linear infinite;
+}
+.wrapper div:nth-child(2) {
+  top: 60%;
+  left: 80%;
+  animation: animate 10s linear infinite;
+}
+.wrapper div:nth-child(3) {
+  top: 40%;
+  left: 40%;
+  animation: animate 3s linear infinite;
+}
+.wrapper div:nth-child(4) {
+  top: 66%;
+  left: 30%;
+  animation: animate 7s linear infinite;
+}
+.wrapper div:nth-child(5) {
+  top: 90%;
+  left: 10%;
+  animation: animate 9s linear infinite;
+}
+.wrapper div:nth-child(6) {
+  top: 30%;
+  left: 60%;
+  animation: animate 5s linear infinite;
+}
+.wrapper div:nth-child(7) {
+  top: 70%;
+  left: 20%;
+  animation: animate 8s linear infinite;
+}
+.wrapper div:nth-child(8) {
+  top: 75%;
+  left: 60%;
+  animation: animate 10s linear infinite;
+}
+.wrapper div:nth-child(9) {
+  top: 50%;
+  left: 50%;
+  animation: animate 6s linear infinite;
+}
+.wrapper div:nth-child(10) {
+  top: 45%;
+  left: 20%;
+  animation: animate 10s linear infinite;
+}
+.wrapper div:nth-child(11) {
+  top: 10%;
+  left: 90%;
+  animation: animate 9s linear infinite;
+}
+.wrapper div:nth-child(12) {
+  top: 20%;
+  left: 70%;
+  animation: animate 7s linear infinite;
+}
+.wrapper div:nth-child(13) {
+  top: 20%;
+  left: 20%;
+  animation: animate 8s linear infinite;
+}
+.wrapper div:nth-child(14) {
+  top: 60%;
+  left: 5%;
+  animation: animate 6s linear infinite;
+}
+.wrapper div:nth-child(15) {
+  top: 90%;
+  left: 80%;
+  animation: animate 9s linear infinite;
+}
+@keyframes animate {
+  0% {
+    transform: scale(0) translateY(0) rotate(70deg);
+  }
+  100% {
+    transform: scale(1.3) translateY(-100px) rotate(360deg);
+  }
+}
+
+
+
+</style>
+
+
+</form>
+
+  </body>
+</html>
+
+{% endblock %}

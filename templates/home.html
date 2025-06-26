@@ -1,0 +1,266 @@
+
+
+<div id="conditional-extend">
+  {% extends 'layout.html' %}
+</div>
+
+
+
+{% block title %}Home{% endblock %}
+ 
+{% block content %}
+
+<!--<center><h1 class="h2">WELCOME</h1></center>-->
+<head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, content="user-scalable=yes"">
+
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Neuton|Oswald" />
+
+</head>
+
+<div class="logo">
+  <i class="material-icons">
+    <img src="{{ url_for('static', filename='Logo white.png') }}" style="max-width: 15%; height: auto;" alt="">
+  </i>
+</div>
+
+<center>
+  <div style="text-align: center; color: white; font-size: 25px;">
+    <span class="heading">{{ fullname }}!</span>
+  </div>
+</center>
+
+  <br>
+<br>
+
+
+
+
+<style>
+
+  .heading {
+  font-size: 15px;
+	  display: block;
+	  margin: 0 auto;
+  	text-shadow: 0 0 80px rgba(255,255,255,255);
+     color: white !important;
+    }
+
+
+
+
+
+        .logo {
+            margin-right: 20px;
+        }
+
+#conditional-extend {
+    display: block;
+
+}
+
+
+ body {
+  position: relative;
+  background-image: url('{{ url_for('static', filename='Vertical.png') }}');
+  /* Other CSS properties go here */
+  margin: 20px; /* Adjust the margin value as needed */
+  margin-left: 70px;
+  padding: 2rem 0 0 6.75rem;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  transition: 0.5s;
+
+  max-width: 100%;
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-size: 100% 100%; /* Set the background image to cover the entire width and auto height */
+
+}
+
+/* Animate Background Image */
+
+	  -webkit-text-fill-color: transparent;
+	  -webkit-animation: aitf 80s linear infinite;
+
+/* Activate hardware acceleration for smoother animations */
+
+	  -webkit-transform: translate3d(0,0,0);
+	  -webkit-backface-visibility: hidden;
+
+  }
+
+
+/* Animate Background Image */
+
+@-webkit-keyframes aitf {
+	0% { background-position: 0% 50%; }
+	100% { background-position: 100% 50%; }
+}
+
+
+
+.middle {
+	text-transform: proper;
+
+    display: inline-block;
+	border: 10px double rgba(255,255,255,.25);
+	border-width: 10px 0;
+	padding: 1.5em 0em;
+	position: absolute;
+	below: 5%;
+	left: 50%;
+	width: 40em;
+	margin: 0 0 0 -20em;
+
+
+  }
+
+
+
+p1 {
+  color: white;
+  font-family: verdana;
+  font-size: 160%;
+}
+
+p {
+  color: white;
+  font-family: courier;
+  font-size: 160%;
+}
+   *,
+*:before,
+*:after {
+  box-sizing: border-box;
+  font-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media screen and (max-width: 1000px) {
+
+ #conditional-extend {
+    display: none;
+
+}
+
+
+ .body {
+  position: relative;
+  background-image: url('{{ url_for('static', filename='Vertical.png') }}');
+  /* Other CSS properties go here */
+  margin: 20px; /* Adjust the margin value as needed */
+  margin-left: 70px;
+  padding: 2rem 0 0 6.75rem;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  transition: 0.5s;
+
+  max-width: 100%;
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-size: 100% 100%; /* Set the background image to cover the entire width and auto height */
+
+}
+}
+/* Animate Background Image */
+
+	  -webkit-text-fill-color: transparent;
+	  -webkit-animation: aitf 80s linear infinite;
+
+/* Activate hardware acceleration for smoother animations */
+
+	  -webkit-transform: translate3d(0,0,0);
+	  -webkit-backface-visibility: hidden;
+
+  }
+
+   @media screen and (max-width: 1000px) {
+
+ #conditional-extend {
+    display: none;
+
+}
+
+
+ .body {
+  position: relative;
+  background-image: url('{{ url_for('static', filename='Vertical.png') }}');
+  /* Other CSS properties go here */
+  margin: 20px; /* Adjust the margin value as needed */
+  margin-left: 70px;
+  padding: 2rem 0 0 6.75rem;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  transition: 0.5s;
+
+  max-width: 100%;
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-size: 100% 100%; /* Set the background image to cover the entire width and auto height */
+
+}
+
+
+
+
+/* Animate Background Image */
+
+@-webkit-keyframes aitf {
+	0% { background-position: 0% 50%; }
+	100% { background-position: 100% 50%; }
+}
+
+
+
+.middle {
+	text-transform: proper;
+
+    display: inline-block;
+	border: 10px double rgba(255,255,255,.25);
+	border-width: 10px 0;
+	padding: 1.5em 0em;
+	position: absolute;
+	below: 5%;
+	left: 50%;
+	width: 40em;
+	margin: 0 0 0 -20em;
+
+
+  }
+
+
+
+p1 {
+  color: white;
+  font-family: verdana;
+  font-size: 160%;
+}
+
+p {
+  color: white;
+  font-family: courier;
+  font-size: 160%;
+}
+   *,
+*:before,
+*:after {
+  box-sizing: border-box;
+  font-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+</style>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+

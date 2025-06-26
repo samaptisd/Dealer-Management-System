@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, content="user-scalable=yes"">
+        <style>
+        /* Media query to hide the sidebar on screens smaller than 768px (tablets and below) */
+    @media (max-width: 767px) {
+      #navbar {
+        display: none; /* Hide the sidebar for small screens (phones) */
+      }
+      body {
+        margin: 5px !important;
+        padding: 5px !important;
+      }
+    }
+
+        /* Media query to hide the sidebar on screens smaller than 1024px (tablets and below) */
+        @media (max-width: 1024px) {
+          #navbar {
+            display: none; /* Hide the sidebar for small screens (phones) */
+          }
+            body {
+                margin: 5px !important;
+                padding: 5px !important;
+              }
+        }
+
+    /* Media query to hide the sidebar on iPad devices */
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1.5) {
+      #navbar {
+        display: none; /* Hide the sidebar on iPads */
+      }
+      body {
+        margin: 5px !important;
+        padding: 5px !important;
+      }
+    }
+
+
+    @media only screen and (max-width: 767px) and (orientation: portrait) {
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.8);
+        filter: blur(5px);
+        z-index: 9999;
+      }
+
+      #orientation-message {
+        display: block;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        font-size: 18px;
+        text-align: center;
+        z-index: 10000;
+      }
+    }
+
+    @media only screen and (orientation: landscape), (min-width: 768px) and (max-width: 1024px) {
+      body::before,
+      #orientation-message {
+        display: none;
+      }
+    }
+
+
+    </style>
+
+    <div id="orientation-message">
+            <p>Please rotate your device to landscape mode.</p>
+    </div>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <div class="logo">
+  <i class="material-icons">
+    <img src="{{ url_for('static', filename='logo.png') }}" style="width: 150px; height: 50px;" alt="">
+  </i>
+</div>
+
+<style>
+
+    logo {
+  text-align: right;
+
+  }
+body {
+    margin: auto;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: auto;
+<!--    background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(255,25,25,1) 98%);-->
+<!--    animation: gradient 15s ease infinite;-->
+    background-size: 400% 400%;
+    background-attachment: fixed;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+.wave {
+    background: rgb(255 255 255 / 25%);
+    border-radius: 1000% 1000% 0 0;
+    position: fixed;
+    width: 200%;
+    height: 12em;
+    animation: wave 10s -3s linear infinite;
+    transform: translate3d(0, 0, 0);
+    opacity: 0.8;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.wave:nth-of-type(2) {
+    bottom: -1.25em;
+    animation: wave 18s linear reverse infinite;
+    opacity: 0.8;
+}
+
+.wave:nth-of-type(3) {
+    bottom: -2.5em;
+    animation: wave 20s -1s reverse infinite;
+    opacity: 0.9;
+}
+
+@keyframes wave {
+    2% {
+        transform: translateX(1);
+    }
+
+    25% {
+        transform: translateX(-25%);
+    }
+
+    50% {
+        transform: translateX(-50%);
+    }
+
+    75% {
+        transform: translateX(-25%);
+    }
+
+    100% {
+        transform: translateX(1);
+    }
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #d9e7fc;
+  padding: 20px;
+  font-family: Arial;
+}
+
+/* Center website */
+.main {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  font-size: 50px;
+  word-break: break-all;
+}
+
+.row {
+  margin: 10px -16px;
+}
+
+/* Add padding BETWEEN each column */
+.row,
+.row > .column {
+  padding: 8px;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  display: none; /* Hide all elements by default */
+}
+
+/* Clear floats after rows */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Content */
+.content {
+  background-color: white;
+  padding: 10px;
+}
+
+/* The "show" class is added to the filtered elements */
+.show {
+  display: block;
+}
+
+/* Style the buttons */
+.btn {
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #ddd;
+}
+
+.btn.active {
+  background-color: #666;
+  color: white;
+}
+
+.btn {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: RoyalBlue;
+}
+h1::before {
+  transform: scaleX(0);
+  transform-origin: bottom right;
+}
+
+h1:hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+h1::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  inset: 0 0 0 0;
+  background: hsl(200 100% 80%);
+  z-index: -1;
+  transition: transform .5s ease;
+}
+
+h1 {
+  position: relative;
+  font-size: 5rem;
+}
+
+html {
+  block-size: 100%;
+  inline-size: 100%;
+}
+
+body {
+  min-block-size: 100%;
+  min-inline-size: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  display: grid;
+  place-content: center;
+  font-family: system-ui, sans-serif;
+}
+
+ @media (orientation: landscape) {
+  body {
+    grid-auto-flow: column;
+  }
+}
+*
+/******** Styling Header *******/
+header{
+  background:#;
+  height:50px;
+  width:100%;
+  padding:10px;
+  border-bottom:1px solid black;
+  position:fixed; /** fixed menu */
+  top:0;
+}
+.main-content, .about-content{
+  background:;
+  width:100%;
+  padding:20px;
+  border:1px solid black;
+  text-align:center;
+}
+.main-content{
+  margin-top:100px;
+}
+
+
+
+
+
+	/*===== GOOGLE FONTS =====*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+/*===== VARIABLES CSS =====*/
+:root {
+  --nav-width: 92px;
+  --yellow-color: yellow;
+
+  /*===== Colores =====*/
+  --first-color: #0c5df4;
+  --bg-color: #12192c;
+  --sub-color: #b6cefc;
+  --white-color: #fff;
+
+  /*===== Fuente y tipografia =====*/
+  --body-font: "Poppins", sans-serif;
+  --normal-font-size: 1rem;
+  --small-font-size: 0.875rem;
+
+  /*===== z index =====*/
+  --z-fixed: 100;
+}
+
+/*===== BASE =====*/
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+
+h1 {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+/*===== l NAV =====*/
+.l-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--nav-width);
+  height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--white-color);
+  padding: 1.5rem 1.5rem 2rem;
+  transition: 0.5s;
+  z-index: var(--z-fixed);
+}
+
+/*===== NAV =====*/
+.nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.nav__brand {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.nav__toggle {
+  font-size: 1.25rem;
+  padding: 0.75rem;
+  cursor: pointer;
+}
+.nav__logo {
+  color: var(--white-color);
+  font-weight: 600;
+}
+
+.nav__link {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  column-gap: 0.75rem;
+  padding: 0.75rem;
+  color: var(--white-color);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.nav__link:hover {
+  background-color: var(--first-color);
+}
+.nav__icon {
+  font-size: 1.25rem;
+}
+.nav__name {
+  font-size: var(--small-font-size);
+}
+
+/*Expander menu*/
+.expander {
+  width: calc(var(--nav-width) + 9.25rem);
+}
+
+/*Add padding body*/
+
+.body-pd {
+  padding: 2rem 0 0 16rem;
+}
+
+/*Active links menu*/
+.active {
+  background-color: var(--first-color);
+}
+
+/*===== COLLAPSE =====*/
+.collapse {
+  grid-template-columns: 20px max-content 1fr;
+}
+.collapse__link {
+  justify-self: flex-end;
+  transition: 0.5s;
+}
+.collapse__menu {
+  display: none;
+  padding: 0.75rem 2.25rem;
+}
+.collapse__sublink {
+  color: var(--sub-color);
+  font-size: var(--small-font-size);
+}
+.collapse__sublink:hover {
+  color: var(--yellow-color);
+  text-decoration: underline;
+}
+
+/*Show collapse*/
+.showCollapse {
+  display: inline;
+}
+
+/*Rotate icon*/
+.rotate {
+  transform: rotate(180deg);
+}
+/* For screens with a minimum width of 768px and larger */
+@media only screen
+        and (min-device-width: 375px)
+        and (max-width: 1000px) {
+  /* Your existing styles for larger screens go here */
+  .btn {
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    background-color: white;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background-color: #ddd;
+  }
+
+  .btn.active {
+    background-color: #666;
+    color: white;
+  }
+
+  .btn {
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-size: 15px;
+  }
+
+  /* Darker background on mouse-over */
+  .btn:hover {
+    background-color: RoyalBlue;
+  }
+}
+
+/* For screens with a maximum width of 767px (mobile screens) */
+@media screen and (max-width: 1024px) {
+
+
+    .btn {
+    background-color: white;
+    border: none;
+    color: black;
+    padding: 9px 10px;
+    cursor: pointer;
+    font-size: 10px;
+  }
+  /* Your mobile-specific styles go here */
+  .btn {
+    /* Adjust the styles for mobile screens */
+/*    background-color: DodgerBlue;*/
+    padding: 9px 10px;
+    font-size: 10px;
+  }
+
+  /* Darker background on mobile button hover */
+  .btn:hover {
+    background-color: SkyBlue;
+  }
+
+
+    body {
+    margin: auto;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: auto;
+<!--    background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(255,25,25,1) 98%);-->
+<!--    animation: gradient 15s ease infinite;-->
+    background-size: 400% 400%;
+    background-attachment: fixed;
+}
+}
+
+
+        }
+
+    .logo {
+  text-align: right;
+
+  }
+body {
+    margin: auto;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: auto;
+<!--    background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(255,25,25,1) 98%);-->
+<!--    animation: gradient 15s ease infinite;-->
+    background-size: 400% 400%;
+    background-attachment: fixed;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+.wave {
+    background: rgb(255 255 255 / 25%);
+    border-radius: 1000% 1000% 0 0;
+    position: fixed;
+    width: 200%;
+    height: 12em;
+    animation: wave 10s -3s linear infinite;
+    transform: translate3d(0, 0, 0);
+    opacity: 0.8;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.wave:nth-of-type(2) {
+    bottom: -1.25em;
+    animation: wave 18s linear reverse infinite;
+    opacity: 0.8;
+}
+
+.wave:nth-of-type(3) {
+    bottom: -2.5em;
+    animation: wave 20s -1s reverse infinite;
+    opacity: 0.9;
+}
+
+@keyframes wave {
+    2% {
+        transform: translateX(1);
+    }
+
+    25% {
+        transform: translateX(-25%);
+    }
+
+    50% {
+        transform: translateX(-50%);
+    }
+
+    75% {
+        transform: translateX(-25%);
+    }
+
+    100% {
+        transform: translateX(1);
+    }
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #d9e7fc;
+  padding: 20px;
+  font-family: Arial;
+}
+
+/* Center website */
+.main {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  font-size: 50px;
+  word-break: break-all;
+}
+
+.row {
+  margin: 10px -16px;
+}
+
+/* Add padding BETWEEN each column */
+.row,
+.row > .column {
+  padding: 8px;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  display: none; /* Hide all elements by default */
+}
+
+/* Clear floats after rows */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Content */
+.content {
+  background-color: white;
+  padding: 10px;
+}
+
+/* The "show" class is added to the filtered elements */
+.show {
+  display: block;
+}
+
+h1::before {
+  transform: scaleX(0);
+  transform-origin: bottom right;
+}
+
+h1:hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+h1::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  inset: 0 0 0 0;
+  background: hsl(200 100% 80%);
+  z-index: -1;
+  transition: transform .5s ease;
+}
+
+h1 {
+  position: relative;
+  font-size: 5rem;
+}
+
+html {
+  block-size: 100%;
+  inline-size: 100%;
+}
+
+body {
+  min-block-size: 100%;
+  min-inline-size: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  display: grid;
+  place-content: center;
+  font-family: system-ui, sans-serif;
+}
+
+@media (orientation: landscape) {
+  body {
+    grid-auto-flow: column;
+  }
+}
+*
+/******** Styling Header *******/
+header{
+  background:#;
+  height:50px;
+  width:100%;
+  padding:10px;
+  border-bottom:1px solid black;
+  position:fixed; /** fixed menu */
+  top:0;
+}
+.main-content, .about-content{
+  background:;
+  width:100%;
+  padding:20px;
+  border:1px solid black;
+  text-align:center;
+}
+.main-content{
+  margin-top:100px;
+}
+
+
+
+
+
+	/*===== GOOGLE FONTS =====*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+/*===== VARIABLES CSS =====*/
+:root {
+  --nav-width: 92px;
+  --yellow-color: yellow;
+
+  /*===== Colores =====*/
+  --first-color: #0c5df4;
+  --bg-color: #12192c;
+  --sub-color: #b6cefc;
+  --white-color: #fff;
+
+  /*===== Fuente y tipografia =====*/
+  --body-font: "Poppins", sans-serif;
+  --normal-font-size: 1rem;
+  --small-font-size: 0.875rem;
+
+  /*===== z index =====*/
+  --z-fixed: 100;
+}
+
+/*===== BASE =====*/
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+
+h1 {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+/*===== l NAV =====*/
+.l-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--nav-width);
+  height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--white-color);
+  padding: 1.5rem 1.5rem 2rem;
+  transition: 0.5s;
+  z-index: var(--z-fixed);
+}
+
+/*===== NAV =====*/
+.nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.nav__brand {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.nav__toggle {
+  font-size: 1.25rem;
+  padding: 0.75rem;
+  cursor: pointer;
+}
+.nav__logo {
+  color: var(--white-color);
+  font-weight: 600;
+}
+
+.nav__link {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  column-gap: 0.75rem;
+  padding: 0.75rem;
+  color: var(--white-color);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.nav__link:hover {
+  background-color: var(--first-color);
+}
+.nav__icon {
+  font-size: 1.25rem;
+}
+.nav__name {
+  font-size: var(--small-font-size);
+}
+
+/*Expander menu*/
+.expander {
+  width: calc(var(--nav-width) + 9.25rem);
+}
+
+/*Add padding body*/
+
+.body-pd {
+  padding: 2rem 0 0 16rem;
+}
+
+/*Active links menu*/
+.active {
+  background-color: var(--first-color);
+}
+
+/*===== COLLAPSE =====*/
+.collapse {
+  grid-template-columns: 20px max-content 1fr;
+}
+.collapse__link {
+  justify-self: flex-end;
+  transition: 0.5s;
+}
+.collapse__menu {
+  display: none;
+  padding: 0.75rem 2.25rem;
+}
+.collapse__sublink {
+  color: var(--sub-color);
+  font-size: var(--small-font-size);
+}
+.collapse__sublink:hover {
+  color: var(--yellow-color);
+  text-decoration: underline;
+}
+
+/*Show collapse*/
+.showCollapse {
+  display: inline;
+}
+
+/*Rotate icon*/
+.rotate {
+  transform: rotate(180deg);
+}
+
+</style>
+</head>
+
+<body id="body-pd">
+        <div class="l-navbar" id="navbar">
+            <nav class="nav">
+                <div>
+                    <div class="nav__brand">
+                        <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
+                        <a href="#" class="nav__logo">Aludecor</a>
+                    </div>
+                    <div class="nav__list">
+                        <a href="{{ url_for('home') }}" class="nav__link active">
+                            <ion-icon name="home-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Home</span>
+                        </a>
+                        <a href="{{ url_for('flip') }}" class="nav__link">
+                            <ion-icon name="reader-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Catalogue</span>
+                        </a>
+
+						<a href="{{ url_for('form') }}" class="nav__link">
+                            <ion-icon name="desktop-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Order Booking</span>
+                        </a>
+
+                        <a href="{{ url_for('requisition') }}" class="nav__link">
+                          <ion-icon name="desktop-outline" class="nav__icon"></ion-icon>
+                          <span class="nav__name">Requisition Form</span>
+                      </a>
+
+						<a href="{{ url_for('profile') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Purchase Overview</span>
+                        </a>
+<a href="{{ url_for('booked_order') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Confirmation Pending</span>
+                        </a>
+
+                        <a href="{{ url_for('order_status') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Conf. Pending Orders</span>
+                        </a>
+
+                        <a href="{{ url_for('order_transuction') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Completed Transaction History</span>
+                        </a>
+<!--                        <div  class="nav__link collapse">-->
+<!--                            <ion-icon name="shapes-outline" class="nav__icon"></ion-icon>-->
+<!--                            <span class="nav__name">Purchase Tracker</span>-->
+
+<!--                            <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>-->
+
+<!--                            <ul class="collapse__menu">-->
+<!--                                <a href="{{ url_for('booked_order') }}" class="collapse__sublink">Pending for Confirmation</a>-->
+<!--                                <a href="{{ url_for('order_status') }}" class="collapse__sublink">Confirmed Pending Orders</a>-->
+<!--                                <a href="{{ url_for('order_transuction') }}" class="collapse__sublink">Completed Transaction History</a>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+
+                        <a href="{{url_for('balance_overview')}}" class="nav__link">
+                            <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Balance Overview</span>
+                        </a>
+                        <a href="{{url_for('care_support')}}" class="nav__link">
+                            <ion-icon name="umbrella-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Care Support</span>
+                        </a>
+
+                        <a href="{{ url_for('account_details') }}" class="nav__link">
+                            <ion-icon name="person-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">ProfileHub</span>
+                        </a>
+
+
+                <a href="{{ url_for('logout') }}" class="nav__link">
+                    <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+                    <span class="nav__name">Log Out</span>
+                </a>
+            </nav>
+        </div>
+<body>
+ <div>
+     <div class="wave"></div>
+     <div class="wave"></div>
+     <div class="wave"></div>
+  </div>
+<!-- MAIN (Center website) -->
+<div class="main">
+
+<center><h2>Aludecor E-Catalogue</h2></center>
+<hr>
+<!--<center>-->
+<!--  <h4>-->
+<!--    <span style="color: green;">-->
+<!--      <marquee behavior="scroll" direction="left">Please Note</marquee>-->
+<!--    </span>: The display image may differ from the Original.-->
+<!--  </h4>-->
+<!--</center>-->
+<center><h4>***Please Note: The colour displayed in the Catalogue are indicative and for your reference only.***</h4></center>
+<div id="myBtnContainer">
+  <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+  <button class="btn" onclick="filterSelection('E-Catalogues')">Catalogues</button>
+  <button class="btn" onclick="filterSelection('OtherResource')"> Other Resource</button>
+
+</div>
+<hr>
+<!--  <section class="main-content clearfix">-->
+<!-- Portfolio Gallery Grid -->
+<div class="row">
+  <div class="column E-Catalogues">
+    <div class="content">
+      <img src="{{ url_for('static', filename='MSC Regular_page-0001.jpg') }}" alt="E-Catalogues" style="width:100%" height="142">
+      <p>MSC Regular</p>
+      <a href="https://drive.google.com/uc?export=download&id=1c5KlGZHev55cTG7CJwprOgWymDGqGbE9" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+        <right><a href="{{ url_for('regular')}}" width="104" height="142">
+        <button class="btn"><i class="fa fa-eye"></i> View</button></a>
+    </div>
+  </div>
+  <div class="column E-Catalogues">
+    <div class="content">
+      <img src="{{ url_for('static', filename='allu0001img.jpg') }}" alt="E-Catalogues" style="width:100%" height="142">
+      <p>Aluwall</p>
+      <a href="https://drive.google.com/uc?export=download&id=1VcDm-ZwS8gsp9UkrHTYqM5ueFaPv42g4" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+        <right><a href="{{ url_for('Aluwall')}}" width="104" height="142">
+        <button class="btn"><i class="fa fa-eye"></i> View</button></a>
+    </div>
+  </div>
+  <div class="column E-Catalogues">
+    <div class="content">
+    <img src="{{ url_for('static', filename='MSC Special1024_1.jpg') }}" alt="E-Catalogues" style="width:100%" height="142">
+<!--      <h4>E-Catalogues</h4>-->
+      <p>MSC Special</p>
+      <a href="https://drive.google.com/uc?export=download&id=1OIhpKv6LKqbnZtOHXnJp87ZZe5mutgrK" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+        <right><a href="{{ url_for('special')}}" width="104" height="142">
+        <button class="btn"><i class="fa fa-eye"></i> View</button></a>
+    </div>
+  </div>
+
+<!--  <div class="column cars">-->
+<div class="column E-Catalogues">
+    <div class="content">
+    <img src="{{ url_for('static', filename='ACE-Timber-Pedra0001.jpg') }}" alt="E-Catalogues" style="width:100%" height="142">
+<!--      <h4>E-Catalogues</h4>-->
+      <p>ACE-Timber-Pedra</p>
+      <a href="https://drive.google.com/uc?export=download&id=1VN5C1_0fGF3mogegnBGjuxkktzPOyApz" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+        <right><a href="{{ url_for('ACE')}}" width="104" height="142">
+        <button class="btn"><i class="fa fa-eye"></i> View</button></a>
+    </div>
+  </div>
+<!--  <div class="column cars">-->
+  <div class="column E-Catalogues">
+    <div class="content">
+    <img src="{{ url_for('static', filename='sandrastic0001.jpg') }}" alt="E-Catalogues" style="width:100%" height="142">
+<!--      <h4>E-Catalogues</h4>-->
+      <p>Sand and Rustic</p>
+      <a href="https://drive.google.com/uc?export=download&id=1jrQc3kEJckFHu1qWg7-ZLdGZR5Cr2xKe" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+        <right><a href="{{ url_for('sand_and_rustic')}}" width="104" height="142">
+        <button class="btn"><i class="fa fa-eye"></i> View</button></a>
+    </div>
+  </div>
+<!--  <div class="column cars">-->
+<div class="column E-Catalogues">
+    <div class="content">
+    <img src="{{ url_for('static', filename='Aludecor AL 3C_page-0001.jpg') }}" alt="E-Catalogues" style="width:100%" height="142">
+<!--      <h4>E-Catalogues</h4>-->
+      <p>Aludecor AL 3C</p>
+      <a href="https://drive.google.com/uc?export=download&id=1bgRCHTYsw4dOp2vl9V4GgdbBLXPRbzsk" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+        <right><a href="{{ url_for('AL3C')}}" width="104" height="142">
+        <button class="btn"><i class="fa fa-eye"></i> View</button></a>
+    </div>
+  </div>
+
+  <div class="column E-Catalogues">
+    <div class="content">
+    <img src="{{ url_for('static', filename='Zincho_page-0001.jpg') }}" alt="E-Catalogues" style="width:100%" height="142">
+<!--      <h4>E-Catalogues</h4>-->
+
+      <p>Zinco</p>
+      <a href="https://drive.google.com/uc?export=download&id=1I_H5R7-V1Widuc6X2F7eo1BaN07EUVfm" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+        <right><a href="{{ url_for('zinco')}}" width="104" height="142">
+        <button class="btn"><i class="fa fa-eye"></i> View</button></a>
+    </div>
+  </div>
+
+  <div class="column E-Catalogues">
+    <div class="content">
+    <img src="{{ url_for('static', filename='Rugged Metal_page-0001.jpg') }}" alt="E-Catalogues" style="width:100%" height="142">
+      <p>Rugged Metal</p>
+      <a href="https://drive.google.com/uc?export=download&id=17HJUmkG48D5vfztmFsSik76nLR4B2aeB" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+        <right><a href="{{ url_for('rugged')}}" width="104" height="142">
+        <button class="btn"><i class="fa fa-eye"></i> View</button></a>
+    </div>
+  </div>
+
+
+  <div class="column E-Catalogues">
+    <div class="content">
+    <img src="{{ url_for('static', filename='Earthcoat-Ecatalogue_page-0001.jpg') }}" alt="E-Catalogues" style="width:100%" height="142">
+      <p>Earthcoat</p>
+      <a href="https://drive.google.com/uc?export=download&id=1gBPUk47mRSsXKirdTh6VCRv4-_lTN6Cw" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+        <right><a href="{{ url_for('earthcoat')}}" width="104" height="142">
+        <button class="btn"><i class="fa fa-eye"></i> View</button></a>
+    </div>
+  </div>
+
+  <div class="column E-Catalogues">
+    <div class="content">
+    <img src="{{ url_for('static', filename='Aluwall - Titanium Version 22_page-0001.jpg') }}" alt="E-Catalogues" style="width:100%" height="142">
+      <p>Aluwall - Titanium</p>
+    
+      <a href="https://drive.google.com/uc?export=download&id=15SL0WgBpCuVuJXnNqlZsGjsB1kDtcn47" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+        <right><a href="{{ url_for('titanium')}}" width="104" height="142">
+        <button class="btn"><i class="fa fa-eye"></i> View</button></a>
+    </div>
+  </div>
+
+  <div class="column E-Catalogues">
+    <div class="content">
+    <img src="{{ url_for('static', filename='SignEx catalouge with shades_page-0001.jpg') }}" alt="E-Catalogues" style="width:100%" height="142">
+      <p>SinEX</p>
+      <a href="https://drive.google.com/uc?export=download&id=1HWTXJ0RTWeR0GV1246U66rUKWDEUosUT" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+        <right><a href="{{ url_for('sinex')}}" width="104" height="142">
+        <button class="btn"><i class="fa fa-eye"></i> View</button></a>
+    </div>
+  </div>
+ 
+  <div class="column E-Catalogues">
+    <div class="content">
+    <img src="{{ url_for('static', filename='Louver - Metaldhara_page-0001.jpg') }}" alt="E-Catalogues" style="width:100%" height="142">
+      <p>Louver - Metaldhara</p>
+    
+      <a href="https://drive.google.com/uc?export=download&id=1Eix8Hb4c1wsWBUrpCWIrycj_9gdECmnA" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+        <right><a href="{{ url_for('louver')}}" width="104" height="142">
+        <button class="btn"><i class="fa fa-eye"></i> View</button></a>
+    </div>
+  </div>
+
+
+<div class="column E-Catalogues">
+    <div class="content">
+    <img src="{{ url_for('static', filename='Wabi Sabi-1.jpg') }}" alt="E-Catalogues" style="width:100%" height="142">
+<!--      <h4>E-Catalogues</h4>-->
+      <p>Wabi Sabi</p>
+      <a href="https://drive.google.com/uc?export=download&id=1cuRUVZ9lDgmyZKkW4aktJthJ03JcUyFP" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+        <right><a href="{{ url_for('wabisabi')}}" width="104" height="142">
+        <button class="btn"><i class="fa fa-eye"></i> View</button></a>
+    </div>
+  </div>
+
+
+
+    <div class="column OtherResource">
+    <div class="content">
+    <img src="{{ url_for('static', filename='Elevate-1.jpg') }}" alt="E-Catalogues" style="width:100%" height="142">
+<!--      <h4>E-Catalogues</h4>-->
+      <p>Elevate</p>
+      <a href="https://drive.google.com/uc?export=download&id=1jXutbx2Rn4Mubii8aOpVxSczyzRYOhEt" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+        <right><a href="{{ url_for('elevate')}}" width="104" height="142">
+        <button class="btn"><i class="fa fa-eye"></i> View</button></a>
+    </div>
+  </div>
+
+    <div class="column OtherResource">
+    <div class="content">
+    <img src="{{ url_for('static', filename='3D Booklet-1.jpg') }}" alt="OtherResource" style="width:100%" height="142">
+<!--      <h4>E-Catalogues</h4>-->
+      <p>3D Booklet</p>
+      <a href="https://drive.google.com/uc?export=download&id=1ob92nZfFoA3cjWSwBUVV_ytrXA4n2buL" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+        <right><a href="{{ url_for('booklet')}}" width="104" height="142">
+        <button class="btn"><i class="fa fa-eye"></i> View</button></a>
+    </div>
+  </div>
+
+      <div class="column OtherResource">
+    <div class="content">
+    <img src="{{ url_for('static', filename='AGArmor-1.jpg') }}" alt="OtherResource" style="width:100%" height="142">
+<!--      <h4>E-Catalogues</h4>-->
+      <p>AG+&Armor</p>
+      <a href="https://drive.google.com/uc?export=download&id=12eZ9dYKVx1M9zsT26YMK6UVT9-4Qy26i" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+        <right><a href="{{ url_for('AGArmor')}}" width="104" height="142">
+        <button class="btn"><i class="fa fa-eye"></i> View</button></a>
+    </div>
+  </div>
+
+     <div class="column OtherResource">
+    <div class="content">
+    <img src="{{ url_for('static', filename='Vi-Secure-1.jpg') }}" alt="OtherResource" style="width:100%" height="142">
+<!--      <h4>E-Catalogues</h4>-->
+      <p>Vi-Secure</p>
+      <a href="https://drive.google.com/uc?export=download&id=1fO8fYom7vs5yP0GVFdlUuu72b0m_t5G6" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+        <right><a href="{{ url_for('viSecure')}}" width="104" height="142">
+        <button class="btn"><i class="fa fa-eye"></i> View</button></a>
+    </div>
+  </div>
+
+
+  <div class="column OtherResource">
+    <div class="content">
+    <img src="{{ url_for('static', filename='Aludecor System-1.jpg') }}" alt="OtherResource" style="width:100%" height="142">
+<!--      <h4>E-Catalogues</h4>-->
+      <p>Aludecor System</p>
+      <a href="https://drive.google.com/uc?export=download&id=1T3eQh9osQ6Xxs9ewW5CnEeDRYSfK3x_x" width="104" height="142">
+        <button class="btn"><i class="fa fa-download"></i> Download</button></a>
+        <right><a href="{{ url_for('aludecorsystem')}}" width="104" height="142">
+        <button class="btn"><i class="fa fa-eye"></i> View</button></a>
+    </div>
+  </div>
+  </div>
+
+<!-- END GRID -->
+</div>
+
+<!-- END MAIN -->
+</div>
+
+
+
+
+<script>
+filterSelection("all")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("column");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
+
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+
+// Add active class to the current button (highlight it)
+var btnContainer = document.getElementById("myBtnContainer");
+var btns = btnContainer.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+</script>
+
+<script>
+	/*===== EXPANDER MENU  =====*/
+const showMenu = (toggleId, navbarId, bodyId)=>{
+  const toggle = document.getElementById(toggleId),
+  navbar = document.getElementById(navbarId),
+  bodypadding = document.getElementById(bodyId)
+
+  if(toggle && navbar){
+    toggle.addEventListener('click', ()=>{
+      navbar.classList.toggle('expander')
+
+      bodypadding.classList.toggle('body-pd')
+    })
+  }
+}
+showMenu('nav-toggle','navbar','body-pd')
+
+/*===== LINK ACTIVE  =====*/
+const linkColor = document.querySelectorAll('.nav__link')
+function colorLink(){
+  linkColor.forEach(l=> l.classList.remove('active'))
+  this.classList.add('active')
+}
+linkColor.forEach(l=> l.addEventListener('click', colorLink))
+
+
+/*===== COLLAPSE MENU  =====*/
+const linkCollapse = document.getElementsByClassName('collapse__link')
+var i
+
+for(i=0;i<linkCollapse.length;i++){
+  linkCollapse[i].addEventListener('click', function(){
+    const collapseMenu = this.nextElementSibling
+    collapseMenu.classList.toggle('showCollapse')
+
+    const rotate = collapseMenu.previousElementSibling
+    rotate.classList.toggle('rotate')
+  })
+}
+
+</script>
+<script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+
+</body>
+</html>

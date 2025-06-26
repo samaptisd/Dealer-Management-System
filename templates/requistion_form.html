@@ -1,0 +1,631 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requisition Form with Collapsible Sidebar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        /* Media query to hide the sidebar on screens smaller than 768px (tablets and below) */
+    @media (max-width: 767px) {
+      #navbar {
+        display: none; /* Hide the sidebar for small screens (phones) */
+      }
+      body {
+        margin: 5px !important;
+        padding: 5px !important;
+      }
+    }
+
+        /* Media query to hide the sidebar on screens smaller than 1024px (tablets and below) */
+        @media (max-width: 1024px) {
+          #navbar {
+            display: none; /* Hide the sidebar for small screens (phones) */
+          }
+            body {
+                margin: 5px !important;
+                padding: 5px !important;
+              }
+        }
+
+    /* Media query to hide the sidebar on iPad devices */
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1.5) {
+      #navbar {
+        display: none; /* Hide the sidebar on iPads */
+      }
+      body {
+        margin: 5px !important;
+        padding: 5px !important;
+      }
+    }
+
+
+    @media only screen and (max-width: 767px) and (orientation: portrait) {
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.8);
+        filter: blur(5px);
+        z-index: 9999;
+      }
+
+      #orientation-message {
+        display: block;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        font-size: 18px;
+        text-align: center;
+        z-index: 10000;
+      }
+    }
+
+    @media only screen and (orientation: landscape), (min-width: 768px) and (max-width: 1024px) {
+      body::before,
+      #orientation-message {
+        display: none;
+      }
+    }
+
+
+    </style>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+            font-size: 14px;
+        }
+        .container {
+            max-width: 800px ;
+            margin: auto;
+            background-color: #fff;
+            padding: 80px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #131212;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+        select, input[type="text"], input[type="number"] {
+            width: 80%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+            font-size: 13px;
+            padding: 10px;
+        }
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn-add {
+            background-color: #3498db;
+            color: white;
+        }
+        .btn-remove {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .btn-submit {
+    background-color: #2ecc71;
+    color: white;
+    width: 50%;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;      
+    margin-left: auto;    
+    margin-right: auto;   
+    text-align: center;   
+            
+        }      
+        .btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+
+    <style>
+
+h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;                 
+    font-weight: 600;                  
+    color: #0c5df4;                   
+    text-transform: uppercase;        
+    letter-spacing: 1px;               
+    margin-bottom: 15px;               
+    border-bottom: 2px solid #0c5df4; 
+    padding-bottom: 5px;   
+    text-align: center;    
+    margin-top: 15px;       
+}
+        /* Sidebar Styles */
+        :root {
+            --nav-width: 80px;
+            --expanded-nav-width: 250px;
+            --bg-color: #12192c;
+            --hover-color: #0c5df4;
+            --text-color: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            transition: margin-left 0.3s;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--nav-width);
+            height: 100%;
+            background-color: var(--bg-color);
+            transition: width 0.3s ease;
+            overflow: hidden;
+            z-index: 100;
+        }
+
+        .sidebar.expanded {
+            width: var(--expanded-nav-width);
+        }
+
+        .sidebar .toggle-btn {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 60px;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        .sidebar .logo {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            display: none;
+        }
+
+        .sidebar.expanded .logo {
+            display: block;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li a {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: var(--hover-color);
+        }
+
+        .sidebar ul li a i {
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        .sidebar ul li a span {
+            display: none;
+        }
+
+        .sidebar.expanded ul li a span {
+            display: inline;
+        }
+
+        .main-content {
+            margin-left: var(--nav-width);
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+        }
+
+        .sidebar.expanded~.main-content {
+            margin-left: var(--expanded-nav-width);
+        }
+    </style>
+    <style>
+
+        /* Media query to hide the sidebar on screens smaller than 768px (tablets and below) */
+       @media (max-width: 1024px) {
+         #sidebar {
+           display: none; /* Hide the sidebar for small screens (phones) */
+         }
+       }
+       
+       /* Media query to hide the sidebar on iPad devices */
+       @media only screen
+         and (min-device-width: 768px)
+         and (max-device-width: 1180px)
+         and (-webkit-min-device-pixel-ratio: 1.5) {
+         #sidebar {
+           display: none; /* Hide the sidebar on iPads */
+         }
+
+         .body-pd {
+  padding: 5rem 0 0 16rem;
+
+}
+       
+       }
+        </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <body id="body-pd">
+        <div id="orientation-message">
+            <p>Please rotate your device to landscape mode.</p>
+        </div>
+    <div class="sidebar" id="sidebar">
+        <div class="toggle-btn" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="logo">Aludecor</div>
+        <ul>
+            <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i><span>Home</span></a></li>
+            <li><a href="{{ url_for('flip') }}"><i class="fas fa-book"></i><span>Catalogue</span></a></li>
+            <li><a href="{{ url_for('form') }}"><i class="fas fa-desktop"></i><span>Order Booking</span></a></li>
+            <li><a href="{{ url_for('profile') }}"><i class="fas fa-newspaper"></i><span>Purchase Overview</span></a></li>
+
+            <li><a href="{{ url_for('booked_order') }}"><i class="fas fa-hourglass-half"></i><span>Confirmation Pending</span></a></li>
+            <li><a href="{{ url_for('order_status') }}"><i class="fas fa-tasks"></i><span>Conf. Pending Orders</span></a></li>
+            <li><a href="{{ url_for('order_transuction') }}"><i class="fas fa-check-circle"></i><span>Completed Transaction History</span></a></li>
+            <li><a href="{{url_for('balance_overview')}}"><i class="fas fa-balance-scale"></i><span>Balance Overview</span></a></li>
+            <li><a href="{{url_for('care_support')}}"><i class="fas fa-headset"></i><span>Care Support</span></a></li>
+            <li><a href="{{ url_for('account_details') }}"><i class="fas fa-user-circle"></i><span>ProfileHub</span></a></li>
+            <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i><span>Log Out</span></a></li>
+        </ul>
+    </div>
+
+
+
+
+
+<center><div class="logo"><i class="material-icons">
+<img src="{{ url_for('static', filename='logo.png') }}" style="width:150px;height: 50px; alt=""/></i>
+</div></center>
+
+{% block content %}
+<body>
+
+<div class="container">
+    <h1>Requisition Form</h1>
+    <form id="requisitionForm" method="POST" enctype="multipart/form-data">
+        <label for="item">Select Item Type:</label>
+        <select id="item" name="item" onchange="toggleSections()">
+            <option value="">-- Select --</option>
+            <option value="Shade Card">Shade Card</option>
+            <option value="Visiting Card">Visiting Card</option>
+            <!-- <option value="Customer Complaint">Customer Complaint</option> -->
+        </select>
+<div>
+     
+        <div id="shadeCardSection" class="section" style="display: none;">
+            
+            <h3>Shade Card</h3>
+            <table id="shadeCardTable">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <select name="shade_item[]" required>
+                                <option value="">-- Select Item --</option>
+                                <option value="Aluwall">Aluwall</option>
+                                <option value="MSC_Regular">MSC_Regular</option>
+                                <option value="MSC_Special">MSC_Special</option>
+                                <option value="AL45">AL45</option>
+                                <option value="Wabi_Sabi_Swatch">Wabi Sabi Swatch</option>
+                                <option value="CCP_ZCP">CCP & ZCP</option>
+                                <option value="Aludecor_Systems">Aludecor Systems</option>
+                                <option value="Elevate">Elevate</option>
+                                <option value="Signex">Signex</option>
+                                <option value="Final_Aluminum_Titanium_Catalogue">Final_Aluminum_Titanium_Catalogue</option>
+                                <option value="Final_Metal_Dhara_Lovers_Catalogue">Final_Metal_Dhara_Lovers_Catalogue</option>
+                                <option value="Wabi_Sabi_premium">Wabi_Sabi_premium</option>
+                                <option value="Sand_Rustic">SAND_RUSTIC</option>
+                                <option value="Corporate_Profile">Corporate_Profile</option>
+                                <option value="Why_Aludecor_(English)">Why_Aludecor_(English)</option>
+                                <option value="Why_Aludecor_(Hindi)">Why_Aludecor_(Hindi)</option>
+                                <option value="Why_Aludecor_(Tamil)">Why_Aludecor_(Tamil)</option>
+                                <!-- <option value="Final/Ace/Timber_Combined_Catalogue">Final/Ace/Timber_Combined_Catalogue</option> -->
+                                <option value="Final/3_MM_CLASSIQUE_Catalogue">Final/3_MM_CLASSIQUE_Catalogue</option>
+                                <option value="Final/4_MM_ENDURA_Catalogue">Final/4_MM_ENDURA_Catalogue</option>
+                                <option value="Aludecor_Hanging">Aludecor_Hanging</option>
+                                <option value="Aluwall_Hanging">Aluwall_Hanging</option>
+                                <option value="AG+Armor">AG+Armor</option>
+                                <option value="Nepal_Regular">Nepal_Regular</option>
+                                <option value="Nedzink_solid_panel_Brochure">Nedzink_solid_panel_Brochure</option>
+                                <option value="Nedzink_Catalogue_Nuance">Nedzink_Catalogue_Nuance</option>
+                                <option value="NedZink_Catalogue_NATUREL_NEO_NOIR">NedZink_Catalogue_NATUREL_NEO_NOIR</option>
+                                <option value="Vi-Secure">Vi-Secure</option>
+                                <option value="ZINCHO_Catalogue">ZINCHO_Catalogue</option>
+                                <option value="Final_Rugged_Metal_Catalogue">Final_Rugged_Metal_Catalogue</option>
+                                <option value="Nexcomb_Brochure">Nexcomb_Brochure</option>
+                                <option value="Aluwall_Relic">Aluwall_Relic</option>
+                                <option value="Shades_of_the_Year">Shades_of_the_Year</option>
+                                <option value="earth_coat">earth_coat</option>
+
+                            </select>
+                        </td>
+                        <td><input type="number" name="shade_qty[]" placeholder="Quantity"></td>
+                        <td><button type="button" class="btn btn-add" onclick="addShadeRow()">Add More</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+    </div>
+       
+        <div id="visitingCardSection" class="section" style="display: none;">
+            <h3>Visiting Card</h3>
+            <input type="number" name="visiting_qty" placeholder="Enter Quantity">
+        </div>
+
+        
+        <div id="customerComplaintSection" class="section" style="display: none;">
+            <h3>Customer Complaint</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Invoice No.</th>
+                        <th>Invoice Date</th>
+                        <th>Item Code</th>
+                        <th>Product Grade</th>
+                        <th>Colour Code</th>
+                        <th>Length x Width (in mm)</th>
+                        <th>Batch No.</th>
+                        <th>Qty of Problematic Sheets</th>
+                        <th>Complaint Details</th>
+                        <th>Complaint Images</th>
+                        <th>Compensation Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="customerComplaintItems">
+                    <tr>
+                        <td><input type="text" name="complaint[invoice_no][]" placeholder="Invoice No." required></td>
+                        <td><input type="date" name="complaint[invoice_date][]" required></td>
+                        <td><input type="text" name="complaint[item_code][]" placeholder="Item Code" required></td>
+                        <td>
+                            <select name="complaint[product_grade][]" required>
+                                <option value="">Select</option>
+                                <option value="Grade A">Grade A</option>
+                                <option value="Grade B">Grade B</option>
+                            </select>
+                        </td>
+                        <td><input type="text" name="complaint[colour_code][]" placeholder="Colour Code" required></td>
+                        <td><input type="text" name="complaint[length_width][]" placeholder="Length x Width" required></td>
+                        <td><input type="text" name="complaint[batch_no][]" placeholder="Batch No." required></td>
+                        <td><input type="number" name="complaint[qty][]" placeholder="Quantity" required></td>
+                        <td><input type="text" name="complaint[details][]" placeholder="Complaint Details" required></td>
+                        <td><input type="file" name="complaint[images][]" accept="image/*"></td>
+                        <td><input type="number" name="complaint[compensation][]" placeholder="Amount" required></td>
+                        <!-- <td><button type="button" class="btn btn-remove" onclick="removeComplaintRow(this)">Remove</button></td> -->
+                        <td><button type="button" class="btn btn-add" onclick="addComplaintRow()">Add More</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- <button type="button" class="btn btn-add" onclick="addComplaintRow()">Add More</button> -->
+        </div>
+
+        <button type="submit" class="btn btn-submit" onclick="submitForm()">Submit</button>
+    </form>
+</div>
+
+<script>
+    function toggleSections() {
+
+            const selectedItem = document.getElementById("item").value;
+            document.getElementById("shadeCardSection").style.display = "none";
+            document.getElementById("visitingCardSection").style.display = "none";
+            document.getElementById("customerComplaintSection").style.display = "none";
+            let formAction = "";
+            if (selectedItem === "Shade Card") {
+                document.getElementById("shadeCardSection").style.display = "block";
+                formAction = "/add_shade_card";
+            } else if (selectedItem === "Visiting Card") {
+                document.getElementById("visitingCardSection").style.display = "block";
+                formAction = "/add_visiting_card";
+            } else if (selectedItem === "Customer Complaint") {
+                document.getElementById("customerComplaintSection").style.display = "block";
+                formAction = "/add_customer_complaint";
+            }
+            document.getElementById("requisitionForm").action = formAction;
+        }
+
+
+
+    
+        function addShadeRow() {
+    const table = document.getElementById("shadeCardTable").getElementsByTagName('tbody')[0];
+
+    const newRow = table.insertRow();
+
+    newRow.innerHTML = `
+        <td>
+            <select name="shade_item[]" required>
+                <<option value="">-- Select Item --</option>
+                                <option value="Aluwall">Aluwall</option>
+                                <option value="MSC_Regular">MSC_Regular</option>
+                                <option value="MSC_Special">MSC_Special</option>
+                                <option value="AL45">AL45</option>
+                                <option value="Wabi_Sabi_Swatch">Wabi Sabi Swatch</option>
+                                <option value="CCP_ZCP">CCP & ZCP</option>
+                                <option value="Aludecor_Systems">Aludecor Systems</option>
+                                <option value="Elevate">Elevate</option>
+                                <option value="Signex">Signex</option>
+                                <option value="Final_Aluminum_Titanium_Catalogue">Final_Aluminum_Titanium_Catalogue</option>
+                                <option value="Final_Metal_Dhara_Lovers_Catalogue">Final_Metal_Dhara_Lovers_Catalogue</option>
+                                <option value="Wabi_Sabi_premium">Wabi_Sabi_premium</option>
+                                <option value="Sand_Rustic">SAND_RUSTIC</option>
+                                <option value="Corporate_Profile">Corporate_Profile</option>
+                                <option value="Why_Aludecor_(English)">Why_Aludecor_(English)</option>
+                                <option value="Why_Aludecor_(Hindi)">Why_Aludecor_(Hindi)</option>
+                                <option value="Why_Aludecor_(Tamil)">Why_Aludecor_(Tamil)</option>
+                                <option value="Final/Ace/Timber_Combined_Catalogue">Final/Ace/Timber_Combined_Catalogue</option>
+                                <option value="Final/3_MM_CLASSIQUE_Catalogue">Final/3_MM_CLASSIQUE_Catalogue</option>
+                                <option value="Final/4_MM_ENDURA_Catalogue">Final/4_MM_ENDURA_Catalogue</option>
+                                <option value="Aludecor_Hanging">Aludecor_Hanging</option>
+                                <option value="Aluwall_Hanging">Aluwall_Hanging</option>
+                                <option value="AG+Armor">AG+Armor</option>
+                                <option value="Nepal_Regular">Nepal_Regular</option>
+                                <option value="Nedzink_solid_panel_Brochure">Nedzink_solid_panel_Brochure</option>
+                                <option value="Nedzink_Catalogue_Nuance">Nedzink_Catalogue_Nuance</option>
+                                <option value="NedZink_Catalogue_NATUREL_NEO_NOIR">NedZink_Catalogue_NATUREL_NEO_NOIR</option>
+                                <option value="Vi-Secure">Vi-Secure</option>
+                                <option value="ZINCHO_Catalogue">ZINCHO_Catalogue</option>
+                                <option value="Final_Rugged_Metal_Catalogue">Final_Rugged_Metal_Catalogue</option>
+                                <option value="Nexcomb_Brochure">Nexcomb_Brochure</option>
+                                <option value="Aluwall_Relic">Aluwall_Relic</option>
+                                <option value="Shades_of_the_Year">Shades_of_the_Year</option>
+            </select>
+        </td>
+        <td><input type="number" name="shade_qty[]" placeholder="Quantity" required></td>
+        <td><button type="button" class="btn btn-remove" onclick="removeRow(this)">Remove</button></td>
+    `;
+
+    updateDropdownOptions(); 
+}
+
+function updateDropdownOptions() {
+    const allDropdowns = document.querySelectorAll('select[name="shade_item[]"]');
+    const selectedValues = Array.from(allDropdowns).map(select => select.value);
+
+    allDropdowns.forEach(dropdown => {
+        const currentValue = dropdown.value;
+        dropdown.querySelectorAll('option').forEach(option => {
+            if (option.value !== "" && selectedValues.includes(option.value) && option.value !== currentValue) {
+                option.style.display = "none";
+            } else {
+                option.style.display = "block";
+            }
+        });
+    });
+}
+
+document.addEventListener('change', function (e) {
+    if (e.target && e.target.matches('select[name="shade_item[]"]')) {
+        updateDropdownOptions();
+    }
+});
+
+
+
+function removeRow(button) {
+    const row = button.closest("tr");
+    row.remove();
+}
+
+    function submitForm() {
+            document.getElementById("requisitionForm").submit();
+        }
+
+
+        function addComplaintRow() {
+    const table = document.getElementById("customerComplaintItems");
+    const newRow = document.createElement("tr");
+
+    newRow.innerHTML = `
+        <td><input type="text" name="complaint[invoice_no][]" placeholder="Invoice No." required></td>
+        <td><input type="date" name="complaint[invoice_date][]" required></td>
+        <td><input type="text" name="complaint[item_code][]" placeholder="Item Code" required></td>
+        <td>
+            <select name="complaint[product_grade][]" required>
+                <option value="">Select</option>
+                <option value="Grade A">Grade A</option>
+                <option value="Grade B">Grade B</option>
+            </select>
+        </td>
+        <td><input type="text" name="complaint[colour_code][]" placeholder="Colour Code" required></td>
+        <td><input type="text" name="complaint[length_width][]" placeholder="Length x Width" required></td>
+        <td><input type="text" name="complaint[batch_no][]" placeholder="Batch No." required></td>
+        <td><input type="number" name="complaint[qty][]" placeholder="Quantity" required></td>
+        <td><input type="text" name="complaint[details][]" placeholder="Complaint Details" required></td>
+        <td><input type="file" name="complaint[images][]" accept="image/*"></td>
+        <td><input type="number" name="complaint[compensation][]" placeholder="Amount" required></td>
+        <td><button type="button" class="btn btn-remove" onclick="removeComplaintRow(this)">Remove</button></td>
+    `;
+
+    table.appendChild(newRow);
+}
+
+
+function removeComplaintRow(button) {
+    const row = button.closest("tr");
+    row.remove();
+}
+
+function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("expanded");
+        }
+</script>
+
+</body>
+</html>
+{% endblock %}
+
+

@@ -1,0 +1,866 @@
+{% extends 'layout.html' %}
+
+{% block title %}booked_order{% endblock %}
+
+{% block content %}
+
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css"/>
+
+    <link rel="stylesheet" href="./css_final.css">
+
+    <script src="./filter.js"></script>
+
+    <!-- <link rel="stylesheet" href="./css-1.css"> -->
+    <title>Order table</title>
+
+</head>
+
+<body>
+
+ <title>Customer Orders Deatils </title>
+  
+  <!-- Font Awesome Cdn Link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+ <center><div>
+<a href="{{ url_for('home') }}" class="btn btn-success">Home</a>
+                          <a href="{{ url_for('logout') }}" class="btn btn-success">Exit</a>
+     </div></center>
+</head>
+<body>
+<center><h1>Orders Dashboard</h1></center>
+  <div class="container">
+
+
+
+
+
+
+    <div class="main">
+      <div class="main-top">
+
+<!--        <i class="fas fa-user-cog"></i>-->
+      </div>
+      <div class="users">
+        <div class="card">
+
+<!--          <img src="./pic/img1.jpg">-->
+          <b><h4>Total Booked Order</h4></b>
+<!--          <p>Ui designer</p>-->
+          <div class="per">
+            <table>
+              <tr>
+<!--                  <center><td>Current Month Order</td></center>-->
+<!--                <td>Order Till Date</td>-->
+<!--                 <td>Percentage (%)</td>-->
+
+
+              </tr>
+              <tr>
+                  <center><td>Current Month Order(SQM)</td></center>
+{% for row in curmonthtotal %}
+
+               <center><td><span>{{row.sqm_qty_cur_month}}</span></td></center>
+ {% endfor %}
+   </tr>
+    <tr>
+        <b><td>Order Till Date(SQM)</td></b>
+                {% for row in totalsummary %}
+
+                 <td><span>{{row.sqm_qty_total}}</span></td>
+</tr>
+                 {% endfor %}
+ <tr>
+     <td>Percentage (%)</td>
+<!--     {% for row in percenttotal %}-->
+
+<td><span>100</span></td>
+
+
+</tr>
+<!--                {% endfor %}-->
+              </tr>
+
+            </table>
+          </div>
+
+        </div>
+
+        <div class="card1">
+
+<!--          <img src="./pic/img2.jpg">-->
+          <h4>Product Grade</h4>
+<!--          <p>Progammer</p>-->
+          <div class="per">
+            <table>
+              <tr>
+<td>Item</td>
+  {% for row in tilldate %}
+
+
+                  <td><span>{{row.item_code}}</span></td>
+{% endfor %}
+ </tr>
+ <tr>
+         <td>Current Month Order</td>
+
+                    {% for row in curmonth %}
+
+<td><span>{{row.sqm_qty_cur_month}}</span></td>
+                     {% endfor %}
+                    </tr>
+
+                 <tr>
+<td>Order Till Date(SQM)</td>
+                {% for row in tilldate %}
+<td><span>{{row.sqm_qty}}</span></td>
+
+                  {% endfor %}
+          </tr>
+
+                <tr>
+                    <td>Percentage (%)</td>
+                {% for row in percent %}
+
+                    <td><span>{{row.percentage}}</span></td>
+                    {% endfor %}
+                    </tr>
+
+
+
+
+<!--{% for row in curmonthtotal %}-->
+
+<!--                  <td><span>{{row.item_code}}</span></td>-->
+<!--                  {% endfor %}-->
+
+
+
+              </tr>
+
+            </table>
+          </div>
+
+        </div>
+
+<!--           <button href="{{ url_for('logout') }}">class="btn btn-success" >Exit</button>-->
+<!--        <div class="card">-->
+<!--&lt;!&ndash;          <img src="./pic/img3.jpg">&ndash;&gt;-->
+<!--          <h4>PRODUCT GRADE</h4>-->
+<!--&lt;!&ndash;          <p>tester</p>&ndash;&gt;-->
+<!--          <div class="per">-->
+<!--            <table>-->
+<!--              <tr>-->
+<!--                <td><span>100</span></td>-->
+<!--                 <td><span>50</span></td>-->
+<!--                 <td><span>20</span></td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td>Total</td>-->
+<!--                <td>Month</td>-->
+<!--                 <td>Yearly</td>-->
+<!--              </tr>-->
+<!--            </table>-->
+<!--          </div>-->
+<!--          <button>Details</button>-->
+<!--        </div>-->
+<!--        <div class="card">-->
+<!--&lt;!&ndash;          <img src="./pic/img4.jpg">&ndash;&gt;-->
+<!--          <h4>Color code</h4>-->
+<!--&lt;!&ndash;          <p>Ui designer</p>&ndash;&gt;-->
+<!--          <div class="per">-->
+<!--            <table>-->
+<!--              <tr>-->
+<!--                <td><span>100</span></td>-->
+<!--                 <td><span>50</span></td>-->
+<!--                 <td><span>20</span></td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td>Total</td>-->
+<!--                <td>Month</td>-->
+<!--                 <td>Yearly</td>-->
+<!--              </tr>-->
+<!--            </table>-->
+<!--          </div>-->
+<!--           <button>Details</button>-->
+<!--        </div>-->
+<!--      </div>-->
+
+
+<!--    <h1>Order Details</h1>-->
+    <!-- <button id="get-unique-values" onclick="getUniqueValuesFromColumn()">Get unique column values</button> -->
+
+</div></center>
+
+
+<br>
+
+        <div class="background">
+    <div class="col-md-2">
+<input type="text" name="From" id="From" class="form-control" placeholder="From Date"/>
+</div>
+<div class="col-md-2">
+<input type="text" name="to" id="to" class="form-control" placeholder="To Date"/>
+</div>
+<div class="col-md-8">
+<input type="button" name="range" id="range" value="Range" class="btn btn-success"/>
+</div>
+<div class="clearfix"></div>
+    <div class="outer-wrapper">
+    <div class="table-wrapper">
+    <table id="emp-table">
+        <thead>
+            <th col-index = 1>SAP Code</th>
+            <th col-index = 2>Item_Code
+                <select class="table-filter" onchange="filter_rows()">
+                    <option value="all"></option>
+                </select>
+            </th>
+
+            <th col-index = 3>Product_Grade
+                <select class="table-filter" onchange="filter_rows()">
+                    <option value="all"></option>
+                </select>
+            </th>
+            <th col-index = 4>Color_Code
+                <select class="table-filter" onchange="filter_rows()">
+                    <option value="all"></option>
+                </select>
+            </th>
+            <th col-index = 5>Length
+                <select class="table-filter" onchange="filter_rows()">
+                    <option value="all"></option>
+                </select>
+            </th>
+
+         <th col-index = 6>Width
+                <select class="table-filter" onchange="filter_rows()">
+                    <option value="all"></option>
+                </select>
+            </th>
+
+        <th col-index = 7>Matching_Lot
+                <select class="table-filter" onchange="filter_rows()">
+                    <option value="all"></option>
+                </select>
+            </th>
+
+        <th col-index = 8>Order_Qty
+                <select class="table-filter" onchange="filter_rows()">
+                    <option value="all"></option>
+                </select>
+            </th>
+
+        <th col-index = 8>Order_Date
+                <select class="table-filter" onchange="filter_rows()">
+                    <option value="all"></option>
+                </select>
+            </th>
+
+        </thead>
+        <tbody>
+            <tr>
+                {% for row in orders %}
+        <td>{{row.sap_code}}</td>
+        <td>{{row.item_code}}</td>
+        <td>{{row.product_grade}}</td>
+        <td>{{row.color_code}}</td>
+        <td>{{row.length}}</td>
+        <td>{{row.width}}</td>
+        <td>{{row.matching_lot}}</td>
+        <td>{{row.order_qty}}</td>
+        <td>{{row.timstamp}}</td>
+    </tr>
+    {% endfor %}
+            </tr>
+
+
+        </tbody>
+    </table>
+    <!-- <script>getUniqueValuesFromColumn()
+    </script> -->
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+    <script>
+        window.onload = () => {
+            console.log(document.querySelector("#emp-table > tbody > tr:nth-child(1) > td:nth-child(2) ").innerHTML);
+        };
+
+        getUniqueValuesFromColumn()
+
+
+
+<!--    // Get unique values for the desired columns-->
+
+<!--// {2 : ["M", "F"], 3 : ["RnD", "Engineering", "Design"], 4 : [], 5 : []}-->
+
+function getUniqueValuesFromColumn() {
+
+    var unique_col_values_dict = {}
+
+    allFilters = document.querySelectorAll(".table-filter")
+    allFilters.forEach((filter_i) => {
+        col_index = filter_i.parentElement.getAttribute("col-index");
+<!--        // alert(col_index)-->
+        const rows = document.querySelectorAll("#emp-table > tbody > tr")
+
+        rows.forEach((row) => {
+            cell_value = row.querySelector("td:nth-child("+col_index+")").innerHTML;
+<!--            // if the col index is already present in the dict-->
+            if (col_index in unique_col_values_dict) {
+
+                 if (unique_col_values_dict[col_index].includes(cell_value)) {
+<!--                    // alert(cell_value + " is already present in the array : " + unique_col_values_dict[col_index])-->
+
+                } else {
+                    unique_col_values_dict[col_index].push(cell_value)
+<!--                    // alert("Array after adding the cell value : " + unique_col_values_dict[col_index])-->
+
+                }
+
+
+            } else {
+                unique_col_values_dict[col_index] = new Array(cell_value)
+            }
+        });
+
+
+    });
+
+    for(i in unique_col_values_dict) {
+<!--        alert("Column index : " + i + " has Unique values : \n" + unique_col_values_dict[i]);-->
+    }
+
+    updateSelectOptions(unique_col_values_dict)
+
+};
+
+<!--// Add <option> tags to the desired columns based on the unique values-->
+
+function updateSelectOptions(unique_col_values_dict) {
+    allFilters = document.querySelectorAll(".table-filter")
+
+    allFilters.forEach((filter_i) => {
+        col_index = filter_i.parentElement.getAttribute('col-index')
+
+        unique_col_values_dict[col_index].forEach((i) => {
+            filter_i.innerHTML = filter_i.innerHTML + `\n<option value="${i}">${i}</option>`
+        });
+
+    });
+};
+
+
+<!--// Create filter_rows() function-->
+
+<!--// filter_value_dict {2 : Value selected, 4:value, 5: value}-->
+
+function filter_rows() {
+    allFilters = document.querySelectorAll(".table-filter")
+    var filter_value_dict = {}
+
+    allFilters.forEach((filter_i) => {
+        col_index = filter_i.parentElement.getAttribute('col-index')
+
+        value = filter_i.value
+        if (value != "all") {
+            filter_value_dict[col_index] = value;
+        }
+    });
+
+    var col_cell_value_dict = {};
+
+    const rows = document.querySelectorAll("#emp-table tbody tr");
+    rows.forEach((row) => {
+        var display_row = true;
+
+        allFilters.forEach((filter_i) => {
+            col_index = filter_i.parentElement.getAttribute('col-index')
+            col_cell_value_dict[col_index] = row.querySelector("td:nth-child(" + col_index+ ")").innerHTML
+        })
+
+        for (var col_i in filter_value_dict) {
+            filter_value = filter_value_dict[col_i]
+            row_cell_value = col_cell_value_dict[col_i]
+
+            if (row_cell_value.indexOf(filter_value) == -1 && filter_value != "all") {
+                display_row = false;
+                break;
+            }
+
+
+        }
+
+        if (display_row == true) {
+            row.style.display = "table-row"
+
+        } else {
+            row.style.display = "none"
+
+        }
+
+
+
+
+
+    })
+
+}
+
+
+
+
+$(document).ready(function(){
+    $.datepicker.setDefaults({
+        dateFormat: 'yy-mm-dd'
+    });
+    $(function(){
+        $("#From").datepicker();
+        $("#to").datepicker();
+    });
+    $('#range').click(function(){
+        var From = $('#From').val();
+        var to = $('#to').val();
+        if(From != '' && to != '')
+        {
+            $.ajax({
+                url:"/range",
+                method:"POST",
+                data:{From:From, to:to},
+                success:function(data)
+                {
+                    $('#emp-table').html(data);
+                    $('#emp-table').append(data.htmlresponse);
+                }
+            });
+        }
+        else
+        {
+            alert("Please Select the Date");
+        }
+    });
+});
+
+    </script>
+</div>
+</div>
+
+</body>
+
+<style>
+
+    * {
+    margin: 0px;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+
+.heading {
+    display: flex;
+    background-color: #232f3e;
+    box-shadow: 0px 1px 2px #232f3e;
+
+}
+h1 {
+    color: coral;
+    font-weight: bold;
+
+    background: transparent;
+    padding: 7px;
+
+}
+
+
+.outer-wrapper {
+    margin-top: 50px;
+    margin-left: 30px;
+    margin-right: 30px;
+    border: 1px solid black;
+    border-radius: 4px;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.9);
+    max-width: fit-content;
+    max-height: fit-content;
+
+
+}
+.table-wrapper {
+
+    overflow-y: scroll;
+    overflow-x: scroll;
+    height: fit-content;
+    max-height: 66.4vh;
+
+    margin-top: 22px;
+
+    margin: 15px;
+    padding-bottom: 20px;
+
+}
+
+
+table {
+
+    min-width: max-content;
+
+    border-collapse: separate;
+    border-spacing: 0px;
+
+}
+
+.table-filter {
+    border-radius: 5px;
+    text-align: center;
+  text-transform: uppercase;
+  color: #4CAF50;
+}
+
+table th{
+    position: sticky;
+    top: 0px;
+
+    background-color: #133b5c;
+    color: rgb(241, 245, 179);
+
+    text-align: center;
+    font-weight: normal;
+    font-size: 18px;
+    outline: 0.7px solid black;
+    border: 1.5px solid black;
+
+}
+
+
+
+table th, table td {
+
+    padding: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+table td {
+    text-align: center;
+
+    font-size: 15px;
+    border: 1px solid rgb(177, 177, 177);
+    padding-left: 20px;
+    word-wrap: break-word;
+
+}
+
+
+/*  import google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body{
+  background: rgb(226, 226, 226);
+}
+nav{
+  position: sticky;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  left: 0;
+  width: 90px;
+  /* width: 280px; */
+  background: #fff;
+  overflow: hidden;
+  transition: 1s;
+}
+nav:hover{
+  width: 280px;
+  transition: 1s;
+}
+.logo{
+  text-align: center;
+  display: flex;
+  margin: 10px 0 0 10px;
+  padding-bottom: 3rem;
+}
+
+.logo img{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+.logo span{
+  font-weight: bold;
+  padding-left: 15px;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+a{
+  position: relative;
+  width: 280px;
+  font-size: 14px;
+  color: rgb(85, 83, 83);
+  display: table;
+  padding: 10px;
+}
+nav .fas{
+  position: relative;
+  width: 70px;
+  height: 40px;
+  top: 20px;
+  font-size: 20px;
+  text-align: center;
+}
+.nav-item{
+  position: relative;
+  top: 12px;
+  margin-left: 10px;
+}
+a:hover{
+  background: #eee;
+}
+a:hover i{
+  color: #34AF6D;
+  transition: 0.5s;
+}
+.logout{
+  position: absolute;
+  bottom: 0;
+}
+
+.container{
+  display: flex;
+}
+
+/* MAin Section */
+.main{
+  position: relative;
+  padding: 20px;
+  width: 100%;
+}
+.main-top{
+  display: flex;
+  width: 100%;
+}
+.main-top i{
+  position: absolute;
+  right: 0;
+  margin: 10px 30px;
+  color: rgb(110, 109, 109);
+  cursor: pointer;
+}
+.main .users{
+  display: flex;
+  width: 100%;
+}
+.users .card{
+  width: 40%;
+  margin: 10px;
+  background: #090A00;
+  text-align: center;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+.users .card img{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+.users .card h4{
+  text-transform: uppercase;
+}
+.users .card p{
+  font-size: 12px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+.users table{
+  margin:  auto;
+}
+.users .per span{
+  padding: 5px;
+  border-radius: 10px;
+  background: rgb(74, 64, 64);
+}
+.users td{
+  font-size: 14px;
+  padding-right: 15px;
+}
+.users .card button{
+  width: 100%;
+  margin-top: 8px;
+  padding: 7px;
+  cursor: pointer;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px solid #4AD489;
+}
+.users .card button:hover{
+  background: #4AD489;
+  color: #fff;
+  transition: 0.5s;
+}
+
+/*Attendance List serction  */
+.attendance{
+  margin-top: 20px;
+  text-transform: capitalize;
+}
+.attendance-list{
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+.table{
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 15px;
+  min-width: 100%;
+  overflow: hidden;
+  border-radius: 5px 5px 0 0;
+}
+table thead tr{
+  color: #fff;
+  background: #34AF6D;
+  text-align: left;
+  font-weight: bold;
+}
+.table th,
+.table td{
+  padding: 12px 15px;
+}
+.table tbody tr{
+  border-bottom: 1px solid #ddd;
+}
+.table tbody tr:nth-of-type(odd){
+  background: #f3f3f3;
+}
+.table tbody tr.active{
+  font-weight: bold;
+  color: #4AD489;
+}
+.table tbody tr:last-of-type{
+  border-bottom: 2px solid #4AD489;
+}
+.table button{
+  padding: 6px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid #4AD489;
+}
+.table button:hover{
+  background: #4AD489;
+  color: #fff;
+  transition: 0.5rem;
+}
+
+.table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#table td, #table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#table tr:nth-child(even){background-color: #f2f2f2;}
+
+#table tr:hover {background-color: #ddd;}
+
+#table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+
+.users .card1{
+  width: 55%;
+  margin: 10px;
+  background: #090A00;
+  text-align: center;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+.users .card1 img{
+  width: 80px;
+  height: 70px;
+  border-radius: 50%;
+}
+.users .card1 h4{
+  text-transform: uppercase;
+}
+.users .card1 p{
+  font-size: 12px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.users .card1 button{
+  width: 100%;
+  margin-top: 8px;
+  padding: 7px;
+  cursor: pointer;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px solid #4AD489;
+}
+.users .card1 button:hover{
+  background: #4AD489;
+  color: #fff;
+  transition: 0.5s;
+}
+
+from {
+    transform: scale(0) rotate(0deg) translate(-50%, -50%);
+    opacity: 1;
+  }
+  to {
+    transform: scale(20) rotate(960deg) translate(-50%, -50%);
+    opacity: 0;
+  }
+
+  a:link, a:visited {
+  background-color: #4a36f7;
+  color: white;
+  padding: 14px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: red;
+}
+
+</style>
+
+
+
+</html>
+
+{% endblock %}

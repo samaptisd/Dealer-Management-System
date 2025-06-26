@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <div class="login-container">
+<!--        <video src="{{ url_for('static', filename='login (2).mp4') }}" class="video-background" loop="loop" autoplay muted></video>-->
+
+<!--        <div class="logo"><i class="material-icons">Aludecor Lamination Pvt Ltd</i></div>-->
+       <div class="logo"><center><i class="material-icons">
+    <img src="{{ url_for('static', filename='logo.png') }}" style="width:150px;height: 50px;" alt=""/></i></center>
+</div>
+
+        <form action="{{ url_for('login') }}" method="post">
+
+            <label class="input-icon" for="username"><i class="material-icons input-icon">person_outline</i></label>
+            <input type="text" name="username" id="username" placeholder="USERNAME" />
+
+            <label class="input-icon" for="password"><i class="material-icons input-icon">lock_outline</i></label>
+            <input type="password" name="password" id="password" placeholder="PASSWORD" />
+
+             <div style="display:inline-flex;">
+                <input type="checkbox" name="remember_me" id="remember_me"/>
+                <label for="remember_me"> &nbsp;Remember Me</label>
+                <a style="color:white; margin-left:4rem;" href="{{ url_for('forgot_pwd') }}">Forgot Password</a>
+            </div>
+            <input type="submit" value="Log In" />
+
+        </form>
+       <p>{{msg}}</p>
+       <br><br>
+
+
+       <center><footer class="copyright">
+        &copy; 2025 Aludecor Lamination Pvt Ltd. All rights reserved.
+    </footer></center>
+    </div>
+</head>
+
+<script>
+       let xbut=document.getElementById('xbutt')
+let pass= document.getElementById('pas')
+let unlockButt=document.getElementById('lock')
+let lockButt=document.getElementById('unlock')
+function clicker() {
+    xbut.classList.toggle('hidden')
+}
+function unlocker() {
+    unlockButt.style.display="none"
+    lockButt.style.display="flex"
+    pass.type=("text")
+}
+function locker() {
+    unlockButt.style.display="flex"
+    lockButt.style.display="none"
+    pass.type=("password")
+}
+
+    </script>
+<body>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+*
+{
+    box-sizing: border-box;
+}
+
+body
+{
+    background-color: #3d3f53;
+    background-image: linear-gradient(to right, rgb(20, 30, 48), rgb(36, 59, 85));
+    background-size: 100% 100%;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    height: 100vh;
+}
+
+.login-container
+{
+    width: 390px;
+    height: 620px;
+    margin: auto;
+    padding: 100px 40px;
+    position: relative;
+    color: #FFF;
+    overflow: hidden;
+    font-family: Open Sans;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: .3rem;
+    box-shadow: 0 0px 30px 0 rgba(0,0,0,0.7);
+}
+
+.login-container .video-background
+
+
+
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.login-container .logo
+{
+    position: relative;
+}
+
+.login-container .logo i
+{
+    position: absolute;
+    top: 10px;
+    left: calc(50% - 80px);
+    font-size: 40px;
+    color: #3d3f53;
+}
+
+.login-container .logo:before
+{
+    content: '';
+    display: block;
+    height: 70px;
+    width: 70px;
+    transform: rotate(45deg);
+    border: 3px solid rgba(255,255,255,0.5);
+    border-radius: 5px;
+    box-shadow: 0 0 50px 5px #FFF inset;
+    margin: auto;
+    margin-bottom: 40px;
+}
+
+.login-container .logo:after
+{
+    content: "Welcome";
+    display: block;
+    text-transform: uppercase;
+    font-family: Open Sans;
+    font-size: 25px;
+    margin-bottom: 60px;
+    text-align: center;
+    font-weight: 100;
+    text-shadow: 0 1px 3px #000;
+}
+
+.login-container input:not([type="submit"]):not([type="button"]):not([type="checkbox"])
+{
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    font-family: Open Sans;
+    border: none;
+    padding: 7px 10px 7px 42px;
+    background-color: rgba(255,255,255,0.7);
+    color: #3d3f53;
+    font-family: Open Sans;
+    box-shadow: 0 1px 3px 0px rgba(38, 38, 38, 0.5);
+    font-weight: bold;
+}
+
+.login-container .input-icon
+{
+    position: absolute;
+    margin-top: 2px;
+    margin-left: 2px;
+    border-right: 2.5px solid #3d3f53;
+    padding-right: 3px;
+    color: #3d3f53;
+}
+
+.login-container input[type="submit"]
+{
+    border: none;
+    width: 100%;
+    padding: 7px 10px;
+    text-align: center;
+    font-family: Open Sans;
+    background-color: #3d3f53;
+    color: #FFF;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 100;
+    transition: 0.4s all;
+}
+
+.login-container input[type="submit"]:hover
+{
+    color: #3d3f53;
+    background-color: #FFF;
+}
+
+.login-container input:focus
+{
+    outline: none;
+}
+
+
+
+
+
+
+
+*{
+  padding: 0px;
+  margin: 0px;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+body{
+  background-color: black;
+  height: 500px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.user-sign-in{
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  border: 1px white solid;
+  border-radius: 32px;
+height: 450px;
+width: 400px;
+margin-top: 290px;
+margin-right: 100px;
+}
+.container{
+  color: white;
+}
+.container h1{
+  color: white;
+  margin-top: 50px;
+  margin-left:107px;
+}
+.Login{
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+.Login input{
+  background-color: black;
+  border: none;
+  border-bottom: 1PX SOLID blue;
+  width: 294px;
+  height: 40PX;
+}
+.Login input::placeholder{
+  position: relative;
+  color: blue;
+}
+.Login input[type=Email]{
+  color: blue;
+  padding-left: 2px;
+}
+.Login i{
+  position: relative;
+  right: 25px;
+  color: blueviolet;
+}
+.password input{
+  background-color: black;
+  border: none;
+  border-bottom: 1PX SOLID blue;
+  width: 294px;
+  height: 40PX;
+}
+.password input[type=password]{
+  color: blue;
+  padding-left: 2px;
+}
+.password i{
+  display: flex;
+  position: relative;
+left: 277px;
+  color: blueviolet;
+  top: -29px;
+}
+#unlock{
+display:none;
+}
+.password input::placeholder{
+  position: relative;
+  color: blue;
+}
+.password input[type=text]{
+  color: blue;
+  padding-left: 2px;
+}
+.user-slection{
+  display: flex;
+margin-top: 20px;
+}
+.user-slection button1{
+  width: 10px;
+  height: 11px;
+  margin-top: 5px;
+  margin-right: 10px;
+     background-color: rgba(255,255,255,0.7);
+    color: #e3f0f1;
+
+}
+.xxbutt{
+  position: relative;
+  bottom: 5px;
+  color: black;
+  font-size: 12px;
+  margin-right: 6px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+.hidden{
+  display: none;
+}
+.remember{
+  margin-left:-2px;
+}
+.Forget{
+  margin-left: 87px;
+}
+.Forget a{
+  text-decoration: none;
+  color: white;
+}
+.user-log-in button1{
+  cursor: pointer;
+width:330px;
+height: 40px;
+margin-top: 30px;
+margin-bottom: 30px;
+border-radius: 10px;
+font-size: 15px;
+        color: #c6a4a4;
+}
+.user-log-in h5{
+  margin-left: 50px;
+}
+.user-log-in span{
+  cursor: pointer;
+  color: blueviolet;
+}
+
+
+
+
+
+
+
+</style>
+
+
+</body>
+
+</html>

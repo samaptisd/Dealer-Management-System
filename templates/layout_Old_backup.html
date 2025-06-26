@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html>
+
+
+ <head>
+
+
+   <div class="section-center">
+
+<h1><title class="mb-0">{% block title %}Profile{% endblock %}</title></h1>
+
+  	</div>
+     {% block content %}{% endblock %}
+	 	 	   	 	 <img src="E:\Application\dealer_login_project\images\logo.PNG">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+<link href='https://fonts.googleapis.com/css?family=Roboto:100' rel='stylesheet' type='text/css'>
+
+<div class="with-bg-size" style="position:fixed; top:0px; left:0px; z-index:-2; width:100%; margin:auto;">
+  <div id="color-overlay"></div>
+</div>
+
+
+
+ <div class="loader">
+  	<input class="menu-icon" type="checkbox" id="menu-icon" name="menu-icon"/>
+	 <label for="menu-icon"></label>
+  	<nav class="nav">
+  		<ul class="pt-5">
+          <li><a href="{{ url_for('home') }}">HOME</a></li>
+          <li><a href="{{ url_for('profile') }}">PROFILE</a></li>
+			<li><a href="{{ url_for('portfolio') }}">ALUDECOR CATALOUGE</a></li>
+  			<li><a href="{{ url_for('form') }}">ORDER BOOKING FORM</a></li>
+  			<li><a href="{{ url_for('booked_order') }}">ORDER DETAIL</a></li>
+			<li><a href="{{ url_for('logout') }}">EXIT</a></li>
+  		</ul>
+  	</nav>
+
+
+<style>
+
+
+@import url('https://images.unsplash.com/photo-1504672281656-e4981d70414b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80');
+html { overflow-y: scroll;
+    overflow-x: scroll;
+     }
+
+body{
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 300;
+	font-size: 15px;
+	line-height: 1.9;
+	color: #ececee;
+	background-color: #f0f1fa;
+	overflow: scroll;
+
+  background-image: url('' );
+  background-position: absolute;
+<!--  background-repeat: repeat;-->
+  background-size: 10%;
+  height: 200vh;
+  width: 100%;
+  scroll-behavior: smooth;
+  margin:4px, 4px;
+  overflow-y: scroll;
+    overflow-x: scroll;
+
+
+
+
+<!--                padding:4px;-->
+<!--                background-color: green;-->
+                width: 500px;
+                height: 800px;
+                overflow-x: hidden;
+                overflow-y: auto;
+                text-align:justify;
+
+}
+.section-center{
+  position:relative;
+  top: 50%;
+  left: 0;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  z-index: 100;
+  text-align: center;
+  transform: translateY(-50%);
+  scroll-behavior: smooth;
+}
+h1{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 7vw;
+  line-height: 1;
+  color: #ffeba7;
+  text-align: center;
+  -webkit-text-stroke: 2px #ffeba7;
+  text-stroke: 2px #ffeba7;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  color: transparent;
+  scroll-behavior: smooth;
+}
+
+
+
+[type="checkbox"]:checked,
+[type="checkbox"]:not(:checked){
+  position: absolute;
+  left: -9999px;
+}
+.menu-icon:checked + label,
+.menu-icon:not(:checked) + label{
+  position: fixed;
+  top: 63px;
+  right: 75px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  z-index: 10;
+}
+.menu-icon:checked + label:before,
+.menu-icon:not(:checked) + label:before{
+  position: absolute;
+  content: '';
+  display: block;
+  width: 30px;
+  height: 20px;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  border-top: 2px solid #ececee;
+  border-bottom: 2px solid #ececee;
+  transition: border-width 100ms 1500ms ease,
+              top 100ms 1600ms cubic-bezier(0.23, 1, 0.32, 1),
+              height 100ms 1600ms cubic-bezier(0.23, 1, 0.32, 1),
+              background-color 200ms ease,
+              transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.menu-icon:checked + label:after,
+.menu-icon:not(:checked) + label:after{
+  position: absolute;
+  content: '';
+  display: block;
+  width: 22px;
+  height: 2px;
+  z-index: 20;
+  top: 10px;
+  right: 4px;
+  background-color: #f5f39d;
+  margin-top: -1px;
+  transition: width 100ms 1750ms ease,
+              right 100ms 1750ms ease,
+              margin-top 100ms ease,
+              transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.menu-icon:checked + label:before{
+  top: 10px;
+  transform: rotate(45deg);
+  height: 2px;
+  background-color: #ececee;
+  border-width: 0;
+  transition: border-width 100ms 340ms ease,
+              top 100ms 300ms cubic-bezier(0.23, 1, 0.32, 1),
+              height 100ms 300ms cubic-bezier(0.23, 1, 0.32, 1),
+              background-color 200ms 500ms ease,
+              transform 200ms 1700ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.menu-icon:checked + label:after{
+  width: 30px;
+  margin-top: 0;
+  right: 0;
+  transform: rotate(-45deg);
+  transition: width 100ms ease,
+              right 100ms ease,
+              margin-top 100ms 500ms ease,
+              transform 200ms 1700ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.nav{
+  position: fixed;
+  top: 33px;
+  right: 50px;
+  display: block;
+  width: 80px;
+  height: 80px;
+  padding: 0;
+  margin: 0;
+  z-index: 9;
+  overflow: hidden;
+  box-shadow: 0 8px 30px 0 rgba(0,0,0,0.3);
+  background-color: #353746;
+  animation: border-transform 7s linear infinite;
+  transition: top 350ms 1100ms cubic-bezier(0.23, 1, 0.32, 1),
+              right 350ms 1100ms cubic-bezier(0.23, 1, 0.32, 1),
+              transform 250ms 1100ms ease,
+              width 650ms 400ms cubic-bezier(0.23, 1, 0.32, 1),
+              height 650ms 400ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+@keyframes border-transform{
+    0%,100% { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; }
+  14% { border-radius: 40% 60% 54% 46% / 49% 60% 40% 51%; }
+  28% { border-radius: 54% 46% 38% 62% / 49% 70% 30% 51%; }
+  42% { border-radius: 61% 39% 55% 45% / 61% 38% 62% 39%; }
+  56% { border-radius: 61% 39% 67% 33% / 70% 50% 50% 30%; }
+  70% { border-radius: 50% 50% 34% 66% / 56% 68% 32% 44%; }
+  100% { border-radius: 46% 54% 50% 50% / 35% 61% 39% 65%; }
+}
+
+.menu-icon:checked ~ .nav {
+  animation-play-state: paused;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  width: 200%;
+  height: 200%;
+  transition: top 350ms 700ms cubic-bezier(0.23, 1, 0.32, 1),
+              right 350ms 700ms cubic-bezier(0.23, 1, 0.32, 1),
+              transform 250ms 700ms ease,
+              width 900ms 1000ms cubic-bezier(0.23, 1, 0.32, 1),
+              height 750ms 1000ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.nav ul{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  z-index: 10;
+  text-align: center;
+  transform: translateY(-50%);
+  list-style: none;
+}
+.nav ul li{
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 10px 0;
+  text-align: center;
+  list-style: none;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(30px);
+  transition: all 250ms linear;
+}
+.nav ul li:nth-child(1){
+  transition-delay: 200ms;
+}
+.nav ul li:nth-child(2){
+  transition-delay: 150ms;
+}
+.nav ul li:nth-child(3){
+  transition-delay: 100ms;
+}
+.nav ul li:nth-child(4){
+  transition-delay: 50ms;
+}
+.nav ul li a{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9vh;
+  text-transform: uppercase;
+  line-height: 1.2;
+  font-weight: 800;
+  display: inline-block;
+  position: relative;
+  color: #ececee;
+  transition: all 250ms linear;
+}
+.nav ul li a:hover{
+  text-decoration: none;
+  color: #45ed5b;
+}
+.nav ul li a:after{
+  display: block;
+  position: absolute;
+  top: 50%;
+  content: '';
+  height: 2vh;
+  margin-top: -1vh;
+  width: 0;
+  left: 0;
+  background-color: #252c66;
+  opacity: 0.8;
+  transition: width 250ms linear;
+}
+.nav ul li a:hover:after{
+  width: 100%;
+}
+
+
+.menu-icon:checked ~ .nav  ul li {
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 350ms ease,
+              transform 250ms ease;
+}
+.menu-icon:checked ~ .nav ul li:nth-child(1){
+  transition-delay: 1400ms;
+}
+.menu-icon:checked ~ .nav ul li:nth-child(2){
+  transition-delay: 1480ms;
+}
+.menu-icon:checked ~ .nav ul li:nth-child(3){
+  transition-delay: 1560ms;
+}
+.menu-icon:checked ~ .nav ul li:nth-child(4){
+  transition-delay: 1640ms;
+}
+
+
+
+.logo {
+	position: absolute;
+	top: 60px;
+	left: 50px;
+	display: block;
+	z-index: 11;
+	transition: all 250ms linear;
+}
+.logo img {
+	height: 26px;
+	width: auto;
+	display: block;
+}
+
+
+
+@media screen and (max-width: 991px) {
+  .menu-icon:checked + label,
+  .menu-icon:not(:checked) + label{
+    right: 55px;
+  }
+  .logo {
+    left: 30px;
+  }
+  .nav{
+    right: 30px;
+  }
+  h1{
+    font-size: 9vw;
+    -webkit-text-stroke: 2px transparent;
+    text-stroke: 2px transparent;
+    -webkit-text-fill-color: #ffeba7;
+    text-fill-color: #ffeba7;
+    color: #ffeba7;
+  }
+  .nav ul li a{
+    font-size: 8vh;
+  }
+}
+
+
+.large-header
+  position: relative
+  width: 100%
+  background: #333
+  overflow: hidden
+  background-size: cover
+  background-position: center center
+  z-index: 1
+
+#large-header
+  background-image: url('https://images.unsplash.com/photo-1504672281656-e4981d70414b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80')
+
+.main-title
+  position: absolute
+  margin: 0
+  padding: 0
+  color: #f9f1e9
+  text-align: center
+  top: 50%
+  left: 50%
+  -webkit-transform: translate3d(-50%, -50%, 0)
+  transform: translate3d(-50%, -50%, 0)
+
+.demo-1 .main-title
+  text-transform: uppercase
+  font-size: 4.2em
+  letter-spacing: 0.1em
+
+.main-title .thin
+  font-weight: 200
+
+@media only screen and (max-width: 768px)
+  .demo-1 .main-title
+    font-size: 3em
+
+
+    body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0px;
+}
+
+.btn {
+  width: 35%;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid #ecf0f1;
+  border-radius: 3px;
+  font-size: 1.0em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  -moz-transition: all .3s ease-in;
+  -o-transition: all .3s ease-in;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+}
+
+.btn:hover {
+  background-color: rgba(22, 160, 133, .7);
+}
+
+.card {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+}
+
+.icon-cog {
+  color: white;
+}
+
+.fa-cog {
+  color: white;
+}
+
+.btnm {
+  width: 35%;
+  padding: 5px 5px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid #ecf0f1;
+  border-radius: 100%;
+  cursor: pointer;
+  text-decoration: none;
+  -moz-transition: all .3s ease-in;
+  -o-transition: all .3s ease-in;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+}
+
+.btnm:hover {
+  background-color: rgba(22, 160, 133, .7);
+}
+
+/* Here Is The CSS For The Background*/
+
+/* An Overlay To Dim The Image And Make Text Readable*/
+#color-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to bottom right, #34495e, #2c3e50);
+  opacity: 0.6;
+  z-index: -1;
+}
+
+/* Setup For An Image That Fits On Most Screens And Resizes*/
+.with-bg-size {
+  background-image: url("https://images.unsplash.com/photo-1454897834822-1ece264a5d89?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=3a5615c0bc77123ece2a2663e2640341");
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+
+
+  -webkit-animation: back 5s infinite; /* Safari 4+ */
+  -moz-animation:    back 5s infinite; /* Fx 5+ */
+  -o-animation:      back 5s infinite; /* Opera 12+ */
+  animation:         back 5s infinite; /* IE 10+, Fx 29+ */
+
+
+}
+/* The Keyframes*/
+@keyframes back {
+  25% {
+    background-image: url("https://images.unsplash.com/photo-1463003416389-296a1ad37ca0?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=1bed2a6743851633b655ae774c15ac07");
+  }
+  50% {
+    background-image: url("https://images.unsplash.com/photo-1461080639469-66d73688fb21?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=dfec7f536c4133dc029608d2488e13e9");
+  }
+
+  75%{
+    background-image: url("https://images.unsplash.com/photo-1461770354136-8f58567b617a?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=f0c8c34fe56f9669d1c6d129f597f895");
+  }
+
+/* Animation Does Not End At 100% Because It Makes The Images Transition In/Out Better For Some Reason*/
+}
+</style>
+
+
+<script>
+$(function(){
+   var scroll_pos=(0);
+   window.scrollTo(xCoord, yCoord);
+
+});
+
+(function () {
+  var width,
+    height,
+    largeHeader,
+    canvas,
+    ctx,
+    points,
+    target,
+    animateHeader = true;
+
+  // Main
+  initHeader();
+  initAnimation();
+  addListeners();
+
+  function initHeader() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    target = { x: width / 2, y: height / 2 };
+
+    largeHeader = document.getElementById("large-header");
+    largeHeader.style.height = height + "px";
+
+    canvas = document.getElementById("demo-canvas");
+    canvas.width = width;
+    canvas.height = height;
+    ctx = canvas.getContext("2d");
+
+    // create points
+    points = [];
+    for (var x = 0; x < width; x = x + width / 20) {
+      for (var y = 0; y < height; y = y + height / 20) {
+        var px = x + (Math.random() * width) / 20;
+        var py = y + (Math.random() * height) / 20;
+        var p = { x: px, originX: px, y: py, originY: py };
+        points.push(p);
+      }
+    }
+
+    // for each point find the 5 closest points
+    for (var i = 0; i < points.length; i++) {
+      var closest = [];
+      var p1 = points[i];
+      for (var j = 0; j < points.length; j++) {
+        var p2 = points[j];
+        if (!(p1 == p2)) {
+          var placed = false;
+          for (var k = 0; k < 5; k++) {
+            if (!placed) {
+              if (closest[k] == undefined) {
+                closest[k] = p2;
+                placed = true;
+              }
+            }
+          }
+
+          for (var k = 0; k < 5; k++) {
+            if (!placed) {
+              if (getDistance(p1, p2) < getDistance(p1, closest[k])) {
+                closest[k] = p2;
+                placed = true;
+              }
+            }
+          }
+        }
+      }
+      p1.closest = closest;
+    }
+
+    // assign a circle to each point
+    for (var i in points) {
+      var c = new Circle(
+        points[i],
+        2 + Math.random() * 2,
+        "rgba(255,255,255,0.3)"
+      );
+      points[i].circle = c;
+    }
+  }
+
+  // Event handling
+  function addListeners() {
+    if (!("ontouchstart" in window)) {
+      window.addEventListener("mousemove", mouseMove);
+    }
+    window.addEventListener("scroll", scrollCheck);
+    window.addEventListener("resize", resize);
+  }
+
+  function mouseMove(e) {
+    var posx = (posy = 0);
+    if (e.pageX || e.pageY) {
+      posx = e.pageX;
+      posy = e.pageY;
+    } else if (e.clientX || e.clientY) {
+      posx =
+        e.clientX +
+        document.body.scrollLeft +
+        document.documentElement.scrollLeft;
+      posy =
+        e.clientY +
+        document.body.scrollTop +
+        document.documentElement.scrollTop;
+    }
+    target.x = posx;
+    target.y = posy;
+  }
+
+  function scrollCheck() {
+    if (document.body.scrollTop > height) animateHeader = false;
+    else animateHeader = true;
+  }
+
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    largeHeader.style.height = height + "px";
+    canvas.width = width;
+    canvas.height = height;
+  }
+
+  // animation
+  function initAnimation() {
+    animate();
+    for (var i in points) {
+      shiftPoint(points[i]);
+    }
+  }
+
+  function animate() {
+    if (animateHeader) {
+      ctx.clearRect(0, 0, width, height);
+      for (var i in points) {
+        // detect points in range
+        if (Math.abs(getDistance(target, points[i])) < 4000) {
+          points[i].active = 0.3;
+          points[i].circle.active = 0.6;
+        } else if (Math.abs(getDistance(target, points[i])) < 20000) {
+          points[i].active = 0.1;
+          points[i].circle.active = 0.3;
+        } else if (Math.abs(getDistance(target, points[i])) < 40000) {
+          points[i].active = 0.02;
+          points[i].circle.active = 0.1;
+        } else {
+          points[i].active = 0;
+          points[i].circle.active = 0;
+        }
+
+        drawLines(points[i]);
+        points[i].circle.draw();
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+
+  function shiftPoint(p) {
+    TweenLite.to(p, 1 + 1 * Math.random(), {
+      x: p.originX - 50 + Math.random() * 100,
+      y: p.originY - 50 + Math.random() * 100,
+      ease: Circ.easeInOut,
+      onComplete: function () {
+        shiftPoint(p);
+      }
+    });
+  }
+
+  // Canvas manipulation
+  function drawLines(p) {
+    if (!p.active) return;
+    for (var i in p.closest) {
+      ctx.beginPath();
+      ctx.moveTo(p.x, p.y);
+      ctx.lineTo(p.closest[i].x, p.closest[i].y);
+      ctx.strokeStyle = "rgba(156,217,249," + p.active + ")";
+      ctx.stroke();
+    }
+  }
+
+  function Circle(pos, rad, color) {
+    var _this = this;
+
+    // constructor
+    (function () {
+      _this.pos = pos || null;
+      _this.radius = rad || null;
+      _this.color = color || null;
+    })();
+
+    this.draw = function () {
+      if (!_this.active) return;
+      ctx.beginPath();
+      ctx.arc(_this.pos.x, _this.pos.y, _this.radius, 0, 2 * Math.PI, false);
+      ctx.fillStyle = "rgba(156,217,249," + _this.active + ")";
+      ctx.fill();
+    };
+  }
+
+  // Util
+  function getDistance(p1, p2) {
+    return Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2);
+  }
+})();
+
+</script>
+
+
+</html>

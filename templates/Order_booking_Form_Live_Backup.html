@@ -1,0 +1,1112 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<body id="body-pd">
+        <div class="l-navbar" id="navbar">
+            <nav class="nav">
+                <div>
+                    <div class="nav__brand">
+                        <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
+                        <a href="#" class="nav__logo">Aludecor</a>
+                    </div>
+                    <div class="nav__list">
+                        <a href="{{ url_for('home') }}" class="nav__link active">
+                            <ion-icon name="home-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Home</span>
+                        </a>
+                        <a href="{{ url_for('flip') }}" class="nav__link">
+                            <ion-icon name="reader-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Catalogue</span>
+                        </a>
+
+						<a href="{{ url_for('form') }}" class="nav__link">
+                            <ion-icon name="desktop-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Order Booking</span>
+                        </a>
+
+						<a href="{{ url_for('profile') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Purchase Overview</span>
+                        </a>
+
+                        <div  class="nav__link collapse">
+                            <ion-icon name="shapes-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Purchase Tracker</span>
+
+                            <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                            <ul class="collapse__menu">
+                                <a href="{{ url_for('booked_order') }}" class="collapse__sublink">Pending for Confirmation</a>
+                                <a href="{{ url_for('order_status') }}" class="collapse__sublink">Confirmed Pending Orders</a>
+                                <a href="{{ url_for('order_transuction') }}" class="collapse__sublink">Completed Transaction History</a>
+                            </ul>
+                        </div>
+
+                        <a href="{{url_for('balance_overview')}}" class="nav__link">
+                            <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Balance Overview</span>
+                        </a>
+                        <a href="{{url_for('care_support')}}" class="nav__link">
+                            <ion-icon name="umbrella-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Care Support</span>
+                        </a>
+
+                        <a href="{{ url_for('account_details') }}" class="nav__link">
+                            <ion-icon name="person-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">ProfileHub</span>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="{{ url_for('logout') }}" class="nav__link">
+                    <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+                    <span class="nav__name">Log Out</span>
+                </a>
+            </nav>
+        </div>
+
+
+
+
+
+<left><div class="logo"><i class="material-icons">
+    <img src="{{ url_for('static', filename='logo.png') }}" style="width:150px;height: 50px; alt=""/></i>
+</div></left>
+
+{% block content %}
+<br>
+<br>
+<center><h1><u>Order Booking Form</u></h1></center>
+<br>
+<center><h2>Logged In as: {{fullname}}</h2></center>
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+
+
+      <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+       <!-- font awesome  -->
+
+
+
+
+
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+      <title>Order Booking Form</title>
+  </head>
+<body>
+<center><h3 style="text-decoration:underline; color:green;">{{message|safe}}</h3></center>
+<form method="post" action="{{url_for('form')}}">
+<div class="table-container">
+    <table id="myTable">
+        <caption style="color:blue;font-size:30px;font-weight:bold;text-decoration:underline;">Please fill the Order Details below</caption>
+
+        <thead>
+        <tr>
+
+            <td>
+              <label for="diff_address">Shipping Address Different from Billing Address?</label><br>
+                <select id="diff_address" name="diff_address" required>
+<!--                  <option value="" disabled selected>Select Here</option>-->
+                  <option value="No">No</option>
+                  <option value="Yes">Yes</option>
+              </select>
+            </td>
+            <td >
+                <label for="address">Shipping Address (If Required)</label><br>
+                <input type="text" id="address" name="address" placeholder="Address" required disabled>
+            </td>
+            <td>
+                <label for="state">State/Province</label><br>
+                <input type="text" id="state" name="state" placeholder="State/Province" required disabled>
+            </td>
+            <td>
+                <label for="pincode">Pin Code</label><br>
+                <input type="number" id="pincode" name="pincode" placeholder="Pincode" required disabled>
+            </td>
+            <td>
+                <label for="contactname">Contact Name</label><br>
+                <input type="text" id="contactname" name="contactname" placeholder="Contact Name" required disabled>
+            </td>
+             <td>
+                <label for="contactno">Contact Number</label><br>
+                <input type="number" id="contactno" name="contactno" placeholder="Contact Number" required disabled>
+            </td>
+            <td></td>
+      </thead>
+      <tbody>
+      <tr>
+          <td colspan="8" align="Center" style="border-bottom: 2px solid blue; border-top: 2px solid blue; color:blue;font-size:30px;font-weight:bold;">Add Item Details Below</td>
+      </tr>
+        <tr>
+             <td>
+              <label for="order_type">Order Type</label>
+              <br>
+              <select class="order-type" name="order_type" id="order_type">
+                        <option value="Standard">Standard</option>
+                        <option value="Customized">Customized</option>
+                    </select>
+          </td>
+          <td>
+              <label for="item_code">Item Code</label><br>
+              <select class="item_code" name="item_code" id="item_code" required>
+
+                <option value="">Select Here</option>
+                <option value="AL312">AL312</option>
+                <option value="AL32">AL32</option>
+                <option value="AL3C">AL3C</option>
+                <option value="AL33R">AL33R</option>
+                <option value="AL43R">AL43R</option>
+                <option value="AL63">AL63</option>
+
+            </select>
+            </td>
+            <td>
+              <label for="product_grade">Product Grade</label><br>
+                <select class="product_grade" name="product_grade" id="product_grade" required>
+                <option value="" disabled selected>Select Product Grade </option>
+            </select>
+            </td>
+            <td>
+                  <label for="color_code">Color Code</label><br>
+                  <select class="color_code" name="color_code" id="color_code" required>
+                <option value="" disabled selected>Select Color Code </option>
+            </select>
+                </td>
+
+              <td>
+                  <label for="length">Length (in mm)</label><br>
+                  <select class="length-select" id="length" name="length">
+                      <option value="">Select Here</option>
+                        <option value="2440">2440</option>
+                        <option value="3050">3050</option>
+                        <option value="3660">3660</option>
+                    </select>
+                    <input class="length-input" type="number" name="length" required placeholder="Customized Length" style="display:none;">
+                </td>
+
+            <td>
+                  <label for="width">Width (in mm)</label><br>
+<!--                  <select class="width-select" name="width">-->
+<!--                        <option value="1220" disabled selected>1220</option>-->
+                      <input type="number" id="width" class="width-select"  name="width" value="1220">
+
+<!--                    </select>-->
+                    <input class="width-input" type="number" name="width" required placeholder="Customized Width" style="display:none;" >
+                </td>
+
+            <td>
+            <label for="matching_lot">Matching Lot (If Any)</label><br>
+
+                <input type="text" name="matching_lot" placeholder="Matching Lot (If Any)" id="matching_lot">
+            </td>
+            <td>
+                <label for="order_qty">Order Qty</label><br>
+                <input type="number" name="order_qty" placeholder="Order Qty" id="order_qty" required>
+            </td>
+
+          <td></td>
+
+        </tr>
+      </tbody>
+    </table>
+
+    <button id="addRow" type="button" ><i class="fa fa-plus" style="font-size:20px;"></i></button>
+
+    <button id="submitForm" type="submit">Submit</button>
+
+</div>
+    </form>
+
+
+<script>
+$(document).ready(function() {
+    // Function to update product_grade dropdown based on selected item_code
+
+
+    function updateProductGradeDropdown(itemDropdown, productDropdown) {
+        var selectedItem = $(itemDropdown).val();
+        var productOptions = [];
+
+        // Define your logic here to determine product_grade options based on selectedItem
+        if (selectedItem === "AL312") {
+            productOptions = ["Regular"];
+        } else if (selectedItem === "AL32") {
+            productOptions = ["Regular", "FRB1"];
+        } else if (selectedItem === "AL33R") {
+            productOptions = ["Regular", "FRB1"];
+        } else if (selectedItem === "AL3C") {
+            productOptions = ["Regular", "FRB1"];
+        } else if (selectedItem === "AL43R") {
+            productOptions = ["Regular", "FRB1"];
+        } else if (selectedItem === "AL63") {
+            productOptions = [ "Regular", "FRB1"];
+        }
+
+        // Update the product_grade dropdown
+        $(productDropdown).empty();
+        $(productDropdown).append('<option value="" disabled selected>Select Here</option>');
+        productOptions.forEach(function(option) {
+            $(productDropdown).append('<option value="' + option + '">' + option + '</option>');
+        });
+        $(productDropdown).prop('disabled', false);
+    }
+
+    // Function to update color_code dropdown based on selected item_code and product_grade
+    function updateDropdowns(itemDropdown, productDropdown, colorDropdown) {
+        var selectedProductGrade = $(productDropdown).val();
+        var colorOptions = [];
+        var selectedItem = $(itemDropdown).val();
+
+        // Define your logic here to determine color_code options based on selectedProductGrade
+
+        if (selectedItem === "AL32" && selectedProductGrade === "Regular") {
+            colorOptions = ["AD01","AD02","AD03","AD04","AD05","AD06","AD07","AD08","AD09","AD11","AD12","AD14","AD21","AD22","AD31","AD32","AD41","AD43","AD52","AD61","AD72","AD82","AD83","AD94","SH201","SH310","SH730","SP01","SP02","SP04","SP05","SP05I","SP105"];
+        } else if (selectedItem === "AL32" && selectedProductGrade === "FRB1") {
+            colorOptions = ["AD01","AD02","AD03","AD04","AD05","AD06","AD07","AD08","AD09","AD11","AD12","AD14","AD21","AD22","AD31","AD32","AD41","AD43","AD52","AD61","AD72","AD82","AD83","AD94","SP01","SP02","SP04","SP05","SP05I","SP105"];
+        } else if (selectedItem ==="AL312" && selectedProductGrade === "Regular"){
+            colorOptions = ["AD01","AD02","AD05","AD06","AD07","AD12","AD14","AD21","AD22","AD31","AD32","AD41","AD43","AD52","AD72","AD94","SH201"];
+        } else if (selectedItem === "AL33R" && selectedProductGrade === "Regular") {
+            colorOptions =  ["AD01","AD02","AD03","AD05","AD06","AD07","AD08","AD09","AD11","AD12","AD14","AD201","AD202","AD206","AD207","AD21","AD22","AD301","AD302","AD31","AD32","AD41","AD42","AD43","AD508","AD52","AD7001","AD7002","AD73","AD74","AD81","AD82","AD83","AD84","AD92","CS01","CS02","CS03","CS04","CS05","CS06","CS07","CS08","CS09","CT01","CT02","CT03","CT04","CT09","CT10","CT11","CT12","CT14","CT15","CT16","MA01","MA02","MA04","MA05","MA07","MA08","MA09","MA10","MA11","MA12","MT5001","MT5002","MT5003","MT5004","MT5005","MT5006","MT5007","MT5008","MT5009","MT5010","MT5011","MT5012","MT5014","PE05N","PE14","PE15","PE16","PE18","PE19","SD6001","SD6002","SD6003","SD6004","SD6005","SD6007","SD6009","SD6010","SD6011","SD6012","SD6013","SD6014","SD6015","SH010","SH050","SH060","SH070","SH090","SH201","SH203","SH310","SH320","SH730","SP01E","SP401","ST01","ST15","ST20","ST21","ST22","ST25","ST27","ST28","TR01","TR02","TR03","TR04","TR06","TR12","TR13","TR17","TR19","TR23","TR24","TR25","TR30","TR31","TR42","TR43","TR44","TR46","TR47","TR49","TR57","TR58","TR59"];
+       } else if (selectedItem === "AL33R" && selectedProductGrade === "FRB1") {
+            colorOptions = ["AD01","AD02","AD03","AD05","AD06","AD07","AD08","AD09","AD11","AD12","AD14","AD201","AD202","AD206","AD207","AD21","AD22","AD301","AD302","AD31","AD32","AD41","AD42","AD43","AD508","AD52","AD7001","AD7002","AD73","AD74","AD81","AD82","AD83","AD84","AD92","CS01","CS02","CS03","CS04","CS05","CS06","CS07","CS08","CS09","CT01","CT02","CT03","CT04","CT09","CT10","CT11","CT12","CT14","CT15","CT16","MA01","MA02","MA04","MA05","MA07","MA08","MA09","MA10","MA11","MA12","MT5001","MT5002","MT5003","MT5004","MT5005","MT5006","MT5007","MT5008","MT5009","MT5010","MT5011","MT5012","MT5014","PE05N","PE14","PE15","PE16","PE18","PE19","SD6001","SD6002","SD6003","SD6004","SD6005","SD6007","SD6009","SD6010","SD6011","SD6012","SD6013","SD6014","SD6015","SH010","SH050","SH060","SH070","SH090","SH201","SH203","SH310","SH320","SH730","SP01E","SP401","ST01","ST15","ST20","ST21","ST22","ST25","ST27","ST28","TR01","TR02","TR03","TR04","TR06","TR12","TR13","TR17","TR19","TR23","TR24","TR25","TR30","TR31","TR42","TR43","TR44","TR46","TR47","TR49","TR57","TR58","TR59"];
+       } else if (selectedItem === "AL3C" && selectedProductGrade === "Regular") {
+            colorOptions = ["AD01","AD02","AD03","AD05","AD06","AD07","AD08","AD09","AD11","AD12","AD14","AD202","AD206","AD21","AD22","AD301","AD302","AD31","AD32","AD41","AD43","AD7001","AD7002","AD73","AD82","AD83","AD84","AD92","SH201","SH310","SH730"];
+       } else if (selectedItem === "AL3C" && selectedProductGrade === "FRB1") {
+            colorOptions = ["AD01","AD02","AD03","AD05","AD06","AD07","AD08","AD09","AD11","AD12","AD14","AD202","AD206","AD21","AD22","AD301","AD302","AD31","AD32","AD41","AD43","AD7001","AD7002","AD73","AD82","AD83","AD84","AD92"];
+       } else if (selectedItem === "AL43R" && selectedProductGrade === "Regular") {
+            colorOptions =  ["AD01","AD02","AD03","AD05","AD06","AD07","AD08","AD09","AD11","AD12","AD14","AD201","AD202","AD206","AD207","AD21","AD22","AD301","AD302","AD31","AD32","AD41","AD42","AD43","AD508","AD52","AD7001","AD7002","AD73","AD74","AD81","AD82","AD83","AD84","AD92","CS01","CS02","CS03","CS04","CS05","CS06","CS07","CS08","CS09","CT01","CT02","CT03","CT04","CT09","CT10","CT11","CT12","CT14","CT15","CT16","MA01","MA02","MA04","MA05","MA07","MA08","MA09","MA10","MA11","MA12","MT5001","MT5002","MT5003","MT5004","MT5005","MT5006","MT5007","MT5008","MT5009","MT5010","MT5011","MT5012","MT5014","PE05N","PE14","PE15","PE16","PE18","PE19","SD6001","SD6002","SD6003","SD6004","SD6005","SD6007","SD6009","SD6010","SD6011","SD6012","SD6013","SD6014","SD6015","SH010","SH050","SH060","SH070","SH090","SH201","SH203","SH310","SH320","SH730","SP01E","SP401","ST01","ST15","ST20","ST21","ST22","ST25","ST27","ST28","TR01","TR02","TR03","TR04","TR06","TR12","TR13","TR17","TR19","TR23","TR24","TR25","TR30","TR31","TR42","TR43","TR44","TR46","TR47","TR49","TR57","TR58","TR59"];
+       } else if (selectedItem === "AL43R" && selectedProductGrade === "FRB1") {
+            colorOptions =  ["AD01","AD02","AD03","AD05","AD06","AD07","AD08","AD09","AD11","AD12","AD14","AD201","AD202","AD206","AD207","AD21","AD22","AD301","AD302","AD31","AD32","AD41","AD42","AD43","AD508","AD52","AD7001","AD7002","AD73","AD74","AD81","AD82","AD83","AD84","AD92","CS01","CS02","CS03","CS04","CS05","CS06","CS07","CS08","CS09","CT01","CT02","CT03","CT04","CT09","CT10","CT11","CT12","CT14","CT15","CT16","MA01","MA02","MA04","MA05","MA07","MA08","MA09","MA10","MA11","MA12","MT5001","MT5002","MT5003","MT5004","MT5005","MT5006","MT5007","MT5008","MT5009","MT5010","MT5011","MT5012","MT5014","PE05N","PE14","PE15","PE16","PE18","PE19","SD6001","SD6002","SD6003","SD6004","SD6005","SD6007","SD6009","SD6010","SD6011","SD6012","SD6013","SD6014","SD6015","SH010","SH050","SH060","SH070","SH090","SH201","SH203","SH310","SH320","SH730","SP01E","SP401","ST01","ST15","ST20","ST21","ST22","ST25","ST27","ST28","TR01","TR02","TR03","TR04","TR06","TR12","TR13","TR17","TR19","TR23","TR24","TR25","TR30","TR31","TR42","TR43","TR44","TR46","TR47","TR49","TR57","TR58","TR59"];
+       } else if (selectedItem === "AL63" && selectedProductGrade === "Regular") {
+            colorOptions =  ["HPL04","HPL104","HPL121","HPL30","HPL31","HPL37","HPL42","HPL43","HPL44","HPL46","HPL47","HPL51"] ;
+        } else if (selectedItem === "AL63" && selectedProductGrade === "FRB1") {
+            colorOptions =   ["HPL04","HPL104","HPL121","HPL30","HPL31","HPL37","HPL42","HPL43","HPL44","HPL46","HPL47","HPL51"];
+        }
+
+        // Update the color_code dropdown
+        $(colorDropdown).empty();
+        $(colorDropdown).append('<option value="" disabled selected>Select Here</option>');
+        colorOptions.forEach(function(option) {
+            $(colorDropdown).append('<option value="' + option + '">' + option + '</option>');
+        });
+        $(colorDropdown).prop('disabled', false);
+    }
+
+// Function to update length and width dropdowns or inputs based on selected order_type
+            function updateDropdownsOrInputs(lengthWidthContainer, order_typeDropdown) {
+                var selectedOrderType = $(order_typeDropdown).val();
+                var lengthWidthFields = lengthWidthContainer.find('.length_width_fields');
+
+                if (selectedOrderType === "Standard") {
+                    lengthWidthFields.empty();
+                    lengthWidthFields.append('<select class="length-select" name="length" ><option value="" >Select Order Type </option></select>');
+                    lengthWidthFields.append('<input type="text" class="width-select" name="width" required placeholder="Enter Width">');
+                } else if (selectedOrderType === "Customized") {
+                    lengthWidthFields.empty();
+                    lengthWidthFields.append('<input type="number" class="length-input" name="length" required placeholder="Enter Length">');
+                    lengthWidthFields.append('<input type="number" class="width-input" name="width" required placeholder="Enter Width">');
+                }
+            }
+
+            // Event listener for order_type change
+            $('body').on('change', '.order_type', function() {
+                var lengthWidthContainer = $(this).closest('tr').find('.length_width_container');
+                updateDropdownsOrInputs(lengthWidthContainer, this);
+            });
+
+
+    // Event listener for item_code change
+    $('body').on('change', '.item_code', function() {
+        var productDropdown = $(this).closest('tr').find('.product_grade');
+        updateProductGradeDropdown(this, productDropdown);
+    });
+
+    // Event listener for product_grade change
+    $('body').on('change', '.product_grade', function() {
+        var itemDropdown = $(this).closest('tr').find('.item_code');
+        var colorDropdown = $(this).closest('tr').find('.color_code');
+        updateDropdowns(itemDropdown, this, colorDropdown);
+    });
+
+    // Event listener for adding rows
+    $('#addRow').click(function() {
+        var newRow = '<tr>' +
+            '<td>' +
+             '<label for="order_type">Order Type</label>'+
+                    '<select class="order-type" name="order_type" required>' +
+                    '<option value="Standard">Standard</option>' +
+                    '<option value="Customized">Customized</option>' +
+                    '</select>' +
+                    '</td>' +
+                    '<td>' +
+                    '<label for="item_code">Item Code</label><br>' +
+                    '<select class="item_code" name="item_code" required>' +
+                    '<option value="" disabled selected>Select Here</option>' +
+                    '<option value="AL312">AL312</option>' +
+                    '<option value="AL32">AL32</option>' +
+                    '<option value="AL3C">AL3C</option>' +
+                    '<option value="AL33R">AL33R</option>' +
+                    '<option value="AL43R">AL43R</option>' +
+                    '<option value="AL63">AL63</option>' +
+                    '</select>' +
+                    '</td>' +
+                    '<td>' +
+                    '<label for="product_grade">Product Grade</label><br>' +
+                    '<select class="product_grade" name="product_grade" required disabled>' +
+                    '<option value="" disabled selected>Select Product Grade </option>' +
+                    '</select>' +
+                    '</td>' +
+
+                    '<td>' +
+                    '<label for="length">Length (in mm)</label><br>'+
+                    '<select class="length-select" name="length">'+
+                      '<option value="">Select Here</option>'+
+                        '<option value="2440">2440</option>'+
+                        '<option value="3050">3050</option>'+
+                        '<option value="3660">3660</option>'+
+                    '</select>'+
+
+                    '<input class="length-input" type="number" name="length" required placeholder="Length (mm)" disabled>'+
+                     '</td>' +
+                    '<td>' +
+                    '<input type="number" value="1220" disabled class="width-select" name="width" value="1220">'+
+                    '<input type="number" class="width-input" name="width" required placeholder="Width (mm)" disabled>' +
+                    '</td>' +
+                    '<td>' +
+                    '<input type="text" class="matching_lot" name="matching_lot" placeholder="Matching Lot (If Any)" disabled>' +
+                    '</td>' +
+                    '<td>' +
+                    '<input type="number" class="order_qty" name="order_qty" required placeholder="Order Qty" disabled>' +
+                    '</td>' +
+            '</tr>';
+        $('#itemTable').append(newRow);
+    });
+
+
+    });
+
+</script>
+
+<script>
+const sameAddressDropdown = document.getElementById("diff_address");
+const addressInput = document.getElementById("address");
+const stateInput = document.getElementById("state");
+const pincodeInput = document.getElementById("pincode");
+const contactnameInput = document.getElementById("contactname");
+const contactnoInput = document.getElementById("contactno");
+
+sameAddressDropdown.addEventListener("change", () => {
+  if (sameAddressDropdown.value === "Yes") {
+    // Enable the input fields when "Yes" is selected
+    addressInput.disabled = false;
+    stateInput.disabled = false;
+    pincodeInput.disabled = false;
+    contactnameInput.disabled = false;
+    contactnoInput.disabled = false;
+  } else {
+    // Disable the input fields when "No" is selected
+    addressInput.disabled = true;
+    stateInput.disabled = true;
+    pincodeInput.disabled = true;
+    contactnameInput.disabled = true;
+    contactnoInput.disabled = true;
+  }
+});
+
+// Trigger the change event initially to set the initial state based on the default value
+sameAddressDropdown.dispatchEvent(new Event("change"));
+
+
+</script>
+
+<script>
+    // Event listener for order_type change in each row
+    const orderTypeSelect = document.getElementById("order_type");
+    document.querySelectorAll(".order-type").forEach((orderTypeSelect) => {
+        orderTypeSelect.addEventListener("change", () => {
+            const row = orderTypeSelect.closest("tr");
+            const lengthSelect = row.querySelector(".length-select");
+            const widthSelect = row.querySelector(".width-select");
+            const lengthInput = row.querySelector(".length-input");
+            const widthInput = row.querySelector(".width-input");
+
+            // Hide all elements first
+            lengthSelect.style.display = "none";
+            widthSelect.style.display = "none";
+            lengthInput.style.display = "none";
+            widthInput.style.display = "none";
+
+            if (orderTypeSelect.value === "Customized") {
+                lengthInput.style.display = "inline-block";
+                widthInput.style.display = "inline-block";
+                 lengthInput.removeAttribute("required");
+                 widthInput.removeAttribute("required");
+            } else if (orderTypeSelect.value === "Standard") {
+                lengthSelect.style.display = "inline-block";
+                widthSelect.style.display = "inline-block";
+                 lengthInput.removeAttribute("required");
+                 widthInput.removeAttribute("required");
+            }
+        });
+    });
+
+    // Event listener for adding rows
+    document.getElementById("addRow").addEventListener("click", () => {
+        const table = document.getElementById("myTable");
+        const newRow = table.insertRow(-1);
+        const rowNumber = table.rows.length - 2;
+
+        newRow.innerHTML = `
+            <td>
+                <select class="order-type" name="order_type">
+                    <option value="Standard">Standard</option>
+                    <option value="Customized">Customized</option>
+                </select>
+            </td>
+            <td>
+                <select class="item_code" name="item_code" required>
+                    <option value="" disabled selected>Select Here</option>
+                    <option value="AL312">AL312</option>
+                    <option value="AL32">AL32</option>
+                    <option value="AL3C">AL3C</option>
+                    <option value="AL33R">AL33R</option>
+                    <option value="AL43R">AL43R</option>
+                    <option value="AL63">AL63</option>
+                </select>
+            </td>
+            <td>
+                <select class="product_grade" name="product_grade" required disabled>
+                    <option value="" disabled selected>Select Product Grade </option>
+                </select>
+            </td>
+            <td>
+
+
+                <select class="color_code" name="color_code" required disabled>
+                <option value="" disabled selected>Select Color Code </option>
+            </select>
+            </td>
+            <td>
+                <select class="length-select" name="length">
+                    <option value="">Select Here</option>
+                    <option value="2440">2440</option>
+                    <option value="3050">3050</option>
+                    <option value="3660">3660</option>
+                </select>
+
+                <input class="length-input" type="number" name="length" required placeholder="Customized Length" style="display: none;">
+            </td>
+            <td>
+                <input type="text" value="1220" disabled class="width-select" name="width" value="1220">
+                <input class="width-input" type="number" name="width" required placeholder="Customized Width" style="display: none;">
+            </td>
+            <td>
+                <input type="text" class="matching_lot" name="matching_lot" placeholder="Matching Lot (If Any)" >
+            </td>
+            <td>
+                <input type="number" class="order_qty" name="order_qty" required placeholder="Order Qty" >
+            </td>
+            <td>
+                <button class="delete-row" onclick="deleteRow(${rowNumber})">-</button>
+            </td>
+        `;
+
+        // Event listener for order_type change in the newly added row
+        newRow.querySelector(".order-type").addEventListener("change", () => {
+            const row = newRow;
+            const lengthSelect = row.querySelector(".length-select");
+            const widthSelect = row.querySelector(".width-select");
+            const lengthInput = row.querySelector(".length-input");
+            const widthInput = row.querySelector(".width-input");
+
+            // Hide all elements first
+            lengthSelect.style.display = "none";
+            widthSelect.style.display = "none";
+            lengthInput.style.display = "none";
+            widthInput.style.display = "none";
+
+            if (newRow.querySelector(".order-type").value === "Customized") {
+                lengthInput.style.display = "inline-block";
+                widthInput.style.display = "inline-block";
+                lengthInput.removeAttribute("required");
+                 widthInput.removeAttribute("required");
+            } else if (newRow.querySelector(".order-type").value === "Standard") {
+                lengthSelect.style.display = "inline-block";
+                widthSelect.style.display = "inline-block";
+
+                lengthInput.removeAttribute("required");
+                 widthInput.removeAttribute("required");
+            }
+        });
+    });
+
+    // Trigger the initial change event for existing rows
+<!--    const orderTypeSelect = document.getElementById("order_type");-->
+    document.querySelectorAll(".order-type").forEach((orderTypeSelect) => {
+        orderTypeSelect.dispatchEvent(new Event("change"));
+    });
+
+    // Function to delete a row
+    function deleteRow(rowNumber) {
+        const table = document.getElementById("myTable");
+        table.deleteRow(rowNumber + 1);
+    }
+</script>
+
+<script>
+    document.querySelector('form').addEventListener('submit', function (event) {
+    const lengthInput = document.querySelector('.length-input');
+    const widthInput = document.querySelector('.width-input');
+
+    if (lengthInput.style.display !== 'none' && lengthInput.value === '') {
+        event.preventDefault(); // Prevent form submission
+        alert('Customized Length is required.');
+        return;
+    }
+
+    if (widthInput.style.display !== 'none' && widthInput.value === '') {
+        event.preventDefault(); // Prevent form submission
+        alert('Customized Width is required.');
+        return;
+    }
+});
+
+</script>
+
+
+
+<script>
+	/*===== EXPANDER MENU  =====*/
+const showMenu = (toggleId, navbarId, bodyId)=>{
+  const toggle = document.getElementById(toggleId),
+  navbar = document.getElementById(navbarId),
+  bodypadding = document.getElementById(bodyId)
+
+  if(toggle && navbar){
+    toggle.addEventListener('click', ()=>{
+      navbar.classList.toggle('expander')
+
+      bodypadding.classList.toggle('body-pd')
+    })
+  }
+}
+showMenu('nav-toggle','navbar','body-pd')
+
+/*===== LINK ACTIVE  =====*/
+const linkColor = document.querySelectorAll('.nav__link')
+function colorLink(){
+  linkColor.forEach(l=> l.classList.remove('active'))
+  this.classList.add('active')
+}
+linkColor.forEach(l=> l.addEventListener('click', colorLink))
+
+
+/*===== COLLAPSE MENU  =====*/
+const linkCollapse = document.getElementsByClassName('collapse__link')
+var i
+
+for(i=0;i<linkCollapse.length;i++){
+  linkCollapse[i].addEventListener('click', function(){
+    const collapseMenu = this.nextElementSibling
+    collapseMenu.classList.toggle('showCollapse')
+
+    const rotate = collapseMenu.previousElementSibling
+    rotate.classList.toggle('rotate')
+  })
+}
+
+</script>
+<script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+
+
+</body>
+<style>
+
+     .delete-row {
+    color: red;
+    width: 24px; /* Adjust the width as needed */
+    height: 24px; /* Adjust the height as needed */
+    font-size: 80px; /* Adjust the font size as needed */
+  }
+
+ .small-td {
+        width: 20px;
+    }
+	/*===== GOOGLE FONTS =====*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+/*===== VARIABLES CSS =====*/
+:root {
+  --nav-width: 92px;
+  --yellow-color: yellow;
+
+  /*===== Colores =====*/
+  --first-color: #0c5df4;
+  --bg-color: #12192c;
+  --sub-color: #b6cefc;
+  --white-color: #fff;
+
+  /*===== Fuente y tipografia =====*/
+  --body-font: "Poppins", sans-serif;
+  --normal-font-size: 1rem;
+  --small-font-size: 0.875rem;
+
+  /*===== z index =====*/
+  --z-fixed: 100;
+}
+
+/*===== BASE =====*/
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+body {
+  position: flex;
+  background-image: url('{{ url_for('static', filename='bdesign.jpg') }}');
+  /* Other CSS properties go here */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-size: 130% auto; /* Use "cover" to make the background image cover the entire container */
+  margin: 0px; /* Adjust the margin value as needed */
+  padding: 1rem 0 0 6.75rem;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  transition: 0.5s;
+  overflow-y: scroll;
+  width: 103vw; /* Set the width to the viewport width */
+  height: 100vh; /* Set the height to the viewport height */
+}
+
+
+h1 {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+/*===== l NAV =====*/
+.l-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--nav-width);
+  height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--white-color);
+  padding: 1.5rem 1.5rem 2rem;
+  transition: 0.5s;
+  z-index: var(--z-fixed);
+}
+
+/*===== NAV =====*/
+.nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.nav__brand {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.nav__toggle {
+  font-size: 1.25rem;
+  padding: 0.75rem;
+  cursor: pointer;
+}
+.nav__logo {
+  color: var(--white-color);
+  font-weight: 600;
+}
+
+.nav__link {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  column-gap: 0.75rem;
+  padding: 0.75rem;
+  color: var(--white-color);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.nav__link:hover {
+  background-color: var(--first-color);
+}
+.nav__icon {
+  font-size: 1.25rem;
+}
+.nav__name {
+  font-size: var(--small-font-size);
+}
+
+/*Expander menu*/
+.expander {
+  width: calc(var(--nav-width) + 9.25rem);
+}
+
+/*Add padding body*/
+.body-pd {
+  padding: 2rem 0 0 16rem;
+}
+
+/*Active links menu*/
+.active {
+  background-color: var(--first-color);
+}
+
+/*===== COLLAPSE =====*/
+.collapse {
+  grid-template-columns: 20px max-content 1fr;
+}
+.collapse__link {
+  justify-self: flex-end;
+  transition: 0.5s;
+}
+.collapse__menu {
+  display: none;
+  padding: 0.75rem 2.25rem;
+}
+.collapse__sublink {
+  color: var(--sub-color);
+  font-size: var(--small-font-size);
+}
+.collapse__sublink:hover {
+  color: var(--yellow-color);
+  text-decoration: underline;
+}
+
+/*Show collapse*/
+.showCollapse {
+  display: block;
+}
+
+/*Rotate icon*/
+.rotate {
+  transform: rotate(180deg);
+}
+
+
+
+
+body {
+  background-color: #d9e7fc;
+}
+
+.wrapper {
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  background-color: #343436;
+}
+
+nav {
+<!--  display: flex;-->
+  width: 90%;
+}
+
+ul li a {
+  margin-left: 1.5em;
+}
+
+a.logo {
+  margin-right: auto;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+  position: relative;
+  font-size: 1.25em;
+}
+
+a::after {
+  content:"";
+  top: 80%;
+  border-bottom: 2px solid #F8E71C;
+  transition: all 0.35s;
+  position: absolute;
+}
+
+a:hover::after {
+  transition: all 0.35s;
+}
+
+a::after {
+  right: 50%;
+  left: 50%;
+}
+
+a:hover::after {
+  right: 0;
+  left: 0;
+}
+
+@media (max-width: 1024px) {
+  .wrapper {
+    height: auto;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  a.logo {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    margin-right: 0px;
+  }
+
+  ul {
+    width: 100%;
+    margin-bottom: 1em;
+    justify-content: space-between;
+  }
+
+  ul li a {
+    margin-left: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  a.logo {
+    margin: 1.5em;
+  }
+
+  ul {
+    flex-direction: column;
+  }
+
+  ul li {
+    margin: 0.3em;
+    text-align: center;
+  }
+
+  ul li a {
+    margin-left: 0px;
+  }
+}
+
+
+
+
+h1 {
+  color: black;
+  font-family: verdana;
+  font-size: 160%;
+}
+
+h2 {
+  color: black;
+  font-family: verdana;
+  font-size: 100%;
+}
+
+button {
+  all: initial;
+<!--  background-color: #4CAF50;-->
+  border: none;
+  color: green;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 40px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.primary {
+  background-color: springgreen;
+}
+
+.danger {
+  background-color: black;
+}
+
+.table-container {
+  max-width: 1400px; /* Change as needed */
+  margin: 20px auto; /* Centers the container horizontally */
+  border: 2px solid black;
+  padding: 10px;
+  max-height: auto
+}
+
+label {
+  display: block;
+  width: 150px;
+  text-align: left;
+  vertical-align: bottom;
+}
+
+<!--select {-->
+<!--  width: 200px;-->
+<!--  height: 35px;-->
+<!--  padding: 5px;-->
+<!--  border: 1px solid #ccc;-->
+<!--  border-radius: 4px;-->
+<!--  box-sizing: border-box;-->
+<!--  margin-bottom: 10px;-->
+<!--  vertical-align: bottom;-->
+<!--}-->
+
+input[type=text], select {
+  width: 150px;
+  height: 35px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  vertical-align: bottom;
+}
+
+input[type=number], select {
+  width: 150px;
+  height: 35px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  vertical-align: bottom;
+}
+
+<!--textarea {-->
+<!--  width: 200px;-->
+<!--  height: 100px;-->
+<!--  padding: 5px;-->
+<!--  border: 1px solid #ccc;-->
+<!--  border-radius: 4px;-->
+<!--  box-sizing: border-box;-->
+<!--  margin-bottom: 10px;-->
+<!--  vertical-align: bottom;-->
+<!--}-->
+
+<!--button {-->
+<!--  background-color: #4CAF50;-->
+<!--  color: white;-->
+<!--  padding: 10px 15px;-->
+<!--  border: none;-->
+<!--  border-radius: 4px;-->
+<!--  cursor: pointer;-->
+<!--  vertical-align: center;-->
+<!--}-->
+
+
+
+<!--button:hover {-->
+<!--  background-color: #45a049;-->
+<!--}-->
+
+<!--button[type=button] {-->
+<!--  background-color: green;-->
+<!--}-->
+
+<!--button[type=button]:hover {-->
+<!--  background-color: #da190b;-->
+<!--}-->
+
+
+<!--#box {-->
+<!--  margin: 50px auto;-->
+<!--  padding: 20px;-->
+<!--  width: 600px;-->
+<!--  border: 1px solid #ccc;-->
+<!--  border-radius: 4px;-->
+<!--}-->
+
+td {
+  vertical-align: bottom;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+
+.animated-button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  position: relative;
+}
+
+.animated-button i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s ease;
+}
+
+.animated-button:hover i {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+label {
+  color: black;
+  font-family: verdana;
+  font-size: 80%;
+  font-weight:bold
+}
+</style>
+
+</html>
+
+{% endblock %}

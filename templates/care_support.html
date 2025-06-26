@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    /* Media query to hide the sidebar on screens smaller than 768px (tablets and below) */
+    @media (max-width: 767px) {
+      #navbar {
+        display: none; /* Hide the sidebar for small screens (phones) */
+      }
+      body {
+        margin: 5px !important;
+        padding: 5px !important;
+      }
+    }
+
+    /* Media query to hide the sidebar on screens smaller than 1024px (tablets and below) */
+    @media (max-width: 1024px) {
+      #navbar {
+        display: none; /* Hide the sidebar for small screens (phones) */
+      }
+        body {
+            margin: 5px !important;
+            padding: 5px !important;
+          }
+    }
+
+    /* Media query to hide the sidebar on iPad devices */
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1.5) {
+      #navbar {
+        display: none; /* Hide the sidebar on iPads */
+      }
+      body {
+        margin: 5px !important;
+        padding: 5px !important;
+      }
+    }
+
+
+    @media only screen and (max-width: 767px) and (orientation: portrait) {
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.8);
+        filter: blur(5px);
+        z-index: 9999;
+      }
+
+      #orientation-message {
+        display: block;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        font-size: 18px;
+        text-align: center;
+        z-index: 10000;
+      }
+    }
+
+    @media only screen and (orientation: landscape), (min-width: 768px) and (max-width: 1024px) {
+      body::before,
+      #orientation-message {
+        display: none;
+      }
+    }
+
+
+    </style>
+    <div class="logo">
+        <left><i class="material-icons">
+                <img src="{{ url_for('static', filename='logo.png') }}" style="width:150px;height: 50px;"
+                    alt="Aludecor" /></i></left>
+    </div>
+
+</head>
+
+<body>
+    <div id="orientation-message">
+            <p>Please rotate your device to landscape mode.</p>
+    </div>
+    <body id="body-pd">
+        <div class="l-navbar" id="navbar">
+            <nav class="nav">
+                <div>
+                    <div class="nav__brand">
+                        <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
+                        <a href="{{url_for('balance_overview')}}" class="nav__logo">Aludecor</a>
+                    </div>
+                    <div class="nav__list">
+                        <a href="{{ url_for('home') }}" class="nav__link active">
+                            <ion-icon name="home-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Home</span>
+                        </a>
+                        <a href="{{ url_for('flip') }}" class="nav__link">
+                            <ion-icon name="reader-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Catalogue</span>
+                        </a>
+
+						<a href="{{ url_for('form') }}" class="nav__link">
+                            <ion-icon name="desktop-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Order Booking</span>
+                        </a>
+
+                        <a href="{{ url_for('requisition') }}" class="nav__link">
+                            <ion-icon name="desktop-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Requisition Form</span>
+                        </a>
+
+						<a href="{{ url_for('profile') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Purchase Overview</span>
+                        </a>
+                        <a href="{{ url_for('booked_order') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Confirmation Pending</span>
+                        </a>
+
+                        <a href="{{ url_for('order_status') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Conf. Pending Orders</span>
+                        </a>
+
+                        <a href="{{ url_for('order_transuction') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Completed Transaction History</span>
+                        </a>
+
+<!--                        <div  class="nav__link collapse">-->
+<!--                            <ion-icon name="shapes-outline" class="nav__icon"></ion-icon>-->
+<!--                            <span class="nav__name">Purchase Tracker</span>-->
+
+<!--                            <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>-->
+
+<!--                            <ul class="collapse__menu">-->
+<!--                                <a href="{{ url_for('booked_order') }}" class="collapse__sublink">Pending for Confirmation</a>-->
+<!--                                <a href="{{ url_for('order_status') }}" class="collapse__sublink">Confirmed Pending Orders</a>-->
+<!--                                <a href="{{ url_for('order_transuction') }}" class="collapse__sublink">Completed Transaction History</a>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+
+                        <a href="{{url_for('balance_overview')}}" class="nav__link">
+                            <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Balance Overview</span>
+                        </a>
+                        <a href="{{url_for('care_support')}}" class="nav__link">
+                            <ion-icon name="umbrella-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Care Support</span>
+                        </a>
+
+                        <a href="{{ url_for('account_details') }}" class="nav__link">
+                            <ion-icon name="person-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">ProfileHub</span>
+                        </a>
+
+
+                <a href="{{ url_for('logout') }}" class="nav__link">
+                    <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+                    <span class="nav__name">Log Out</span>
+                </a>
+            </nav>
+        </div>
+
+
+        <script>
+            /*===== EXPANDER MENU  =====*/
+            const showMenu = (toggleId, navbarId, bodyId) => {
+                const toggle = document.getElementById(toggleId),
+                    navbar = document.getElementById(navbarId),
+                    bodypadding = document.getElementById(bodyId)
+
+                if (toggle && navbar) {
+                    toggle.addEventListener('click', () => {
+                        navbar.classList.toggle('expander')
+
+                        bodypadding.classList.toggle('body-pd')
+                    })
+                }
+            }
+            showMenu('nav-toggle', 'navbar', 'body-pd')
+
+            /*===== LINK ACTIVE  =====*/
+            const linkColor = document.querySelectorAll('.nav__link')
+            function colorLink() {
+                linkColor.forEach(l => l.classList.remove('active'))
+                this.classList.add('active')
+            }
+            linkColor.forEach(l => l.addEventListener('click', colorLink))
+
+
+            /*===== COLLAPSE MENU  =====*/
+            const linkCollapse = document.getElementsByClassName('collapse__link')
+            var i
+
+            for (i = 0; i < linkCollapse.length; i++) {
+                linkCollapse[i].addEventListener('click', function () {
+                    const collapseMenu = this.nextElementSibling
+                    collapseMenu.classList.toggle('showCollapse')
+
+                    const rotate = collapseMenu.previousElementSibling
+                    rotate.classList.toggle('rotate')
+                })
+            }
+
+        </script>
+        <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+        <br>
+        <center><h1>We are happy to assist you.</h1>
+        <br>
+        <table class="tbl">
+<!--            <caption><u>Important Contact Details:<br>‌</u></caption>-->
+                <tr>
+                    <th>Support Team</th>
+                    <th>Name</th>
+                    <th>Email Id</th>
+                    <th>Phone No.</th>
+                </tr>
+                <tr>
+                    <td>Co-Ordinator Support:</td>
+                    <td>{{support_data.Coordi1_Name}}<br>{{support_data.Coordi2_Name}}<br>{{support_data.Coordi3_Name}}<br>{{support_data.Coordi4_Name}}</td>
+                    <td>{{support_data.Coordi1_Email}}<br>{{support_data.Coordi2_Email}}<br>{{support_data.Coordi3_Email}}<br>{{support_data.Coordi4_Email}}</td>
+                    <td>{{support_data.Coordi1_Mob}}<br>{{support_data.Coordi2_Mob}}<br>{{support_data.Coordi3_Mob}}<br>{{support_data.Coordi4_Mob}}</td>
+                </tr>
+                <tr>
+                    <td>MDO Support:</td>
+                    <td>{{support_data.CSM1_Name}}<br>{{support_data.CSM2_Name}}</td>
+                    <td>{{support_data.CSM1_Email}}<br>{{support_data.CSM2_Email}}</td>
+                    <td>{{support_data.CSM1_Mob}}<br>{{support_data.CSM2_Mob}}</td>
+                </tr>
+                <tr>
+                    <td>Zonal SCM Support:</td>
+                    <td>{{support_data.ZSCM_Name}}</td>
+                    <td>{{support_data.ZSCM_Email}}</td>
+                    <td>{{support_data.ZSCM_Mob}}</td>
+                </tr>
+                <tr>
+                    <td>HO SCM Support:</td>
+                    <td>{{support_data.HSCM_Name}}</td>
+                    <td>{{support_data.HSCM_Email}}</td>
+                    <td>{{support_data.HSCM_Mob}}</td>
+                </tr>
+                <tr>
+                    <td>Commercial Support:</td>
+                    <td>{{support_data.Comm_Name}}</td>
+                    <td>{{support_data.Comm_Email}}</td>
+                    <td>{{support_data.Comm_Mob}}</td>
+                </tr>
+                <tr>
+                    <td>HO Commercial Support:</td>
+                    <td>{{support_data.HCOM_Name}}</td>
+                    <td>{{support_data.HCOM_Email}}</td>
+                    <td>{{support_data.HCOM_Mob}}</td>
+                </tr>
+                <tr>
+                    <td>Sales Support:</td>
+                    {% if sales_support_data|length > 2 %}
+                    <td>{{sales_support_data[0].Name}}<br>{{sales_support_data[1].Name}}<br>{{sales_support_data[2].Name}}</td>
+                    <td>{{sales_support_data[0].Email_O}}<br>{{sales_support_data[1].Email_O}}<br>{{sales_support_data[2].Email_O}}</td>
+                    <td>{{sales_support_data[0].Mob_O}}<br>{{sales_support_data[1].Mob_O}}<br>{{sales_support_data[2].Mob_O}}</td>
+                    {% elif sales_support_data|length == 2 %}
+                    <td>{{sales_support_data[0].Name}}<br>{{sales_support_data[1].Name}}</td>
+                    <td>{{sales_support_data[0].Email_O}}<br>{{sales_support_data[1].Email_O}}</td>
+                    <td>{{sales_support_data[0].Mob_O}}<br>{{sales_support_data[1].Mob_O}}</td>
+                    {% else %}
+                    <td>{{sales_support_data[0].Name}}</td>
+                    <td>{{sales_support_data[0].Email_O}}</td>
+                    <td>{{sales_support_data[0].Mob_O}}</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>RH Support:</td>
+                    <td>{{support_data.RH_Name}}</td>
+                    <td>{{support_data.RH_Email}}</td>
+                    <td>{{support_data.RH_Mob}}</td>
+                </tr>
+                <tr>
+                    <td>GM Support:</td>
+                    <td>{{support_data.GM_Name}}</td>
+                    <td>{{support_data.GM_Email}}</td>
+                    <td>{{support_data.GM_Mob}}</td>
+                </tr>
+
+        </table></center>
+
+
+        <style>
+
+            table, th, td{
+                border: 1px solid;
+                border-collapse: collapse;
+                padding: 10px;
+
+            }
+
+
+/*            @media screen*/
+/*            and (min-device-width: 320px)*/
+/*            and (max-width: 1000px) {*/
+
+/*                table, th, td{*/
+/*                border: 1px solid;*/
+/*                border-collapse: collapse;*/
+/*                padding: 9px;*/
+/*                width: 100%;*/
+/*                font-size: 9px;*/
+
+/*            }*/
+
+
+/*                .table {*/
+/*                display: flex;*/
+
+/*            }*/
+
+/*            .th {*/
+/*                display: none; *//* Hide the table header on smaller screens */
+/*            }*/
+
+/*            .tr {*/
+/*                margin-bottom: 10px;*/
+/*                display: flex;*/
+/*                border: 1px solid;*/
+/*            }*/
+
+/*            .td {*/
+/*                text-align: left;*/
+/*                display: block;*/
+/*                font-size: 10px;*/
+/*            }*/
+/*                h1 {*/
+/*               font-size: 16px;*/
+/*                margin: 0;*/
+/*               text-align: center;*/
+/*            }*/
+
+/*                 * {*/
+/*                margin: 0;*/
+/*                padding: 0;*/
+/*            }*/
+
+/*            html*/
+/*            {*/
+/*                width: 100%;*/
+/*                height: 100%;*/
+/*                overflow: hidden;*/
+/*            }*/
+
+/*                .logo {*/
+/*  text-align: right;*/
+
+/*  }*/
+/*            }*/
+        </style>
+
+        <style>
+
+
+                .logo {
+  text-align: right;
+
+  }
+            /*===== GOOGLE FONTS =====*/
+            @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+            /*===== VARIABLES CSS =====*/
+            :root {
+  --nav-width: 92px;
+  --yellow-color: yellow;
+
+                /*===== Colores =====*/
+                --first-color: #0c5df4;
+                --bg-color: #12192c;
+                --sub-color: #b6cefc;
+                --white-color: #fff;
+
+                /*===== Fuente y tipografia =====*/
+                --body-font: "Poppins", sans-serif;
+                --normal-font-size: 1rem;
+                --small-font-size: 0.875rem;
+
+                /*===== z index =====*/
+                --z-fixed: 100;
+            }
+
+            /*===== BASE =====*/
+            *,
+            ::before,
+            ::after {
+                box-sizing: border-box;
+            }
+
+body {
+  position: relative;
+  background-image: url('{{ url_for('static', filename='bdesign.jpg') }}');
+  /* Other CSS properties go here */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-size: cover;
+  margin: 40px; /* Adjust the margin value as needed */
+  padding: 2rem 0 0 6.75rem;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  transition: 0.5s;
+  overflow-y: scroll;
+}
+            h1 {
+                margin: 0;
+            }
+
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            /*===== l NAV =====*/
+            .l-navbar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: var(--nav-width);
+                height: 100vh;
+                background-color: var(--bg-color);
+                color: var(--white-color);
+                padding: 1.5rem 1.5rem 2rem;
+                transition: 0.5s;
+                z-index: var(--z-fixed);
+            }
+
+            /*===== NAV =====*/
+            .nav {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                overflow: hidden;
+            }
+
+            .nav__brand {
+                display: grid;
+                grid-template-columns: max-content max-content;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 2rem;
+            }
+
+            .nav__toggle {
+                font-size: 1.25rem;
+                padding: 0.75rem;
+                cursor: pointer;
+            }
+
+            .nav__logo {
+                color: var(--white-color);
+                font-weight: 600;
+            }
+
+            .nav__link {
+                display: grid;
+                grid-template-columns: max-content max-content;
+                align-items: center;
+                column-gap: 0.75rem;
+                padding: 0.75rem;
+                color: var(--white-color);
+                border-radius: 0.5rem;
+                margin-bottom: 1rem;
+                transition: 0.3s;
+                cursor: pointer;
+            }
+
+            .nav__link:hover {
+                background-color: var(--first-color);
+            }
+
+            .nav__icon {
+                font-size: 1.25rem;
+            }
+
+            .nav__name {
+                font-size: var(--small-font-size);
+            }
+
+            /*Expander menu*/
+            .expander {
+                width: calc(var(--nav-width) + 9.25rem);
+            }
+
+            /*Add padding body*/
+            .body-pd {
+                padding: 2rem 0 0 16rem;
+            }
+
+            /*Active links menu*/
+            .active {
+                background-color: var(--first-color);
+            }
+
+            /*===== COLLAPSE =====*/
+            .collapse {
+                grid-template-columns: 20px max-content 1fr;
+            }
+
+            .collapse__link {
+                justify-self: flex-end;
+                transition: 0.5s;
+            }
+
+            .collapse__menu {
+                display: none;
+                padding: 0.75rem 2.25rem;
+            }
+
+            .collapse__sublink {
+                color: var(--sub-color);
+                font-size: var(--small-font-size);
+            }
+
+            .collapse__sublink:hover {
+              color: var(--yellow-color);
+              text-decoration: underline;
+            }
+
+            /*Show collapse*/
+            .showCollapse {
+                display: block;
+            }
+
+            /*Rotate icon*/
+            .rotate {
+                transform: rotate(180deg);
+            }
+
+
+
+<!--            body {-->
+<!--                background-color: #d4d8e5 !important;-->
+<!--            }-->
+
+
+            #main-navbar {
+                font: 1.15em;
+            }
+
+            #main-navbar ul {
+                margin: 5;
+                padding: 10;
+                text-align: center;
+            }
+
+
+            #main-navbar li::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -2px;
+                /* Adjust this value to position the underline properly */
+                width: 100%;
+                height: 2px;
+                background-color: white;
+                transform: scaleX(0);
+                /* Start with no width */
+                transform-origin: bottom left;
+                transition: transform 0.3s ease;
+                /* Animation duration and easing */
+            }
+
+            #main-navbar li:hover::after {
+                transform: scaleX(1);
+                /* Expand the underline to full width on hover */
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            html
+            {
+                width: 100%;
+                height: 100%;
+                overflow: scroll;
+            }
+
+
+
+
+        </style>
+    </div>
+
+    </body>
+    </html>

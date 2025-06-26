@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Forgot Password</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .login-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .logo img {
+            width: 150px;
+            height: 50px;
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .copyright {
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+
+        .back-to-login {
+            margin-top: 10px;
+        }
+
+        /* Flash messages - Centered */
+        .flash-messages {
+            /* position: absolute; */
+            /* top: 0; */
+            /* width: 100%; */
+            text-align: center;
+        }
+
+        /* Loading overlay */
+        .overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+        }
+
+        .overlay span {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    
+
+    <div class="login-container">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+        </div>
+
+        <!-- Flash Messages (Centered) -->
+        <div class="flash-messages">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+              {% for category, message in messages %}
+                  <div class="alert alert-{{ category }}" role="alert">
+                      {{ message }}
+                  </div>
+              {% endfor %}
+          {% endif %}
+          {% endwith %}
+        </div>
+
+        <h5 class="mb-3">Forgot Password?</h5>
+        <p class="text-muted">Enter your username to reset your password</p>
+
+        <form action="{{ url_for('forgot_pwd') }}" method="post" onsubmit="showOverlay()">
+            <div class="mb-3">
+                <input type="text" class="form-control" name="user_name" placeholder="Enter your username" required>
+            </div>
+            <button type="submit" id="reset-btn" class="btn btn-primary">Reset Password</button>
+        </form>
+
+        <div class="back-to-login">
+            <a href="{{ url_for('login') }}" class="text-decoration-none">Back to Login</a>
+        </div>
+
+        <footer class="copyright">
+            &copy; 2025 Aludecor Lamination Pvt Ltd. All rights reserved.
+        </footer>
+
+        <!-- Loading Overlay -->
+        <div class="overlay" id="overlay">
+            <span>Please wait...</span>
+        </div>
+    </div>
+
+    <script>
+        function showOverlay() {
+            document.getElementById("overlay").style.display = "flex"; 
+            document.getElementById("reset-btn").disabled = true; 
+        }
+    </script>
+
+</body>
+
+</html>

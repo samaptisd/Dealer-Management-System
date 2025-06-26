@@ -1,0 +1,858 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, content="user-scalable=yes"">
+
+
+    <title>Louver - Metaldhara</title>
+    <main>
+				<!-- navbar -->
+<div class="logo">
+  <i class="material-icons">
+    <img src="{{ url_for('static', filename='logo.png') }}" style="width: 150px; height: 50px;" alt="">
+  </i>
+</div>
+</head>
+
+ <style>
+ /* Media query to hide the sidebar on screens smaller than 768px (tablets and below) */
+        @media (max-width: 767px) {
+          #navbar {
+            display: none; /* Hide the sidebar for small screens (phones) */
+          }
+          body {
+                margin: 5px !important;
+                padding: 5px !important;
+            }
+
+        }
+
+        /* Media query to hide the sidebar on screens smaller than 1024px (tablets and below) */
+        @media (max-width: 1024px) {
+          #navbar {
+            display: none; /* Hide the sidebar for small screens (phones) */
+          }
+            body {
+                margin: 5px !important;
+                padding: 5px !important;
+              }
+        }
+
+        /* Media query to hide the sidebar on screens smaller than 1024px (tablets and below) */
+        @media (max-width: 1024px) {
+          #navbar {
+            display: none; /* Hide the sidebar for small screens (phones) */
+          }
+            body {
+                margin: 5px !important;
+                padding: 5px !important;
+              }
+        }
+
+        /* Media query to hide the sidebar on iPad devices */
+        @media only screen
+          and (min-device-width: 768px)
+          and (max-device-width: 1024px)
+          and (-webkit-min-device-pixel-ratio: 1.5) {
+          #navbar {
+            display: none; /* Hide the sidebar on iPads */
+          }
+            body {
+                margin: 5px !important;
+                padding: 5px !important;
+            }
+        }
+ </style>
+
+<body id="body-pd">
+        <div class="l-navbar" id="navbar">
+            <nav class="nav">
+                <div>
+                    <div class="nav__brand">
+                        <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
+                        <a href="#" class="nav__logo">Aludecor</a>
+                    </div>
+                    <div class="nav__list">
+                        <a href="{{ url_for('home') }}" class="nav__link active">
+                            <ion-icon name="home-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Home</span>
+                        </a>
+                        <a href="{{ url_for('flip') }}" class="nav__link">
+                            <ion-icon name="reader-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Catalogue</span>
+                        </a>
+
+						<a href="{{ url_for('form') }}" class="nav__link">
+                            <ion-icon name="desktop-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Order Booking</span>
+                        </a>
+                        <a href="{{ url_for('requisition') }}" class="nav__link">
+                          <ion-icon name="desktop-outline" class="nav__icon"></ion-icon>
+                          <span class="nav__name">Requisition Form</span>
+                      </a>
+
+						<a href="{{ url_for('profile') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Purchase Overview</span>
+                        </a>
+                        <a href="{{ url_for('booked_order') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Confirmation Pending</span>
+                        </a>
+
+                        <a href="{{ url_for('order_status') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Conf. Pending Orders</span>
+                        </a>
+
+                        <a href="{{ url_for('order_transuction') }}" class="nav__link">
+                            <ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Completed Transaction History</span>
+                        </a>
+
+<!--                        <div  class="nav__link collapse">-->
+<!--                            <ion-icon name="shapes-outline" class="nav__icon"></ion-icon>-->
+<!--                            <span class="nav__name">Purchase Tracker</span>-->
+
+<!--                            <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>-->
+
+<!--                            <ul class="collapse__menu">-->
+<!--                                <a href="{{ url_for('booked_order') }}" class="collapse__sublink">Pending for Confirmation</a>-->
+<!--                                <a href="{{ url_for('order_status') }}" class="collapse__sublink">Confirmed Pending Orders</a>-->
+<!--                                <a href="{{ url_for('order_transuction') }}" class="collapse__sublink">Completed Transaction History</a>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+
+                        <a href="{{url_for('balance_overview')}}" class="nav__link">
+                            <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Balance Overview</span>
+                        </a>
+                        <a href="{{url_for('care_support')}}" class="nav__link">
+                            <ion-icon name="umbrella-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">Care Support</span>
+                        </a>
+
+                        <a href="{{ url_for('account_details') }}" class="nav__link">
+                            <ion-icon name="person-outline" class="nav__icon"></ion-icon>
+                            <span class="nav__name">ProfileHub</span>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="{{ url_for('logout') }}" class="nav__link">
+                    <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+                    <span class="nav__name">Log Out</span>
+                </a>
+            </nav>
+        </div>
+				<!-- navbar -->
+		</main>
+</head>
+<body>
+<div class="book-section">
+        <div class="container">
+          <div class="right">
+            <figure class="back" >
+                <img src="{{ url_for('static', filename='Louver - Metaldhara_page-0018.jpg') }}" class="mobile-image"; alt=""/>
+            </figure>
+            <figure class="front" >
+
+                <img src="{{ url_for('static', filename='Louver - Metaldhara_page-0017.jpg') }}" class="mobile-image"; alt=""/>
+            </figure>
+        </div>
+          <div class="right">
+            <figure class="back" >
+                <img src="{{ url_for('static', filename='Louver - Metaldhara_page-0016.jpg') }}" class="mobile-image"; alt=""/>
+            </figure>
+            <figure class="front" >
+
+                <img src="{{ url_for('static', filename='Louver - Metaldhara_page-0015.jpg') }}" class="mobile-image"; alt=""/>
+            </figure>
+        </div>
+
+          <div class="right">
+            <figure class="back" >
+                <img src="{{ url_for('static', filename='Louver - Metaldhara_page-0014.jpg') }}" class="mobile-image"; alt=""/>
+            </figure>
+            <figure class="front" >
+
+                <img src="{{ url_for('static', filename='Louver - Metaldhara_page-0013.jpg') }}" class="mobile-image"; alt=""/>
+            </figure>
+        </div>
+            <div class="right">
+                <figure class="back" >
+                    <img src="{{ url_for('static', filename='Louver - Metaldhara_page-0012.jpg') }}" class="mobile-image"; alt=""/>
+                </figure>
+                <figure class="front" >
+
+                    <img src="{{ url_for('static', filename='Louver - Metaldhara_page-0011.jpg') }}" class="mobile-image"; alt=""/>
+                </figure>
+            </div>
+ <div class="right">
+                <figure class="back" >
+                    <img src="{{ url_for('static', filename='Louver - Metaldhara_page-0010.jpg') }}" class="mobile-image"; alt=""/>
+                </figure>
+                <figure class="front" >
+
+                    <img src="{{ url_for('static', filename='Louver - Metaldhara_page-0009.jpg') }}" class="mobile-image" alt=""/>
+                </figure>
+            </div>
+
+            <div class="right">
+                <figure class="back" >
+                    <img src="{{ url_for('static', filename='Louver - Metaldhara_page-0008.jpg') }}" class="mobile-image"/>
+                </figure>
+                <figure class="front" >
+
+                    <img src="{{ url_for('static', filename='Louver - Metaldhara_page-0007.jpg') }}" class="mobile-image"/>
+                </figure>
+            </div>
+            <div class="right">
+                <figure class="back" >
+                    <img src="{{ url_for('static', filename='Louver - Metaldhara_page-0006.jpg') }}" class="mobile-image"/>
+                </figure>
+                <figure class="front" >
+                    <img src="{{ url_for('static', filename='Louver - Metaldhara_page-0005.jpg') }}" class="mobile-image"/>
+                </figure>
+            </div>
+            <div class="right">
+                <figure class="back" >
+                    <img src="{{ url_for('static', filename='Louver - Metaldhara_page-0004.jpg') }}" class="mobile-image"/>
+                </figure>
+                <figure class="front" >
+            <img src="{{ url_for('static', filename='Louver - Metaldhara_page-0003.jpg') }}" class="mobile-image"/>
+                </figure>
+            </div>
+            <div class="right">
+                <figure class="back" >
+               <img src="{{ url_for('static', filename='Louver - Metaldhara_page-0002.jpg') }}" class="mobile-image"/>
+                </figure>
+                <figure class="front" >
+             <img src="{{ url_for('static', filename='Louver - Metaldhara_page-0001.jpg') }}" class="mobile-image"/>
+
+                </figure>
+            </div>
+            <div class="right">
+                <figure  style="background-color:powerblue;" class="back" id="cover">
+                  <center style="color: black;"><h2>Louver - Metaldhara</h2>
+                    <img src="{{ url_for('static', filename='Logo.png') }}" style="width:150px;height: 50px;"/></center>
+                </figure>
+                <figure   class="front" id="cover">
+                    <center ><h1 style="width:30px;height: 15px;" >Louver - Metaldhara</h1>
+                    <img src="{{ url_for('static', filename='Logo.png') }}" style="width:150px;height: 50px;"/></center>
+                </figure>
+            </div>
+        </div>
+        <button onclick="turnLeft()">Prev</button> <button onclick="turnRight()">Next</button><button><a href="https://drive.google.com/uc?export=download&id=1c5KlGZHev55cTG7CJwprOgWymDGqGbE9" >Download</a></button>
+        <br/>
+    </div>
+
+
+<script>
+	/*===== EXPANDER MENU  =====*/
+const showMenu = (toggleId, navbarId, bodyId)=>{
+  const toggle = document.getElementById(toggleId),
+  navbar = document.getElementById(navbarId),
+  bodypadding = document.getElementById(bodyId)
+
+  if(toggle && navbar){
+    toggle.addEventListener('click', ()=>{
+      navbar.classList.toggle('expander')
+
+      bodypadding.classList.toggle('body-pd')
+    })
+  }
+}
+showMenu('nav-toggle','navbar','body-pd')
+
+/*===== LINK ACTIVE  =====*/
+const linkColor = document.querySelectorAll('.nav__link')
+function colorLink(){
+  linkColor.forEach(l=> l.classList.remove('active'))
+  this.classList.add('active')
+}
+linkColor.forEach(l=> l.addEventListener('click', colorLink))
+
+
+/*===== COLLAPSE MENU  =====*/
+const linkCollapse = document.getElementsByClassName('collapse__link')
+var i
+
+for(i=0;i<linkCollapse.length;i++){
+  linkCollapse[i].addEventListener('click', function(){
+    const collapseMenu = this.nextElementSibling
+    collapseMenu.classList.toggle('showCollapse')
+
+    const rotate = collapseMenu.previousElementSibling
+    rotate.classList.toggle('rotate')
+  })
+}
+
+</script>
+<script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+
+<style>
+
+.mobile-image {
+    width: 330px; /* You can keep the width at 100% for responsive images on mobile screens */
+    height: 460px; /* This will maintain the aspect ratio of the image */
+  }
+
+
+
+@media screen
+        and (min-device-width: 320px)
+        and (max-width: 1000px) {
+
+    body {
+  position: relative;
+  background-image: url('{{ url_for('static', filename='bdesign.jpg') }}');
+  /* Other CSS properties go here */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-size: cover;
+  margin: 40px; /* Adjust the margin value as needed */
+  padding: 2rem 0 0 6.75rem;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  transition: 0.5s;
+  overflow-y: scroll;
+  height: 100vh;
+  width: 100%;
+
+     .book-section > .container{
+            height: 360px;
+            width: 400px;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2%;
+            margin-bottom: 30px;
+            perspective: 1200px;
+        }
+
+.mobile-image {
+    width: 100%; /* You can keep the width at 100% for responsive images on mobile screens */
+    height: auto; /* This will maintain the aspect ratio of the image */
+  }
+}
+
+
+        *{
+            box-sizing: border-box;
+        }
+        .book-section{
+            height: 100vh;
+            width: 100%;
+            padding: 40px 0;
+            text-align: center;
+        }
+        .book-section > .container{
+            height: 460px;
+            width: 700px;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2%;
+            margin-bottom: 30px;
+            perspective: 1200px;
+        }
+        .container > .right{
+            position: absolute;
+            height: 100%;
+            width: 50%;
+            transition: 0.7s ease-in-out;
+            transform-style: preserve-3d;
+        }
+        .book-section > .container > .right{
+            right:0;
+            transform-origin: left;
+            border-radius: 10px 0 0 10px;
+        }
+        .right > figure.front, .right > figure.back{
+            margin: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            left:0;
+            top:0;
+            background-size: 90%;
+            background-repeat: no-repeat;
+            backface-visibility: hidden;
+            background-color: white;
+            overflow: hidden;
+        }
+        .right > figure.front{
+            background-position: right;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 2px 2px 15px -2px rgba(0,0,0,0.2);
+        }
+        .right > figure.back{
+            background-position: left;
+            border-radius: 10px 0 0 10px;
+            box-shadow: -2px 2px 10px -2px rgba(0,0,0,0.2);
+            transform: rotateY(180deg);
+        }
+        .flip{
+            transform: rotateY(-180deg);
+        }
+        .flip::before{
+            content: "";
+            position: absolute;
+            top:0;
+            left:0;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            border-radius: 0 10px 10px 0;
+            background-color: rgba(0,0,0,0.1);
+        }
+        .book-section > button{
+            border: 2px solid #ef9f00;
+            background-color: transparent;
+            color: #ef9f00;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.3s ease-in-out;
+        }
+        .book-section > button:focus, .book-section > button:active{
+            outline: none;
+        }
+        .book-section > p{
+            color: rgba(0,0,0,0.7);
+            font-family: calibri;
+            font-size: 24px;
+        }
+        .book-section > p > a{
+            text-decoration: none;
+            color: #ef9f00;
+        }
+        .book-section > button:hover{
+            background-color: #ef9f00;
+            color: #fff;
+        }
+        .front#cover, .back#back-cover{
+            background-color: #ffcb63;
+            font-family: calibri;
+            text-align: left;
+            padding: 0 30px;
+        }
+        .front#cover h1{
+            color: #fff;
+        }
+        .front#cover p{
+            color: rgba(0,0,0,0.8);
+            font-size: 14px;
+        }
+
+        body, html
+		{
+			padding: 0;
+			margin: 0px;
+			font-family: verdana,sans-serif;
+		}
+		main
+		{
+			width: 100%;
+			display: inline-block;
+		}
+}
+
+     .logo {
+  text-align: right;
+}
+	/*===== GOOGLE FONTS =====*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+/*===== VARIABLES CSS =====*/
+:root {
+  --nav-width: 92px;
+  --yellow-color: yellow;
+
+  /*===== Colores =====*/
+  --first-color: #0c5df4;
+  --bg-color: #12192c;
+  --sub-color: #b6cefc;
+  --white-color: #fff;
+
+  /*===== Fuente y tipografia =====*/
+  --body-font: "Poppins", sans-serif;
+  --normal-font-size: 1rem;
+  --small-font-size: 0.875rem;
+
+  /*===== z index =====*/
+  --z-fixed: 100;
+}
+
+/*===== BASE =====*/
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+body {
+  position: relative;
+  margin: 0;
+  padding: 2rem 0 0 6.75rem;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  transition: 0.5s;
+  overflow-y: scroll;
+  color: white !important;
+
+}
+h1 {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+/*===== l NAV =====*/
+.l-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--nav-width);
+  height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--white-color);
+  padding: 1.5rem 1.5rem 2rem;
+  transition: 0.5s;
+  z-index: var(--z-fixed);
+}
+
+/*===== NAV =====*/
+.nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: inherit;
+  overflow: hidden;
+
+
+}
+.nav__brand {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.nav__toggle {
+  font-size: 1.25rem;
+  padding: 0.75rem;
+  cursor: pointer;
+}
+.nav__logo {
+  color: var(--white-color);
+  font-weight: 600;
+}
+
+.nav__link {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: center;
+  column-gap: 0.75rem;
+  padding: 0.75rem;
+  color: var(--white-color);
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.nav__link:hover {
+  background-color: var(--first-color);
+}
+.nav__icon {
+  font-size: 1.25rem;
+}
+.nav__name {
+  font-size: var(--small-font-size);
+}
+
+
+
+
+
+/*Expander menu*/
+.expander {
+  width: calc(var(--nav-width) + 9.25rem);
+}
+
+/*Add padding body*/
+.body-pd {
+  padding: 2rem 0 0 16rem;
+
+}
+
+/*Active links menu*/
+.active {
+  background-color: var(--first-color);
+}
+
+/*===== COLLAPSE =====*/
+.collapse {
+  grid-template-columns: 20px max-content 1fr;
+}
+.collapse__link {
+  justify-self: flex-end;
+  transition: 0.5s;
+}
+.collapse__menu {
+  display: none;
+  padding: 0.75rem 2.25rem;
+}
+.collapse__sublink {
+  color: var(--sub-color);
+  font-size: var(--small-font-size);
+}
+.collapse__sublink:hover {
+  color: var(--yellow-color);
+  text-decoration: underline;
+}
+
+/*Show collapse*/
+.showCollapse {
+  display: block;
+}
+
+/*Rotate icon*/
+.rotate {
+  transform: rotate(180deg);
+}
+
+
+
+body {
+  position: relative;
+  background-image: url('{{ url_for('static', filename='bdesign.jpg') }}');
+  /* Other CSS properties go here */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-size: cover;
+  margin: 40px; /* Adjust the margin value as needed */
+  padding: 2rem 0 0 6.75rem;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  transition: 0.5s;
+  overflow-y: scroll;
+}
+        *{
+            box-sizing: border-box;
+        }
+        .book-section{
+            height: 100vh;
+            width: 100%;
+            padding: 40px 0;
+            text-align: center;
+        }
+        .book-section > .container{
+            height: 460px;
+            width: 700px;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2%;
+            margin-bottom: 30px;
+            perspective: 1200px;
+        }
+        .container > .right{
+            position: absolute;
+            height: 100%;
+            width: 50%;
+            transition: 0.7s ease-in-out;
+            transform-style: preserve-3d;
+        }
+        .book-section > .container > .right{
+            right:0;
+            transform-origin: left;
+            border-radius: 10px 0 0 10px;
+        }
+        .right > figure.front, .right > figure.back{
+            margin: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            left:0;
+            top:0;
+            background-size: 90%;
+            background-repeat: no-repeat;
+            backface-visibility: hidden;
+            background-color: white;
+            overflow: hidden;
+        }
+        .right > figure.front{
+            background-position: right;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 2px 2px 15px -2px rgba(0,0,0,0.2);
+        }
+        .right > figure.back{
+            background-position: left;
+            border-radius: 10px 0 0 10px;
+            box-shadow: -2px 2px 10px -2px rgba(0,0,0,0.2);
+            transform: rotateY(180deg);
+        }
+        .flip{
+            transform: rotateY(-180deg);
+        }
+        .flip::before{
+            content: "";
+            position: absolute;
+            top:0;
+            left:0;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            border-radius: 0 10px 10px 0;
+            background-color: rgba(0,0,0,0.1);
+        }
+        .book-section > button{
+            border: 2px solid #ef9f00;
+            background-color: transparent;
+            color: #ef9f00;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.3s ease-in-out;
+        }
+        .book-section > button:focus, .book-section > button:active{
+            outline: none;
+        }
+        .book-section > p{
+            color: rgba(0,0,0,0.7);
+            font-family: calibri;
+            font-size: 24px;
+        }
+        .book-section > p > a{
+            text-decoration: none;
+            color: #ef9f00;
+        }
+        .book-section > button:hover{
+            background-color: #ef9f00;
+            color: #fff;
+        }
+        .front#cover, .back#back-cover{
+            background-color: #ffcb63;
+            font-family: calibri;
+            text-align: left;
+            padding: 0 30px;
+        }
+        .front#cover h1{
+            color: #fff;
+        }
+        .front#cover p{
+            color: rgba(0,0,0,0.8);
+            font-size: 14px;
+        }
+
+        body, html
+		{
+			padding: 0;
+			margin: 0px;
+			font-family: verdana,sans-serif;
+		}
+		main
+		{
+			width: 100%;
+			display: inline-block;
+		}
+		.navbar
+		{
+			width: 100%;
+			background: #4568DC;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #B06AB3, #4568DC);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #B06AB3, #4568DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+border-bottom: 2px solid linear-gradient(to right, #B06AB3, #4568DC);
+	box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.7);
+			margin: 0px;
+
+		}
+		.navbar > ul
+		{
+			margin: 0px;
+			padding: 0px;
+			text-align: center;
+		}
+			.navbar > ul li
+			{
+				display: inline-block;
+			}
+			.navbar > ul li a
+			{
+				text-decoration: none;
+				color: #fff;
+				width: 120px;
+				display: inline-block;
+				text-align: center;
+				padding: 20px 0;
+				font-weight: bold;
+				position: relative;
+			}
+			.navbar > ul li a::before {
+    background: #fff none repeat scroll 0 0;
+    bottom: -2px;
+    content: "";
+    height: 3px;
+    left: 0;
+    position: absolute;
+    width: 0%;
+    transition: 0.5s;
+}
+	.navbar > ul li a:hover::before
+	{
+		w
+</style>
+
+<script>
+    var right = document.getElementsByClassName("right");
+    var si = right.length;
+    var z=1;
+    turnRight();
+    function turnRight()
+    {
+        if(si>=1){
+            si--;
+        }
+        else{
+            si=right.length-1;
+            function sttmot(i){
+                setTimeout(function(){right[i].style.zIndex="auto";},300);
+            }
+            for(var i=0;i<right.length;i++){
+                right[i].className="right";
+                sttmot(i);
+                z=1;
+            }
+        }
+        right[si].classList.add("flip");
+        z++;
+        right[si].style.zIndex=z;
+    }
+    function turnLeft()
+    {
+        if(si<right.length){
+            si++;
+        }
+        else{
+            si=1;
+            for(var i=right.length-1;i>0;i--){
+                right[i].classList.add("flip");
+                right[i].style.zIndex=right.length+1-i;
+            }
+        }
+        right[si-1].className="right";
+        setTimeout(function(){right[si-1].style.zIndex="auto";},350);
+    }
+</script>
+</body>
+</html>
